@@ -110,16 +110,22 @@ Kadangi darbe bus tiriama vienos diagramos transformacija į kitą, pirmiausia p
 
 \subsection{Sekų diagrama}
 
-Kaip ir \textbf{BPMN} atveju \textbf{sekų diagrama} turi komponentus, kurie nebus nagrinėjami šiame darbe.
+Kaip ir \textbf{BPMN} atveju \textbf{sekų diagrama} turi komponentus, kurie nebus nagrinėjami šiame darbe. \ref{tab:investigated_sequence_diagram_components} lentelė vaizduoja kas bus tiriama iš sekų diagramos.
 \stepcounter{counter:table:reset}
 \begin{center}
-    \begin{longtable}{ | p{0.5cm} | p{2cm} |  p{7cm} | p{4cm} |}
+    \begin{longtable}{ | p{0.5cm} | p{2cm} |  p{7cm} | c |}
     \caption{Sekų diagramos komponentai}
 	\label{tab:investigated_sequence_diagram_components}
     \\ \hline 
     Nr. & Komponentas & Aprašymas & Žymėjimo pavizdys\\ 
     \hline 
-    \rownumber & Rolė & Komponentas žymintis diagramos dalyvį ir nurodantis, kad jis atsakingas už veiklų esančių šiame komponente vykdymą. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/bpm-components/pool}}} \\
+    \rownumber & Gyvavimo linija & Komponentas žymintis diagramos objekto dalyvavimo laiką procese. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/sequence-diagram-components/lifeline}}} \\
+    \hline
+    \rownumber & Vykdymo specifikacija & Komponentas žymintis sinchroninio pranešimo tranzakciją. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[height=3cm]{img/sequence-diagram-components/execution_specification}}} \\
+    \hline
+     \rownumber & Žinutė & Komponentas žymintis duomenų perdavimą iš vieno dalyvio į kitą & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/sequence-diagram-components/message}}} \\
+    \hline
+     \rownumber & Atsakymas & Komponentas žymintis, kad dalyvis sureagavo į sinchroninę užduotį. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/sequence-diagram-components/reply-message}}} \\
     \hline
     \end{longtable}
 \end{center}
