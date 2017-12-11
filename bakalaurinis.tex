@@ -79,7 +79,7 @@ Kadangi darbe bus tiriama vienos diagramos transformacija į kitą, pirmiausia p
 %keli šaltiniai \cite{PvzStraipsnEn, PvzKonfLt, PvzKonfEn, PvzKnygLt, PvzKnygEn,
 %PvzElPubLt, PvzElPubEn, PvzMagistrLt, PvzPhdEn}.
 \subsection{BPMN diagrama}
-\textbf{BPMN} specifikacija leidžia atvaizduoti gana nemažai verslo proceso atributų \cite{bpmnFormal}. Bet šiame darbe ji bus nagrinėjama tik kaip įvesties duomenų formatas, naudojamas apibrėžti informaciją pagal kurią bus kuriama \textbf{sekų diagramą}. Taigi daugelį \textbf{BPMN} komponentų galima tiesiog ignoruoti, nes jie neturi jokios įtakos algoritmo vykdymo rezultatui. Norint pabrėžti svarbią informaciją, darbe bus tiriamos tik tos \textbf{BPMN} savybės kurios gali įtakoti algoritmo vykdymo rezultatą. Atitinkami komponentai pavaizduoti \ref{tab:tiriamos_bpmn_diagramos_komponentai} lentelėje.
+\textbf{BPMN} specifikacija leidžia atvaizduoti gana nemažai verslo proceso atributų \cite{bpmnFormal}. Bet šiame darbe ji bus nagrinėjama tik kaip įvesties duomenų formatas, naudojamas apibrėžti informaciją pagal kurią bus kuriama \textbf{sekų diagrama}. Taigi daugelį \textbf{BPMN} komponentų galima tiesiog ignoruoti, nes jie neturi jokios įtakos algoritmo vykdymo rezultatui. Norint pabrėžti svarbią informaciją, darbe bus tiriamos tik tos \textbf{BPMN} savybės kurios gali įtakoti algoritmo vykdymo rezultatą. Atitinkami komponentai pavaizduoti \ref{tab:investigated_bpmn_components} lentelėje.
 \newcounter{counter:table:reset}
 \newcounter{counter:table}[counter:table:reset]
 \newcommand\rownumber{\stepcounter{counter:table}\arabic{counter:table}}
@@ -134,6 +134,7 @@ Kaip ir \textbf{BPMN} atveju \textbf{sekų diagrama} turi komponentus, kurie neb
 Šio darbo tikslas yra algoritmas atlikti diagramų transformacijai. Pirmiausia pateikiama tai kas literatūroje rašoma apie UML diagramų transformavimo algoritmus. Vėliau sukuriamas siekiamas algoritmas.
 \subsection{UML diagramų transformavimo algoritmai}
 \subsubsection{Vartojimo atvejų diagramos išvedimas iš BPMN modelio}
+Literatųroje yra parašyta apie vartojimo atvejų diagramos išvedimą iš BPMN modelio \cite{algUseCasesFromBpmn}.
 \subsection{Sekų diagramos išvedimas iš BPMN modelio}
 \section{Programa BPMN transformacijai į sekų diagramą}   
 
