@@ -49,6 +49,7 @@
 	\item \textbf{BPMN} – modeliavimo kalba, skirta pavaizduoti informaciją plačiai auditorijai. \textbf{BPMN} buvo sukurta ir dažniausia naudojama pavaizduoti verslo procesams \cite{bpmnFormal}.
 	\item \textbf{UML} – modeliavimo kalba, skirta suteikti standartinį sistemos analizės, architektūros, veikimo ir kūrimo pavaizdavimą \cite{omgUmlFormal}.
 	\item \textbf{Sekų diagrama} – \textbf{UML} diagrama, skirta pavaizduoti žinučių tarp apibrėžtų objektų sekai tų objektų gyvavimo metu \cite{omgUmlFormal}.
+	\item \textbf{Vartojimo atvejų diagrama} – \textbf{UML} diagrama, skirta pavaizduoti pavaizduoti kaip gali būti naudojama programų sistema \cite{algUseCasesFromBpmn}.
 \end{enumerate}
 
 
@@ -58,11 +59,11 @@ Darbo tikslas – apibrėžti ir įgyvendinti algoritmą \textbf{BPMN} modelio t
 
 Reikalavimų inžinerija yra sudėtinga programų kūrimo dalis. Proceso sudėtingumas dažnai tampa klaidų priežastimi. Čia atsiradusios klaidos sunkiai aptinkamos ir sukelia brangiai kainuojančias pasekmes, nes sekančiuose etapuose bus kuriama neteisingai apibrėžta programa. Norint išvengti klaidų galima kai kurias proceso veiklas automatizuoti.
 
-Darbe bus tiriama verslo proceso transformacija į kuriamos programos \textbf{sekų diagramas}. \textbf{Sekų diagramos} yra svarbi reikalavimų inžinerijos dalis, kadangi ji apibrėžia kokios transakcijos vyks programų sistemoje. Įmonės dažniausiai žino kaip ir kokias veiklas jos vykdo. Verslo procesą galima apibrėžti \textbf{BPMN} diagramomis. Bet ne viską, kas yra \textbf{BPMN} modelyje, galima perkelti į \textbf{sekų diagramą}, todėl darbe bus apibrėžtas suprastintas \textbf{BPMN} modelis, kuriame bus vaizduojama tik algoritmui aktuali informacija. Čia bus tiriama \textbf{BPMN} modelio transformacijos į \textbf{sekų diagramas} algoritmas.
+Darbe bus tiriama verslo proceso transformacija į kuriamos programos \textbf{sekų diagramas}. \textbf{Sekų diagramos} yra svarbi reikalavimų inžinerijos dalis, kadangi ji apibrėžia kokios transakcijos vyks programų sistemoje. Įmonės dažniausiai žino kaip ir kokias veiklas jos vykdo. Verslo procesą galima apibrėžti \textbf{BPMN} diagramomis. Bet ne viską, kas yra \textbf{BPMN} modelyje, galima perkelti į \textbf{sekų diagramą}, todėl darbe bus apibrėžtas modifikuotas \textbf{BPMN} modelis, kuriame bus vaizduojama tik algoritmui aktuali informacija. Taip pat gali tekti pridėti papildomų atributų, kurie padės pasiekti tikslesnius rezultatus. Čia bus tiriama \textbf{BPMN} modelio transformacijos į \textbf{sekų diagramas} algoritmas.
 
 Siekiami rezultatai yra:
 \begin{enumerate}
-	\item Suprastinto \textbf{BPMN} modelio apibrėžimas.
+	\item Modifikuoto \textbf{BPMN} modelio apibrėžimas.
 	\item Algoritmas galintis transformuoti \textbf{BPMN} modelį į \textbf{sekų diagramą}.
 	\item Programa demonstruojanti algoritmo veikimą.
 \end{enumerate}
@@ -110,7 +111,7 @@ Kadangi darbe bus tiriama vienos diagramos transformacija į kitą, pirmiausia p
 
 \subsection{Sekų diagrama}
 
-Kaip ir \textbf{BPMN} atveju \textbf{sekų diagrama} turi komponentus, kurie nebus nagrinėjami šiame darbe. \ref{tab:investigated_sequence_diagram_components} lentelė vaizduoja kas bus tiriama iš sekų diagramos.
+Kaip ir \textbf{BPMN} atveju \textbf{sekų diagrama} turi komponentus, kurie nebus nagrinėjami šiame darbe. \ref{tab:investigated_sequence_diagram_components} lentelė vaizduoja kas bus tiriama iš \textbf{sekų diagramos}.
 \stepcounter{counter:table:reset}
 \begin{center}
     \begin{longtable}{ | p{0.5cm} | p{2cm} |  p{7cm} | c |}
@@ -130,13 +131,25 @@ Kaip ir \textbf{BPMN} atveju \textbf{sekų diagrama} turi komponentus, kurie neb
     \end{longtable}
 \end{center}
 
-\section{Algoritmas kurti sekų diagramas pagal BPMN pateiktą informaciją}
-Šio darbo tikslas yra algoritmas atlikti diagramų transformacijai. Pirmiausia pateikiama tai kas literatūroje rašoma apie UML diagramų transformavimo algoritmus. Vėliau sukuriamas siekiamas algoritmas.
-\subsection{UML diagramų transformavimo algoritmai}
-\subsubsection{Vartojimo atvejų diagramos išvedimas iš BPMN modelio}
-Literatųroje yra parašyta apie vartojimo atvejų diagramos išvedimą iš BPMN modelio \cite{algUseCasesFromBpmn}.
-\subsection{Sekų diagramos išvedimas iš BPMN modelio}
-\section{Programa BPMN transformacijai į sekų diagramą}   
+\section{Algoritmas kurti \textbf{sekų diagramas} pagal \textbf{BPMN} pateiktą informaciją}
+Šio darbo tikslas yra algoritmas atlikti diagramų transformacijai. Pirmiausia pateikiama tai kas literatūroje rašoma apie \textbf{UML} diagramų transformavimo algoritmus. Vėliau sukuriamas siekiamas algoritmas.
+\subsection{\textbf{UML} diagramų transformavimo algoritmai}
+\subsubsection{\textbf{Vartojimo atvejų diagramos} išvedimas iš \textbf{BPMN} modelio}
+Literatųroje yra parašyta apie \textbf{vartojimo atvejų diagramos} išvedimą iš \textbf{BPMN} modelio \cite{algUseCasesFromBpmn}. Darbe nagrinėjamas \cite{algUseCasesFromBpmn} straipsnyje aprašytas algoritmas (\ref{eq:use_cases_from_bpmn}). Imamas modifikuotas \textbf{BPMN} modelis (\ref{eq:use_cases_from_bpmn:bpmn_elements}) ir tie \textbf{vartojimo atvejų diagramos} komponentai, kurie gali būti iš jo išvesti (\ref{eq:use_cases_from_bpmn:use_case_elements}). 
+\begin{align}
+&BPMNElements = \left\{Start,End,Role,Branch,Task,Transition\right\}; \label{eq:use_cases_from_bpmn:bpmn_elements} \\
+\begin{split}
+&UseCasesElements = \left\{Actor, Generalization, Association,Use Case,\right. \\
+&\left. Include, Extension Point, Extend\right\}; \label{eq:use_cases_from_bpmn:use_case_elements}\\
+\end{split} \\
+&BPMN(BPMNModelElements) \Rightarrow UseCases(UseCasesElements); \label{eq:use_cases_from_bpmn}
+\end{align}
+
+Algoritmas Pirmiausia sudėlioja pavienes užduotis į proceso žingsnius (užduočių seką su pradžia, pabaigą ir rezultatais, kurią vykdo ta pati rolė). Vėliau Rolės tampa aktoriais, o žingsniai jose – vartojimo atvejais. Galiausiai pasikartojančios užduotis išimamos iš žingsnių ir prijungiamos asociacijomis –  įtraukia arba išplečia pagal situaciją.
+
+
+\subsection{Sekų diagramos išvedimas iš \textbf{BPMN} modelio}
+\section{Programa \textbf{BPMN} transformacijai į \textbf{sekų diagramą}}   
 
 
 %Išvadose ir pasiūlymuose, nekartojant atskirų dalių apibendrinimų,
