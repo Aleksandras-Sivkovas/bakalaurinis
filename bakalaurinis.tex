@@ -16,6 +16,15 @@
 \usepackage{wrapfig}
 
 \usepackage{longtable}
+\usepackage{rotating}
+
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\lstset{ %
+  numbers=left,                    % where to put the line-numbers;
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{mygray} % the style that is used for the line-numbers 
+}
+
 
 % Titulinio aprašas
 \university{Vilniaus universitetas}
@@ -132,9 +141,9 @@ Kaip ir \textbf{BPMN} atveju \textbf{sekų diagrama} turi komponentus, kurie neb
 \end{center}
 
 \section{Algoritmas kurti \textbf{sekų diagramas} pagal \textbf{BPMN} pateiktą informaciją}
-Šio darbo tikslas yra algoritmas atlikti diagramų transformacijai. Pirmiausia pateikiama tai kas literatūroje rašoma apie \textbf{UML} diagramų transformavimo algoritmus. Vėliau sukuriamas siekiamas algoritmas.
+Šio darbo tikslas yra algoritmas atlikti diagramų transformacijai. Pirmiausia pateikiama tai, kas literatūroje rašoma apie \textbf{UML} diagramų transformavimo algoritmus. Vėliau sukuriamas siekiamas algoritmas.
 \subsection{\textbf{UML} diagramų transformavimo algoritmai}
-\subsubsection{\textbf{Vartojimo atvejų diagramos} išvedimas iš \textbf{BPMN} modelio}
+\subsubsection{\textbf{Vartojimo atvejų diagramos} išvedimas iš \textbf{BPMN} modelio} \label{section:use_cases_from_bpmn}
 Literatųroje yra parašyta apie \textbf{vartojimo atvejų diagramos} išvedimą iš \textbf{BPMN} modelio \cite{algUseCasesFromBpmn}. Darbe nagrinėjamas \cite{algUseCasesFromBpmn} straipsnyje aprašytas algoritmas (\ref{eq:use_cases_from_bpmn}). Imamas modifikuotas \textbf{BPMN} modelis (\ref{eq:use_cases_from_bpmn:bpmn_elements}) ir tie \textbf{vartojimo atvejų diagramos} komponentai, kurie gali būti iš jo išvesti (\ref{eq:use_cases_from_bpmn:use_case_elements}). 
 \begin{align}
 &BPMNElements = \left\{Start,End,Role,Branch,Task,Transition\right\}; \label{eq:use_cases_from_bpmn:bpmn_elements} \\
@@ -145,10 +154,129 @@ Literatųroje yra parašyta apie \textbf{vartojimo atvejų diagramos} išvedimą
 &BPMN(BPMNModelElements) \Rightarrow UseCases(UseCasesElements); \label{eq:use_cases_from_bpmn}
 \end{align}
 
-Algoritmas Pirmiausia sudėlioja pavienes užduotis į proceso žingsnius (užduočių seką su pradžia, pabaigą ir rezultatais, kurią vykdo ta pati rolė). Vėliau Rolės tampa aktoriais, o žingsniai jose – vartojimo atvejais. Galiausiai pasikartojančios užduotis išimamos iš žingsnių ir prijungiamos asociacijomis –  įtraukia arba išplečia pagal situaciją.
+Algoritmo autoriai pirmiausia siūlo surasti ryšius tarp modelių. Rolės atitinka aktorius. Užduotys tuo tarpu grupuojamos, kol nepasiekia maksimalaus skaičiaus vykdomų be pertraukos, tos pačios rolės ir pagaminančių rezultatą. Tokia grupė pavadinama žingsniu ir yra laikoma atitinkančia vartojimo atvejį. Taip  išsiaiškinami transformacijos žingsniai. Tuomet lieka tik formaliai užrašyti kaip jie gali būti vykdomi ir surasti kaip dar galima būtų panaudoti informaciją, patikslinti ir suprastinti gautoms diagramoms.
+
+Algoritmas Pirmiausia sudėlioja pavienes užduotis į proceso žingsnius. Vėliau Rolės tampa aktoriais, o žingsniai jose – vartojimo atvejais. Galiausiai pasikartojančios užduotis išimamos iš žingsnių ir prijungiamos asociacija įtraukia arba išplečia pagal situaciją.
 
 
 \subsection{Sekų diagramos išvedimas iš \textbf{BPMN} modelio}
+
+Šio darbo tikslas, algoritmas galintis gauti \textbf{sekų diagramas} iš \textbf{BPMN} modelio, bus kuriamas pagal \ref{section:use_cases_from_bpmn} aprašytą algoritmo sukūrimo pavyzdį. Pirmiausia bus rasti ryšiai tarp diagramų, vėliau sukurtas būdas juos panaudoti, galiausiai panaudota likusi modelio informacija patikslinti ir suprastinti diagramoms.
+
+\subsubsection{Ryšiai tarp \textbf{BPMN} ir \textbf{sekų diagramų}} \label{section:relations_sd_bpmn}
+
+Norint duomenis iš vieno modelio perkelti į kitą galima pasinaudoti ryšiais esančiais tarp jų.
+
+\begin{center}
+    \begin{longtable}{ | c | c |  c | c | c |}
+    \caption{Ryšiai tarp \textbf{BPMN} ir \textbf{sekų diagramų}}
+	\label{tab:relations_sd_bpmn}
+    \\ \hline 
+     & 
+     %\begin{turn}{-90}
+     Gyvavimo linija 
+     %\end{turn} 
+     & 
+     %\begin{turn}{-90}
+     Vykdymo specifikacija 
+     %\end{turn}  
+     & 
+     %\begin{turn}{-90}
+     Žinutė 
+     %\end{turn}  
+     & 
+     %\begin{turn}{-90}
+     Atsakymas 
+     %\end{turn} 
+     \\ 
+    \hline 
+    Rolė & + & + & + & + \\
+    \hline
+    Įvykis  & & + & + & \\
+    \hline 
+    Veikla  & & + & + & + \\
+    \hline 
+    Sekos srautas  & & + & + & \\
+    \hline
+    Duomenų objektas  & & & + & +\\
+    \hline
+    Pranešimų srautas  & & & + & +\\
+    \hline
+    Sprendimas  & & & & \\
+    \hline
+    \end{longtable}
+\end{center} 
+
+TODO: Vykdymo specifikacija.(turbūt išvestinis komponentas ir jo skaičiuoti nereikia)
+
+Sprendimas neturi ryšiu su \textbf{sekų diagramos} komponentais, bet jis nėra nesusijęs su ja. Kiekvienas išeinantis sekos srautas sprendime reiškia naują \textbf{sekų diagramą}. 
+\begin{enumerate}
+	\item Gyvavimo linija – galima gauti iš informacijos esančios rolėje. 
+	\item Žinutė – Daugiausia informacijos reikalaujantis komponentas. Ją galima apibrėžti kaip sekos srauto perėjimą iš vienos rolės kitai, kai įvyksta įvykis arba kuri nors rolė atliko savo veiklų seką ir tęsti darbui reikalingos kitos rolės įvykdytos veiklos. Šis veiksmas dažniausiai taip pat reikalauja Duomenų objekto keliaujančio duomenų srautu.
+	\item Atsakymas – duomenų objektas keliaujantis pranešimų srautu iš vienos veiklos esančios rolėje į kitą.
+	\item Vykdymo specifikacija – Atsiranda, kai rolėje vyksta sekos srauto perėjimas tarp jo jungiamų komponentų.
+\end{enumerate} 
+
+\subsubsection{Ryšių tarp diagramų panaudojimas transformacijai}
+
+Rasti ryšiai parodo į kokius \textbf{BPMN} komponentus reikia žiūrėti kuriant \textbf{sekų diagramos} dalis. Toliau sudėliojami konkretūs žingsniai kuriuos reikia atlikti. Galiausiai gaunamas pseudokodas \ref{lst:bpmn_to_sd_algorythm_pseudocode}. 
+
+\begin{enumerate}
+	\item Pirmiausia sukuriama proceso gyvavimo linija ir jos vykdymo specifikacija. Ji tęsis visą vykdymą, perduos informaciją, gautą iš vienų dalyvių kitiem. 
+	\item Vėliau iš rolių informacijos gaunamos gyvavimo linijos. Galiausiai randama pirmoji proceso veikla \lstinline[columns=fixed]{sequenceFlows.filter(flow => flow.from.type == start)[0];}. Ir pradedant nuo jos, visos veiklos paverčiamos į žinutes, kurios siunčiamos iš proceso vykdymo specifikacijos į naują vykdymo specifikaciją sukurtą gyvavimo linijoje, kuri buvo sukurta iš informacijos rolėje kuriai priklauso duota veikla. Žinutės įvesties parametrais tampa duomenų objektai, kurių duomenų srautas rodo į nagrinėjamą veiklą. Išvestis gaunama iš duomenų objektų, kurių duomenų srautas veda iš nagrinėjamos veiklos. 
+	\item Atsakymas gaunamas iš duomenų žinutėje, nes jis yra susijęs su ja. 
+\end{enumerate} 
+
+\begin{lstlisting}[language=java, caption={\textbf{UML} \textbf{Sekų diagramos} gavimo iš \textbf{BPMN} modelio algoritmo pseudokodas}, label={lst:bpmn_to_sd_algorythm_pseudocode}]
+{roles,events,activities, sequenceFlows,messageFlows,decisions} = BPMN;
+
+lifelines = [];
+processLifeline = new Lifeline(BPMN.name);
+processExecutionSpecification = processLifeline.createExecutionSpecification();
+lifelines.push(processLifeline);
+rolesLifelinesMap = new Map();
+for(role in roles){
+	lifeline = createLifeline(role);
+	rolesLifelinesMap.set(role,lifeline);
+	lifelines.add(lifeline);
+}
+syncMessages = [];
+returnMessages = [];
+startFlow = sequenceFlows.filter(flow => flow.from.type == start)[0];
+for(
+	flow = startFlow;
+	flow.from.type != end;
+	flow = sequenceFlows.filter(flow => flow.from.equals(activity))[0]
+){
+	activity = flow.to;
+	lifeline = rolesLifelinesMap.get(activity.role);
+	executionSpecification = lifeline.createExecutionSpecification();
+	
+	inputDataFlows = messageFlows.filter(flow => flow.to.equals(activity));
+	inputParameters = inputDataFlows.map(flow => flow.from);
+	
+	outputDataFlow = messageFlows.filter(flow => flow.from.equals(activity))[0];
+	returnParameter = 	outputDataFlow.to;
+	
+	
+	message = createSyncMessage(
+			processExecutionSpecification,
+			executionSpecification,
+			activity.name,
+			inputParameters,
+			returnParameter
+	);
+	syncMessages.push(message);	
+	
+	returnMessage = createReturnMessage(message);
+	returnMessages.push(returnMessage);	
+}
+sequenceDiagram = {lifelines,syncMessages,returnMessages};
+\end{lstlisting}
+
+\subsubsection{Likusios informacijos panaudojimas suprastinti ar patikslinti diagramai}
+
+
 \section{Programa \textbf{BPMN} transformacijai į \textbf{sekų diagramą}}   
 
 
