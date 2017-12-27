@@ -219,6 +219,7 @@ Sprendimas neturi ryšiu su \textbf{sekų diagramos} komponentais, bet jis nėra
 
 Rasti ryšiai parodo į kokius \textbf{BPMN} komponentus reikia žiūrėti kuriant \textbf{sekų diagramos} dalis. Toliau sudėliojami konkretūs žingsniai kuriuos reikia atlikti. Galiausiai gaunamas pseudokodas \ref{lst:bpmn_to_sd_algorythm_pseudocode}. 
 
+
 \begin{enumerate}
 	\item Pirmiausia sukuriama proceso gyvavimo linija ir jos vykdymo specifikacija. Ji tęsis visą vykdymą, perduos informaciją, gautą iš vienų dalyvių kitiem. 
 	\item Vėliau iš rolių informacijos gaunamos gyvavimo linijos. Galiausiai randama pirmoji proceso veikla \lstinline[columns=fixed]{sequenceFlows.filter(flow => flow.from.type == start)[0];}. Ir pradedant nuo jos, visos veiklos paverčiamos į žinutes, kurios siunčiamos iš proceso vykdymo specifikacijos į naują vykdymo specifikaciją sukurtą gyvavimo linijoje, kuri buvo sukurta iš informacijos rolėje kuriai priklauso duota veikla. Žinutės įvesties parametrais tampa duomenų objektai, kurių duomenų srautas rodo į nagrinėjamą veiklą. Išvestis gaunama iš duomenų objektų, kurių duomenų srautas veda iš nagrinėjamos veiklos. 
@@ -271,6 +272,21 @@ for(
 }
 sequenceDiagram = {lifelines,syncMessages,returnMessages};
 \end{lstlisting}
+
+Iš diagramos \ref{img:bpmn} gaunama diagrama \ref{img:sequence}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{img/bpmn_diagrama}
+	\caption{\textbf{BPMN} diagrama}
+	\label{img:bpmn}
+\end{figure} 
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{img/sequence_example}
+	\caption{\textbf{sekų diagramą} diagrama}
+	\label{img:sequence}
+\end{figure} 
 
 \subsubsection{Likusios informacijos panaudojimas suprastinti ar patikslinti diagramai}
 
