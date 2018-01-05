@@ -26,12 +26,18 @@
 }
 
 
+%%% Table of contents to list down to subsections and no further
+\setcounter{tocdepth}{4}
+ 
+%%% Number down to subsubsections only
+\setcounter{secnumdepth}{4}
+
 % Titulinio aprašas
 \university{Vilniaus universitetas}
 \faculty{Matematikos ir informatikos fakultetas}
 \department{Programų sistemų katedra}
 \papertype{Baigiamasis bakalauro darbas}
-\title{Dalykinės srities modelio transformavimas į UML sekų diagramas}
+\title{Dalykinės srities modelio transformavimas į UML užduočių diagramas}
 \titleineng{Deriving use cases from business process}
 \status{4 kurso 1 grupės studentas}
 \author{Aleksandras Sivkovas}
@@ -58,22 +64,22 @@
 	\item \textbf{BPMN} – modeliavimo kalba, skirta pavaizduoti informaciją plačiai auditorijai. \textbf{BPMN} buvo sukurta ir dažniausia naudojama pavaizduoti verslo procesams \cite{bpmnFormal}.
 	\item \textbf{UML} – modeliavimo kalba, skirta suteikti standartinį sistemos analizės, architektūros, veikimo ir kūrimo pavaizdavimą \cite{omgUmlFormal}.
 	\item \textbf{Sekų diagrama} – \textbf{UML} diagrama, skirta pavaizduoti žinučių tarp apibrėžtų objektų sekai tų objektų gyvavimo metu \cite{omgUmlFormal}.
-	\item \textbf{Vartojimo atvejų diagrama} – \textbf{UML} diagrama, skirta pavaizduoti pavaizduoti kaip gali būti naudojama programų sistema \cite{algUseCasesFromBpmn}.
+	\item \textbf{Užduočių diagrama} – \textbf{UML} diagrama, skirta pavaizduoti pavaizduoti kaip gali būti naudojama programų sistema \cite{algUseCasesFromBpmn}.
 \end{enumerate}
 
 
 %Įvade apibūdinamas darbo tikslas, temos aktualumas ir siekiami rezultatai.
 \sectionnonum{Įvadas}
-Darbo tikslas – apibrėžti ir įgyvendinti algoritmą \textbf{BPMN} modelio transformacijai į \textbf{sekų diagramas}.
+Darbo tikslas – apibrėžti ir įgyvendinti algoritmą \textbf{BPMN} modelio transformacijai į \textbf{užduočių diagramas}.
 
 Reikalavimų inžinerija yra sudėtinga programų kūrimo dalis. Proceso sudėtingumas dažnai tampa klaidų priežastimi. Čia atsiradusios klaidos sunkiai aptinkamos ir sukelia brangiai kainuojančias pasekmes, nes sekančiuose etapuose bus kuriama neteisingai apibrėžta programa. Norint išvengti klaidų galima kai kurias proceso veiklas automatizuoti.
 
-Darbe bus tiriama verslo proceso transformacija į kuriamos programos \textbf{sekų diagramas}. \textbf{Sekų diagramos} yra svarbi reikalavimų inžinerijos dalis, kadangi ji apibrėžia kokios transakcijos vyks programų sistemoje. Įmonės dažniausiai žino kaip ir kokias veiklas jos vykdo. Verslo procesą galima apibrėžti \textbf{BPMN} diagramomis. Bet ne viską, kas yra \textbf{BPMN} modelyje, galima perkelti į \textbf{sekų diagramą}, todėl darbe bus apibrėžtas modifikuotas \textbf{BPMN} modelis, kuriame bus vaizduojama tik algoritmui aktuali informacija. Taip pat gali tekti pridėti papildomų atributų, kurie padės pasiekti tikslesnius rezultatus. Čia bus tiriama \textbf{BPMN} modelio transformacijos į \textbf{sekų diagramas} algoritmas.
+Darbe bus tiriama verslo proceso transformacija į kuriamos programos \textbf{užduočių diagramas}. \textbf{Užduočių diagramos} yra svarbi reikalavimų inžinerijos dalis, kadangi ji apibrėžia kaip sistema bus naudojama. Įmonės dažniausiai žino kaip ir kokias veiklas jos vykdo. Verslo procesą galima apibrėžti \textbf{BPMN} diagramomis. Bet ne viską, kas yra \textbf{BPMN} modelyje, galima perkelti į \textbf{sekų diagramą}, todėl darbe bus apibrėžtas modifikuotas \textbf{BPMN} modelis, kuriame bus vaizduojama tik algoritmui aktuali informacija. Taip pat gali tekti pridėti papildomų atributų, kurie padės pasiekti tikslesnius rezultatus. Čia bus tiriama \textbf{BPMN} modelio transformacijos į \textbf{sekų diagramas} algoritmas.
 
 Siekiami rezultatai yra:
 \begin{enumerate}
 	\item Modifikuoto \textbf{BPMN} modelio apibrėžimas.
-	\item Algoritmas galintis transformuoti \textbf{BPMN} modelį į \textbf{sekų diagramą}.
+	\item Algoritmas galintis transformuoti \textbf{BPMN} modelį į \textbf{užduočių diagramą}.
 	\item Programa demonstruojanti algoritmo veikimą.
 \end{enumerate}
 
@@ -82,13 +88,91 @@ Siekiami rezultatai yra:
 %pagal atitinkamas darbo dalis, nuosekliai, panaudojant lyginamosios analizės,
 %klasifikacijos, sisteminimo metodus bei apibendrinimus, dėstoma sukaupta ir
 %išanalizuota medžiaga. 
-\section{Tiriamų modelių apibrėžimai}
-Kadangi darbe bus tiriama vienos diagramos transformacija į kitą, pirmiausia pateikiami jų apibrėžimai.
+\section{Algoritmas kurti \textbf{sekų diagramas} pagal \textbf{BPMN} pateiktą informaciją}
+Šio darbo tikslas yra algoritmas atlikti diagramų transformacijai. Pirmiausia pateikiama tai, kas literatūroje rašoma apie \textbf{UML} diagramų transformavimo algoritmus. Vėliau sukuriamas siekiamas algoritmas.
+\subsection{\textbf{UML} diagramų transformavimo algoritmai}
+\subsubsection{\textbf{Užduočių diagramos} išvedimas iš \textbf{BPMN} modelio} \label{section:use_cases_from_bpmn}
+Literatųroje yra parašyta apie \textbf{vartojimo atvejų diagramos} išvedimą iš \textbf{BPMN} modelio \cite{algUseCasesFromBpmn}. Darbe nagrinėjamas \cite{algUseCasesFromBpmn} straipsnyje aprašytas algoritmas (\ref{eq:use_cases_from_bpmn}). Imamas modifikuotas \textbf{BPMN} modelis (\ref{eq:use_cases_from_bpmn:bpmn_elements}) ir tie \textbf{vartojimo atvejų diagramos} komponentai, kurie gali būti iš jo išvesti (\ref{eq:use_cases_from_bpmn:use_case_elements}). 
+\begin{align}
+&BPMNElements = \left\{Start,End,Role,Branch,Task,Transition\right\}; \label{eq:use_cases_from_bpmn:bpmn_elements} \\
+\begin{split}
+&UseCasesElements = \left\{Actor, Generalization, Association,Use Case,\right. \\
+&\left. Include, Extension Point, Extend\right\}; \label{eq:use_cases_from_bpmn:use_case_elements}\\
+\end{split} \\
+&BPMN(BPMNModelElements) \Rightarrow UseCases(UseCasesElements); \label{eq:use_cases_from_bpmn}
+\end{align}
+
+Algoritmo autoriai pirmiausia siūlo surasti ryšius tarp modelių. juostos atitinka aktorius. Užduotys tuo tarpu grupuojamos, kol nepasiekia maksimalaus skaičiaus vykdomų be pertraukos, tos pačios juostos ir pagaminančių rezultatą. Tokia grupė pavadinama žingsniu ir yra laikoma atitinkančia vartojimo atvejį. Taip  išsiaiškinami transformacijos žingsniai. Tuomet lieka tik formaliai užrašyti kaip jie gali būti vykdomi ir surasti kaip dar galima būtų panaudoti informaciją, patikslinti ir suprastinti gautoms diagramoms.
+
+Algoritmas Pirmiausia sudėlioja pavienes užduotis į proceso žingsnius. Vėliau juostos tampa aktoriais, o žingsniai jose – vartojimo atvejais. Galiausiai pasikartojančios užduotis išimamos iš žingsnių ir prijungiamos asociacija įtraukia arba išplečia pagal situaciją.
+
+
+\subsection{\textbf{Užduočių diagramos} išvedimas iš \textbf{BPMN} modelio}
+
+Šio darbo tikslas, algoritmas galintis gauti \textbf{užduočių diagramoms} iš \textbf{BPMN} modelio, bus kuriamas pagal \ref{section:use_cases_from_bpmn} aprašytą algoritmo sukūrimo pavyzdį. Pirmiausia bus rasti ryšiai tarp diagramų, vėliau sukurtas būdas juos panaudoti, galiausiai panaudota likusi modelio informacija patikslinti ir suprastinti diagramoms.
+
+\subsubsection{Ryšiai tarp \textbf{BPMN} ir \textbf{sekų diagramų}} \label{section:relations_sd_bpmn}
+
+Norint duomenis iš vieno modelio perkelti į kitą galima pasinaudoti ryšiais esančiais tarp jų.
+
+\begin{center}
+    \begin{longtable}{ | c | c |  c | c | c | c |}
+    \caption{Ryšiai tarp \textbf{BPMN} ir \textbf{sekų diagramų}}
+	\label{tab:relations_sd_bpmn}
+    \\ \hline 
+     & 
+     %\begin{turn}{-90}
+     Aktorius 
+     %\end{turn} 
+     & 
+     %\begin{turn}{-90}
+     Vartojimo atvejis 
+     %\end{turn}  
+     & 
+     %\begin{turn}{-90}
+     Asociacija 
+     %\end{turn}  
+     & 
+     %\begin{turn}{-90}
+     Įtraukia 
+     %\end{turn} 
+     & 
+     %\begin{turn}{-90}
+     Išplečia 
+     %\end{turn} 
+     \\ 
+    \hline 
+    Juosta & + & & + & + & + \\
+    \hline
+    Įvykis  & & & & & \\
+    \hline 
+    Veikla  & & + & + & + & + \\
+    \hline 
+    Sekos srautas  & & + & & & \\
+    \hline
+    Duomenų objektas  & & & & & \\
+    \hline
+    Pranešimų srautas  & & & & & \\
+    \hline
+    Sprendimas  & & & & & \\
+    \hline
+    \end{longtable}
+\end{center} 
+
+\begin{enumerate}
+	\item Aktorius – galima gauti iš informacijos esančios juostoje. 
+	\item Vartojimo atvejis – gaunamas iš informacijos veiklose.
+	\item Asociacija – ryšys tarp juostos ir veiklų joje.
+	\item Įtraukia – pasikartojančios veiklos.
+	\item Išplečia – ryšys randamas kai veikla yra atskiras kitos veiklos atvejis.
+\end{enumerate} 
+
+Rasti ryšiai taip pat parodo kurie komponentai bus imami ir kurie gaunami. Taigi galima apibrėžti \textbf{BPMN} ir \textbf{Užduočių diagramas}. Tai taps algoritmo įvestimi ir išvestimi.
 
 %Citavimo pavyzdžiai: cituojamas vienas šaltinis \cite{PvzStraipsnLt}; cituojami
 %keli šaltiniai \cite{PvzStraipsnEn, PvzKonfLt, PvzKonfEn, PvzKnygLt, PvzKnygEn,
 %PvzElPubLt, PvzElPubEn, PvzMagistrLt, PvzPhdEn}.
-\subsection{BPMN diagrama}
+\subsubsection{BPMN diagrama}
 \textbf{BPMN} specifikacija leidžia atvaizduoti gana nemažai verslo proceso atributų \cite{bpmnFormal}. Bet šiame darbe ji bus nagrinėjama tik kaip įvesties duomenų formatas, naudojamas apibrėžti informaciją pagal kurią bus kuriama \textbf{sekų diagrama}. Taigi daugelį \textbf{BPMN} komponentų galima tiesiog ignoruoti, nes jie neturi jokios įtakos algoritmo vykdymo rezultatui. Norint pabrėžti svarbią informaciją, darbe bus tiriamos tik tos \textbf{BPMN} savybės kurios gali įtakoti algoritmo vykdymo rezultatą. Atitinkami komponentai pavaizduoti \ref{tab:investigated_bpmn_components} lentelėje.
 \newcounter{counter:table:reset}
 \newcounter{counter:table}[counter:table:reset]
@@ -100,7 +184,7 @@ Kadangi darbe bus tiriama vienos diagramos transformacija į kitą, pirmiausia p
     \\ \hline 
     Nr. & Komponentas & Aprašymas & Žymėjimo pavizdys\\ 
     \hline 
-    \rownumber & Rolė & Komponentas žymintis diagramos dalyvį ir nurodantis, kad jis atsakingas už veiklų esančių šiame komponente vykdymą. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/bpm-components/pool}}} \\
+    \rownumber & Juosta & Komponentas žymintis diagramos dalyvį ir nurodantis, kad jis atsakingas už veiklų esančių šiame komponente vykdymą. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/bpm-components/pool}}} \\
     \hline
      \rownumber & Įvykis & Komponentas žymintis, kad ivyko kažkas kas įtakojo proceso būseną. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/bpm-components/event}}} \\ 
     \hline 
@@ -108,185 +192,94 @@ Kadangi darbe bus tiriama vienos diagramos transformacija į kitą, pirmiausia p
     \hline 
     \rownumber & Sekos srautas & Komponentas žymintis veiklų seką. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/bpm-components/transition}}}\\
     \hline
-    \rownumber & Duomenų objektas & Komponentas žymintis sukuriamus arba įeities duomenis. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/bpm-components/data_object}}}\\
-    \hline
-    \rownumber & Pranešimų srautas & Komponentas žymintis duomenų apsikeitimo srautus. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/bpm-components/message_flow}}}\\
-    \hline
+%    \rownumber & Duomenų objektas & Komponentas žymintis sukuriamus arba įeities duomenis. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/bpm-components/data_object}}}\\
+%    \hline
+%    \rownumber & Pranešimų srautas & Komponentas žymintis duomenų apsikeitimo srautus. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/bpm-components/message_flow}}}\\
+%    \hline
     \rownumber & Sprendimas & Komponentas žymintis sekos srautų išsišakojimą. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/bpm-components/gateway}}}\\
     \hline
     \end{longtable}
 \end{center}
 
+Darbe bus nagrinėjamas procesas kuriam kuriama programų sistema, todėl materialios  veiklos bus atskirtos nuo duomenų tvarkymo veiklų \cite{bpmnPorterModel}. \textbf{BPMN} diagrama bus vaizduojama kaip detalizuotas M. Porterio vertės grandinės modelis (\ref{img:detalized_porter_vcm} pav), todėl į apibrėžimą įtrauktas sprendimas, kuris bus naudojamas išsišakojimui pavaizduoti. Tokiu būdu dėmesys telkiamas ties informacijos procesais.
 
-\subsection{Sekų diagrama}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{img/detalized_porter_vcm}
+	\caption{Detalizuotas M. Porterio vertės grandinės modelis}
+	\label{img:detalized_porter_vcm}
+\end{figure} 
 
-Kaip ir \textbf{BPMN} atveju \textbf{sekų diagrama} turi komponentus, kurie nebus nagrinėjami šiame darbe. \ref{tab:investigated_sequence_diagram_components} lentelė vaizduoja kas bus tiriama iš \textbf{sekų diagramos}.
+\subsubsection{Užduočių diagrama}
+
+Čia pateikiamas \textbf{užduočių diagramos} naudojamos darbe apibrėžimas. Tai bus algoritmo rezultato formatas. Siekiama gauti kiek įmanoma tikslesnę užduočių diagramą. Jos komponentai pateikiam \ref{tab:investigated_use_case_diagram_components} lentelėje.
 \stepcounter{counter:table:reset}
 \begin{center}
     \begin{longtable}{ | p{0.5cm} | p{2cm} |  p{7cm} | c |}
-    \caption{Sekų diagramos komponentai}
-	\label{tab:investigated_sequence_diagram_components}
+    \caption{\textbf{Užduočių diagramos} komponentai}
+	\label{tab:investigated_use_case_diagram_components}
     \\ \hline 
     Nr. & Komponentas & Aprašymas & Žymėjimo pavizdys\\ 
     \hline 
-    \rownumber & Gyvavimo linija & Komponentas žymintis diagramos objekto dalyvavimo laiką procese. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/sequence-diagram-components/lifeline}}} \\
+    \rownumber & Aktorius & Komponentas žymintis sistemos naudotojo tipą. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/use_case_components/actor}}} \\
     \hline
-    \rownumber & Vykdymo specifikacija & Komponentas žymintis sinchroninio pranešimo tranzakciją. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[height=3cm]{img/sequence-diagram-components/execution_specification}}} \\
+    \rownumber & Vartojimo atvejis & Komponentas specifikuojantis elgsenų aibę, kuri generuoja rezultatą. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[height=3cm]{img/use_case_components/use_case}}} \\
     \hline
-     \rownumber & Žinutė & Komponentas žymintis duomenų perdavimą iš vieno dalyvio į kitą & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/sequence-diagram-components/message}}} \\
+     \rownumber & Asociacija & Komponentas žymintis ryšį tarp aktoriaus ir vartojimo atvejo. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/use_case_components/association}}} \\
     \hline
-     \rownumber & Atsakymas & Komponentas žymintis, kad dalyvis sureagavo į sinchroninę užduotį. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/sequence-diagram-components/reply-message}}} \\
+     \rownumber & Įtraukia & Komponentas žymintis elgseną kuri yra bendra keliems vartojimo atvejams, todėl ji parodoma atskirai nuo jų, kad būtų galima perpanaudoti. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/use_case_components/includes}}} \\
+    \hline
+    \rownumber & Išplečia & Komponentas žymintis, kad esant tam tikram atvejui vartojimo atvejis įtraukia papildomus vartojimo atvejus. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/use_case_components/extend}}} \\
     \hline
     \end{longtable}
 \end{center}
 
-\section{Algoritmas kurti \textbf{sekų diagramas} pagal \textbf{BPMN} pateiktą informaciją}
-Šio darbo tikslas yra algoritmas atlikti diagramų transformacijai. Pirmiausia pateikiama tai, kas literatūroje rašoma apie \textbf{UML} diagramų transformavimo algoritmus. Vėliau sukuriamas siekiamas algoritmas.
-\subsection{\textbf{UML} diagramų transformavimo algoritmai}
-\subsubsection{\textbf{Vartojimo atvejų diagramos} išvedimas iš \textbf{BPMN} modelio} \label{section:use_cases_from_bpmn}
-Literatųroje yra parašyta apie \textbf{vartojimo atvejų diagramos} išvedimą iš \textbf{BPMN} modelio \cite{algUseCasesFromBpmn}. Darbe nagrinėjamas \cite{algUseCasesFromBpmn} straipsnyje aprašytas algoritmas (\ref{eq:use_cases_from_bpmn}). Imamas modifikuotas \textbf{BPMN} modelis (\ref{eq:use_cases_from_bpmn:bpmn_elements}) ir tie \textbf{vartojimo atvejų diagramos} komponentai, kurie gali būti iš jo išvesti (\ref{eq:use_cases_from_bpmn:use_case_elements}). 
-\begin{align}
-&BPMNElements = \left\{Start,End,Role,Branch,Task,Transition\right\}; \label{eq:use_cases_from_bpmn:bpmn_elements} \\
-\begin{split}
-&UseCasesElements = \left\{Actor, Generalization, Association,Use Case,\right. \\
-&\left. Include, Extension Point, Extend\right\}; \label{eq:use_cases_from_bpmn:use_case_elements}\\
-\end{split} \\
-&BPMN(BPMNModelElements) \Rightarrow UseCases(UseCasesElements); \label{eq:use_cases_from_bpmn}
-\end{align}
-
-Algoritmo autoriai pirmiausia siūlo surasti ryšius tarp modelių. Rolės atitinka aktorius. Užduotys tuo tarpu grupuojamos, kol nepasiekia maksimalaus skaičiaus vykdomų be pertraukos, tos pačios rolės ir pagaminančių rezultatą. Tokia grupė pavadinama žingsniu ir yra laikoma atitinkančia vartojimo atvejį. Taip  išsiaiškinami transformacijos žingsniai. Tuomet lieka tik formaliai užrašyti kaip jie gali būti vykdomi ir surasti kaip dar galima būtų panaudoti informaciją, patikslinti ir suprastinti gautoms diagramoms.
-
-Algoritmas Pirmiausia sudėlioja pavienes užduotis į proceso žingsnius. Vėliau Rolės tampa aktoriais, o žingsniai jose – vartojimo atvejais. Galiausiai pasikartojančios užduotis išimamos iš žingsnių ir prijungiamos asociacija įtraukia arba išplečia pagal situaciją.
-
-
-\subsection{Sekų diagramos išvedimas iš \textbf{BPMN} modelio}
-
-Šio darbo tikslas, algoritmas galintis gauti \textbf{sekų diagramas} iš \textbf{BPMN} modelio, bus kuriamas pagal \ref{section:use_cases_from_bpmn} aprašytą algoritmo sukūrimo pavyzdį. Pirmiausia bus rasti ryšiai tarp diagramų, vėliau sukurtas būdas juos panaudoti, galiausiai panaudota likusi modelio informacija patikslinti ir suprastinti diagramoms.
-
-\subsubsection{Ryšiai tarp \textbf{BPMN} ir \textbf{sekų diagramų}} \label{section:relations_sd_bpmn}
-
-Norint duomenis iš vieno modelio perkelti į kitą galima pasinaudoti ryšiais esančiais tarp jų.
-
-\begin{center}
-    \begin{longtable}{ | c | c |  c | c | c |}
-    \caption{Ryšiai tarp \textbf{BPMN} ir \textbf{sekų diagramų}}
-	\label{tab:relations_sd_bpmn}
-    \\ \hline 
-     & 
-     %\begin{turn}{-90}
-     Gyvavimo linija 
-     %\end{turn} 
-     & 
-     %\begin{turn}{-90}
-     Vykdymo specifikacija 
-     %\end{turn}  
-     & 
-     %\begin{turn}{-90}
-     Žinutė 
-     %\end{turn}  
-     & 
-     %\begin{turn}{-90}
-     Atsakymas 
-     %\end{turn} 
-     \\ 
-    \hline 
-    Rolė & + & + & + & + \\
-    \hline
-    Įvykis  & & + & + & \\
-    \hline 
-    Veikla  & & + & + & + \\
-    \hline 
-    Sekos srautas  & & + & + & \\
-    \hline
-    Duomenų objektas  & & & + & +\\
-    \hline
-    Pranešimų srautas  & & & + & +\\
-    \hline
-    Sprendimas  & & & & \\
-    \hline
-    \end{longtable}
-\end{center} 
-
-Sprendimas neturi ryšiu su \textbf{sekų diagramos} komponentais, bet jis nėra nesusijęs su ja. Kiekvienas išeinantis sekos srautas sprendime reiškia naują \textbf{sekų diagramą}. 
-\begin{enumerate}
-	\item Gyvavimo linija – galima gauti iš informacijos esančios rolėje. 
-	\item Žinutė – Daugiausia informacijos reikalaujantis komponentas. Ją galima apibrėžti kaip sekos srauto perėjimą iš vienos rolės kitai, kai įvyksta įvykis arba kuri nors rolė atliko savo veiklų seką ir tęsti darbui reikalingos kitos rolės įvykdytos veiklos. Šis veiksmas dažniausiai taip pat reikalauja Duomenų objekto keliaujančio duomenų srautu.
-	\item Atsakymas – duomenų objektas keliaujantis pranešimų srautu iš vienos veiklos esančios rolėje į kitą.
-	\item Vykdymo specifikacija – Atsiranda, kai rolėje vyksta sekos srauto perėjimas tarp jo jungiamų komponentų.
-\end{enumerate} 
-
 \subsubsection{Ryšių tarp diagramų panaudojimas transformacijai}
 
-Rasti ryšiai parodo į kokius \textbf{BPMN} komponentus reikia žiūrėti kuriant \textbf{sekų diagramos} dalis. Toliau sudėliojami konkretūs žingsniai kuriuos reikia atlikti. Galiausiai gaunamas pseudokodas \ref{lst:bpmn_to_sd_algorythm_pseudocode}. 
+Rasti ryšiai parodo į kokius \textbf{BPMN} komponentus reikia žiūrėti išvedant \textbf{užduočių diagramos} dalis. Toliau sudėliojami konkretūs žingsniai kuriuos reikia atlikti. Galiausiai gaunamas pseudokodas \ref{lst:bpmn_to_sd_algorythm_pseudocode}. 
 
 
 \begin{enumerate}
-	\item Pirmiausia sukuriama proceso gyvavimo linija ir jos vykdymo specifikacija. Ji tęsis visą vykdymą, perduos informaciją, gautą iš vienų dalyvių kitiem. 
-	\item Vėliau iš rolių informacijos gaunamos gyvavimo linijos. Galiausiai randama pirmoji proceso veikla \lstinline[columns=fixed]{sequenceFlows.filter(flow => flow.from.type == start)[0];}. Ir pradedant nuo jos, visos veiklos paverčiamos į žinutes, kurios siunčiamos iš proceso vykdymo specifikacijos į naują vykdymo specifikaciją sukurtą gyvavimo linijoje, kuri buvo sukurta iš informacijos rolėje kuriai priklauso duota veikla. Žinutės įvesties parametrais tampa duomenų objektai, kurių duomenų srautas rodo į nagrinėjamą veiklą. Išvestis gaunama iš duomenų objektų, kurių duomenų srautas veda iš nagrinėjamos veiklos. 
+	\item Pirmiausia iš juostų gaunami aktoriai. 
+	\item Vėliau randama pirmoji proceso veikla \lstinline[columns=fixed]{sequenceFlows.filter(flow => flow.from.type == start)[0];}. Ir pradedant nuo jos, visos veiklos paverčiamos į žinutes, kurios siunčiamos iš proceso vykdymo specifikacijos į naują vykdymo specifikaciją sukurtą gyvavimo linijoje, kuri buvo sukurta iš informacijos juostoje kuriai priklauso duota veikla. Žinutės įvesties parametrais tampa duomenų objektai, kurių duomenų srautas rodo į nagrinėjamą veiklą. Išvestis gaunama iš duomenų objektų, kurių duomenų srautas veda iš nagrinėjamos veiklos. 
 	\item Atsakymas gaunamas iš duomenų žinutėje, nes jis yra susijęs su ja. 
 \end{enumerate} 
 
 \begin{lstlisting}[language=java, caption={\textbf{UML} \textbf{Sekų diagramos} gavimo iš \textbf{BPMN} modelio algoritmo pseudokodas}, label={lst:bpmn_to_sd_algorythm_pseudocode}]
-{roles,events,activities, sequenceFlows,messageFlows,decisions} = BPMN;
+{pools,events,activities, sequenceFlows,decisions} = BPMN;
 
-lifelines = [];
-processLifeline = new Lifeline(BPMN.name);
-processExecutionSpecification = processLifeline.createExecutionSpecification();
-lifelines.push(processLifeline);
-rolesLifelinesMap = new Map();
-for(role in roles){
-	lifeline = createLifeline(role);
-	rolesLifelinesMap.set(role,lifeline);
-	lifelines.add(lifeline);
+actors = [];
+for(pool in pools){
+	actor = createActor(pool);
+	actors.add(actor);
 }
-syncMessages = [];
-returnMessages = [];
+useCases = [];
 startFlow = sequenceFlows.filter(flow => flow.from.type == start)[0];
+activity = null;
 for(
 	flow = startFlow;
 	flow.from.type != end;
 	flow = sequenceFlows.filter(flow => flow.from.equals(activity))[0]
 ){
 	activity = flow.to;
-	lifeline = rolesLifelinesMap.get(activity.role);
-	executionSpecification = lifeline.createExecutionSpecification();
 	
-	inputDataFlows = messageFlows.filter(flow => flow.to.equals(activity));
-	inputParameters = inputDataFlows.map(flow => flow.from);
-	
-	outputDataFlow = messageFlows.filter(flow => flow.from.equals(activity))[0];
-	returnParameter = 	outputDataFlow.to;
-	
-	
-	message = createSyncMessage(
-			processExecutionSpecification,
-			executionSpecification,
-			activity.name,
-			inputParameters,
-			returnParameter
-	);
-	syncMessages.push(message);	
-	
-	returnMessage = createReturnMessage(message);
-	returnMessages.push(returnMessage);	
 }
-sequenceDiagram = {lifelines,syncMessages,returnMessages};
 \end{lstlisting}
 
-Iš diagramos \ref{img:bpmn} gaunama diagrama \ref{img:sequence}.
+%Iš diagramos \ref{img:bpmn} gaunama diagrama \ref{img:sequence}.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.5]{img/bpmn_diagrama}
-	\caption{\textbf{BPMN} diagrama}
-	\label{img:bpmn}
-\end{figure} 
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.5]{img/sequence_example}
-	\caption{\textbf{sekų diagramą} diagrama}
-	\label{img:sequence}
-\end{figure} 
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[scale=0.5]{img/bpmn_diagrama}
+%	\caption{\textbf{BPMN} diagrama}
+%	\label{img:bpmn}
+%\end{figure} 
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[scale=0.5]{img/sequence_example}
+%	\caption{\textbf{sekų diagramą} diagrama}
+%	\label{img:sequence}
+%\end{figure} 
 
 \subsubsection{Likusios informacijos panaudojimas suprastinti ar patikslinti diagramai}
 
