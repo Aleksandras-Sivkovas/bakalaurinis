@@ -15,5 +15,5 @@ Thumbs.db
 *.bcf
 *.bbl
 *.aux
-
+*.fuse_hidden*
 
