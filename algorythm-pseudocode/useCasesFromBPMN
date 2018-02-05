@@ -1,0 +1,17 @@
+useCasesFromBPMN = function(BPMN){
+	{transactions,sequenceFlows} = BPMN;
+	useCases = [];
+	edges = [];
+	for(transaction in transactions){
+		processFlows = sequenceFlows.filter(flow => flow.from = transaction.process);
+		flowUsecases = [];
+		addUsecasesFromFlows(flowUsecases,processFlows);
+		addNewUsecases(edges,useCases,flowUsecases,transaction);
+	}
+	functions = getFunctions(sequenceFlows);
+	addGeneralUseCases(edges,useCases,functions);
+	addUnusedCases(useCases,functions);
+
+	UseCaseDiagram = {useCases,edges};
+	return UseCaseDiagram;
+}

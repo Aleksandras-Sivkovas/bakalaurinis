@@ -1,0 +1,12 @@
+getFunctions = function(sequenceFlows){
+	functions = new Set();
+	for(flow in sequenceFlows){
+		if(flow.from.type == type.function){
+			functions.add(flow.from);
+		}
+		if(flow.to.type == type.function){
+			functions.add(flow.to);
+		}
+	}
+	return functions;
+}

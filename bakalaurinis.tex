@@ -236,35 +236,28 @@ Darbe bus nagrinėjamas procesas kuriam kuriama programų sistema, todėl materi
 
 \subsubsection{Ryšių tarp diagramų panaudojimas transformacijai}
 
-Rasti ryšiai parodo į kokius \textbf{BPMN} komponentus reikia žiūrėti išvedant \textbf{užduočių diagramos} dalis. Toliau sudėliojami konkretūs žingsniai kuriuos reikia atlikti. Galiausiai gaunamas pseudokodas \ref{lst:bpmn_to_sd_algorythm_pseudocode}. 
+Rasti ryšiai parodo į kokius \textbf{BPMN} komponentus reikia žiūrėti išvedant \textbf{užduočių diagramos} dalis. Toliau peržiūrimi diagramos variantai ir sudėliojami konkretūs žingsniai kuriuos reikia atlikti. Galiausiai gaunamas pseudokodas (Listing \ref{lst:bpmn_to_sd_algorythm_pseudocode}). 
 
+%\begin{lstlisting}[language=java, caption={\textbf{UML} \textbf{Sekų diagramos} gavimo iš \textbf{BPMN} modelio algoritmo pseudokodas}, label={lst:bpmn_to_sd_algorythm_pseudocode}]
+%\end{lstlisting}
+\lstinputlisting[language=java, caption={\textbf{UML} \textbf{Sekų diagramos} gavimo iš \textbf{BPMN} modelio algoritmo pseudokodas}, label={lst:bpmn_to_sd_algorythm_pseudocode}]{algorythm-pseudocode/useCasesFromBPMN}
 
 \begin{enumerate}
-	\item Pirmiausia iš juostų gaunami aktoriai. 
-	\item Vėliau randama pirmoji proceso veikla \lstinline[columns=fixed]{sequenceFlows.filter(flow => flow.from.type == start)[0];}. Ir pradedant nuo jos, visos veiklos paverčiamos į žinutes, kurios siunčiamos iš proceso vykdymo specifikacijos į naują vykdymo specifikaciją sukurtą gyvavimo linijoje, kuri buvo sukurta iš informacijos juostoje kuriai priklauso duota veikla. Žinutės įvesties parametrais tampa duomenų objektai, kurių duomenų srautas rodo į nagrinėjamą veiklą. Išvestis gaunama iš duomenų objektų, kurių duomenų srautas veda iš nagrinėjamos veiklos. 
-	\item Atsakymas gaunamas iš duomenų žinutėje, nes jis yra susijęs su ja. 
+	\item Pirmiausia imamas transakcijos procesas. 
+	\item Vėliau rekursijos būdu gaunamas grafas duomenų perdavimo grafas ir iš jo sukuriami vartojimo atvejai funkcija addUsecasesFromFlows (Listing  \ref{lst:bpmn_to_sd_algorythm_pseudocode_addUsecasesFromFlows}).
+	\lstinputlisting[language=java, caption={Funkcija addUsecasesFromFlows}, label={lst:bpmn_to_sd_algorythm_pseudocode_addUsecasesFromFlows}]{algorythm-pseudocode/addUsecasesFromFlows}
+	
+	\item Sukurti vartojimo atvejai pridedami prie jau gautų vartojimo atvejų kartu su ryšiais tarp jų funkcija addNewUsecases (Listing  \ref{lst:bpmn_to_sd_algorythm_pseudocode_addNewUsecases}). 
+\lstinputlisting[language=java, caption={Funkcija addNewUsecases}, label={lst:bpmn_to_sd_algorythm_pseudocode_addNewUsecases}]{algorythm-pseudocode/addNewUsecases}	
+
+	\item Vėliau gaunamos visos diagramos funkcijos (Listing  \ref{lst:bpmn_to_sd_algorythm_pseudocode_getFunctions}).
+	\lstinputlisting[language=java, caption={Funkcija getFunctions}, label={lst:bpmn_to_sd_algorythm_pseudocode_getFunctions}]{algorythm-pseudocode/getFunctions}
+	\item Randamos bendros funkcijos tarp tranzakcijų ir sukuriami apibendrinantys vartojimo atvejai (Listing  \ref{lst:bpmn_to_sd_algorythm_pseudocode_addGeneralUseCases}).
+	\lstinputlisting[language=java, caption={Funkcija addGeneralUseCases}, label={lst:bpmn_to_sd_algorythm_pseudocode_addGeneralUseCases}]{algorythm-pseudocode/addGeneralUseCases}
+	\item Galiausiai randamos nepanaudotos funkcijos ir sukuriami vartojimo atvejai su perspėjimais \ref{lst:bpmn_to_sd_algorythm_pseudocode_addUnusedCases}).
+	\lstinputlisting[language=java, caption={Funkcija addUnusedCases}, label={lst:bpmn_to_sd_algorythm_pseudocode_addUnusedCases}]{algorythm-pseudocode/addUnusedCases}
 \end{enumerate} 
 
-\begin{lstlisting}[language=java, caption={\textbf{UML} \textbf{Sekų diagramos} gavimo iš \textbf{BPMN} modelio algoritmo pseudokodas}, label={lst:bpmn_to_sd_algorythm_pseudocode}]
-{pools,events,activities, sequenceFlows,decisions} = BPMN;
-
-actors = [];
-for(pool in pools){
-	actor = createActor(pool);
-	actors.add(actor);
-}
-useCases = [];
-startFlow = sequenceFlows.filter(flow => flow.from.type == start)[0];
-activity = null;
-for(
-	flow = startFlow;
-	flow.from.type != end;
-	flow = sequenceFlows.filter(flow => flow.from.equals(activity))[0]
-){
-	activity = flow.to;
-	
-}
-\end{lstlisting}
 
 %Iš diagramos \ref{img:bpmn} gaunama diagrama \ref{img:sequence}.
 

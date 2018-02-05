@@ -1,0 +1,17 @@
+addNewUsecases = function(edges,useCases,newUsecases,transaction){
+	if(newUsecases.length < 1){
+		return;
+	}
+	if(newUsecases.length == 1){
+		useCases.push(newUsecases[0]);
+		return;
+	}
+	mainUseCase = createUseCase(transaction);
+	useCases.push(mainUseCase);
+	for(useCase in newUseCases){
+		useCases.push(useCase);
+		edge = createIncludeEdge(mainUseCase,useCase);
+		edges.push(edge);
+	}
+}
+

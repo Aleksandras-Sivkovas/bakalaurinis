@@ -1,0 +1,10 @@
+addUnusedCases = function(useCases,functions){
+	for(function in functions){
+		useCasesUsingThisFunction = useCases.filter(useCase => useCase.createdFromFlow.to == function);
+		if(useCasesUsingThisFunction.length > 0){
+			continue;
+		}
+		useCase = createUnusedUsecase(function);
+		useCases.push(useCase);
+	}
+}

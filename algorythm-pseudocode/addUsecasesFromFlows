@@ -1,0 +1,11 @@
+addUsecasesFromFlows = function(usecases,flows){
+	for(flow in flows){
+		if(flow.to.type != type.function){
+			continue;
+		}
+		useCase = createUseCase(flow);
+		usecases.push(useCase);
+		nextFlows = sequenceFlows.filter(nextFlow => nextFlow.from = flow.to);
+		addUsecasesFromFlows(usecases,nextFlows);
+	}
+}
