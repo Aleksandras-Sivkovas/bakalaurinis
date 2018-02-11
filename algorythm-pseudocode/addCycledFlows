@@ -1,0 +1,32 @@
+addCycledFlows = function(cycledFlows,currentPath, newFlow,process,sequenceFlows){
+	if(newFlow.to == process){
+		return true;
+	}
+	if(newFlow.to.type != type.function){
+		return false;
+	}
+	if(currentPath.contains(newFlow)){
+		return false;
+	}
+	if(cycledFlows.contains(newFlow)){
+		return true; \\ We already found path this way
+	}
+	nextFlows = sequenceFlows.filter(flow => flow.from = newFlow.to);
+	if(nextFlows.length == 0){
+		return [];
+	}
+	cycledFlows.add(newFlow);
+	currentPath.add(newFlow);
+	pathFound = false;
+	for(flow in nextFlows){
+		if(getCycledFlows(cycledFlows,currentPath,flow,process,sequenceFlows)){
+			pathFound = true;		
+		}
+	}
+	if(!pathFound){
+		cycledFlows.remove(newFlow);	
+	}
+	currentPath.remove(newFlow);
+	return pathFound;
+}
+

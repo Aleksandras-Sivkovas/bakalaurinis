@@ -244,8 +244,10 @@ Rasti ryšiai parodo į kokius \textbf{BPMN} komponentus reikia žiūrėti išve
 
 \begin{enumerate}
 	\item Pirmiausia imamas transakcijos procesas. 
-	\item Vėliau rekursijos būdu gaunamas grafas duomenų perdavimo grafas ir iš jo sukuriami vartojimo atvejai funkcija addUsecasesFromFlows (Listing  \ref{lst:bpmn_to_sd_algorythm_pseudocode_addUsecasesFromFlows}).
-	\lstinputlisting[language=java, caption={Funkcija addUsecasesFromFlows}, label={lst:bpmn_to_sd_algorythm_pseudocode_addUsecasesFromFlows}]{algorythm-pseudocode/addUsecasesFromFlows}
+	\item Vėliau jam sukuriami vartojimo atvejai funkcija getUseCasesForProcess (Listing  \ref{lst:bpmn_to_sd_algorythm_pseudocode_getUseCasesForProcess}).
+	\lstinputlisting[language=java, caption={Funkcija getUseCasesForProcess}, label={lst:bpmn_to_sd_algorythm_pseudocode_getUseCasesForProcess}]{algorythm-pseudocode/getUseCasesForProcess}
+	Joje funkcija addCycledFlows (Listing  \ref{lst:bpmn_to_sd_algorythm_pseudocode_addCycledFlows}) paima tik tuos sekos srautus, kurie sudaro ciklą su procesu.
+	\lstinputlisting[language=java, caption={Funkcija addCycledFlows}, label={lst:bpmn_to_sd_algorythm_pseudocode_addCycledFlows}]{algorythm-pseudocode/addCycledFlows}
 	
 	\item Sukurti vartojimo atvejai pridedami prie jau gautų vartojimo atvejų kartu su ryšiais tarp jų funkcija addNewUsecases (Listing  \ref{lst:bpmn_to_sd_algorythm_pseudocode_addNewUsecases}). 
 \lstinputlisting[language=java, caption={Funkcija addNewUsecases}, label={lst:bpmn_to_sd_algorythm_pseudocode_addNewUsecases}]{algorythm-pseudocode/addNewUsecases}	

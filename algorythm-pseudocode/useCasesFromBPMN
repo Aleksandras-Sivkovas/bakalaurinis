@@ -3,9 +3,7 @@ useCasesFromBPMN = function(BPMN){
 	useCases = [];
 	edges = [];
 	for(transaction in transactions){
-		processFlows = sequenceFlows.filter(flow => flow.from = transaction.process);
-		flowUsecases = [];
-		addUsecasesFromFlows(flowUsecases,processFlows);
+		flowUsecases = getUseCasesForProcess(transaction.process,sequenceFlows);
 		addNewUsecases(edges,useCases,flowUsecases,transaction);
 	}
 	functions = getFunctions(sequenceFlows);
