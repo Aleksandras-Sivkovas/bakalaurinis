@@ -88,10 +88,71 @@ Siekiami rezultatai yra:
 %pagal atitinkamas darbo dalis, nuosekliai, panaudojant lyginamosios analizės,
 %klasifikacijos, sisteminimo metodus bei apibendrinimus, dėstoma sukaupta ir
 %išanalizuota medžiaga. 
-\section{Algoritmas kurti \textbf{sekų diagramas} pagal \textbf{BPMN} pateiktą informaciją}
-Šio darbo tikslas yra algoritmas atlikti diagramų transformacijai. Pirmiausia pateikiama tai, kas literatūroje rašoma apie \textbf{UML} diagramų transformavimo algoritmus. Vėliau sukuriamas siekiamas algoritmas.
-\subsection{\textbf{UML} diagramų transformavimo algoritmai}
-\subsubsection{\textbf{Užduočių diagramos} išvedimas iš \textbf{BPMN} modelio} \label{section:use_cases_from_bpmn}
+\section{BPMN diagrama}
+\textbf{BPMN} specifikacija leidžia atvaizduoti gana nemažai verslo proceso atributų \cite{bpmnFormal}. Bet šiame darbe ji bus nagrinėjama tik kaip įvesties duomenų formatas, naudojamas apibrėžti informaciją pagal kurią bus kuriama \textbf{sekų diagrama}. Taigi daugelį \textbf{BPMN} komponentų galima tiesiog ignoruoti, nes jie neturi jokios įtakos algoritmo vykdymo rezultatui. Norint pabrėžti svarbią informaciją, darbe bus tiriamos tik tos \textbf{BPMN} savybės kurios gali įtakoti algoritmo vykdymo rezultatą. Atitinkami komponentai pavaizduoti \ref{tab:investigated_bpmn_components} lentelėje.
+\newcounter{counter:table:reset}
+\newcounter{counter:table}[counter:table:reset]
+\newcommand\rownumber{\stepcounter{counter:table}\arabic{counter:table}}
+\begin{center}
+    \begin{longtable}{ | p{0.5cm} | p{2cm} |  p{7cm} | p{4cm} |}
+    \caption{BPMN diagramos komponentai}
+	\label{tab:investigated_bpmn_components}
+    \\ \hline 
+    Nr. & Komponentas & Aprašymas & Žymėjimo pavizdys\\ 
+    \hline 
+    \rownumber & Juosta & Komponentas žymintis diagramos dalyvį ir nurodantis, kad jis atsakingas už veiklų esančių šiame komponente vykdymą. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/bpm-components/pool}}} \\
+    \hline
+     \rownumber & Įvykis & Komponentas žymintis, kad ivyko kažkas kas įtakojo proceso būseną. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/bpm-components/event}}} \\ 
+    \hline 
+    \rownumber & Veikla & Komponentas žymintis užduoties vykdymo procesą & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/bpm-components/activity}}}\\
+    \hline 
+    \rownumber & Sekos srautas & Komponentas žymintis veiklų seką. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/bpm-components/transition}}}\\
+    \hline
+%    \rownumber & Duomenų objektas & Komponentas žymintis sukuriamus arba įeities duomenis. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/bpm-components/data_object}}}\\
+%    \hline
+%    \rownumber & Pranešimų srautas & Komponentas žymintis duomenų apsikeitimo srautus. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/bpm-components/message_flow}}}\\
+%    \hline
+    \rownumber & Sprendimas & Komponentas žymintis sekos srautų išsišakojimą. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/bpm-components/gateway}}}\\
+    \hline
+    \end{longtable}
+\end{center}
+
+Darbe bus nagrinėjamas procesas kuriam kuriama programų sistema, todėl materialios  veiklos bus atskirtos nuo duomenų tvarkymo veiklų \cite{bpmnPorterModel}. \textbf{BPMN} diagrama bus vaizduojama kaip detalizuotas M. Porterio vertės grandinės modelis (\ref{img:detalized_porter_vcm} pav), todėl į apibrėžimą įtrauktas sprendimas, kuris bus naudojamas išsišakojimui pavaizduoti. Tokiu būdu dėmesys telkiamas ties informacijos procesais.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{img/detalized_porter_vcm}
+	\caption{Detalizuotas M. Porterio vertės grandinės modelis}
+	\label{img:detalized_porter_vcm}
+\end{figure} 
+
+
+\section{Užduočių diagrama}
+
+Čia pateikiamas \textbf{užduočių diagramos} naudojamos darbe apibrėžimas. Tai bus algoritmo rezultato formatas. Siekiama gauti kiek įmanoma tikslesnę užduočių diagramą. Jos komponentai pateikiam \ref{tab:investigated_use_case_diagram_components} lentelėje.
+\stepcounter{counter:table:reset}
+\begin{center}
+    \begin{longtable}{ | p{0.5cm} | p{2cm} |  p{7cm} | c |}
+    \caption{\textbf{Užduočių diagramos} komponentai}
+	\label{tab:investigated_use_case_diagram_components}
+    \\ \hline 
+    Nr. & Komponentas & Aprašymas & Žymėjimo pavizdys\\ 
+    \hline 
+    \rownumber & Aktorius & Komponentas žymintis sistemos naudotojo tipą. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/use_case_components/actor}}} \\
+    \hline
+    \rownumber & Vartojimo atvejis & Komponentas specifikuojantis elgsenų aibę, kuri generuoja rezultatą. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[height=3cm]{img/use_case_components/use_case}}} \\
+    \hline
+     \rownumber & Asociacija & Komponentas žymintis ryšį tarp aktoriaus ir vartojimo atvejo. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/use_case_components/association}}} \\
+    \hline
+     \rownumber & Įtraukia & Komponentas žymintis elgseną kuri yra bendra keliems vartojimo atvejams, todėl ji parodoma atskirai nuo jų, kad būtų galima perpanaudoti. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/use_case_components/includes}}} \\
+    \hline
+    \rownumber & Išplečia & Komponentas žymintis, kad esant tam tikram atvejui vartojimo atvejis įtraukia papildomus vartojimo atvejus. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/use_case_components/extend}}} \\
+    \hline
+    \end{longtable}
+\end{center}
+
+\section{\textbf{UML} diagramų transformavimo algoritmai}
+\subsection{\textbf{Užduočių diagramos} išvedimas iš \textbf{BPMN} modelio} \label{section:use_cases_from_bpmn}
 Literatųroje yra parašyta apie \textbf{vartojimo atvejų diagramos} išvedimą iš \textbf{BPMN} modelio \cite{algUseCasesFromBpmn}. Darbe nagrinėjamas \cite{algUseCasesFromBpmn} straipsnyje aprašytas algoritmas (\ref{eq:use_cases_from_bpmn}). Imamas modifikuotas \textbf{BPMN} modelis (\ref{eq:use_cases_from_bpmn:bpmn_elements}) ir tie \textbf{vartojimo atvejų diagramos} komponentai, kurie gali būti iš jo išvesti (\ref{eq:use_cases_from_bpmn:use_case_elements}). 
 \begin{align}
 &BPMNElements = \left\{Start,End,Role,Branch,Task,Transition\right\}; \label{eq:use_cases_from_bpmn:bpmn_elements} \\
@@ -105,6 +166,11 @@ Literatųroje yra parašyta apie \textbf{vartojimo atvejų diagramos} išvedimą
 Algoritmo autoriai pirmiausia siūlo surasti ryšius tarp modelių. juostos atitinka aktorius. Užduotys tuo tarpu grupuojamos, kol nepasiekia maksimalaus skaičiaus vykdomų be pertraukos, tos pačios juostos ir pagaminančių rezultatą. Tokia grupė pavadinama žingsniu ir yra laikoma atitinkančia vartojimo atvejį. Taip  išsiaiškinami transformacijos žingsniai. Tuomet lieka tik formaliai užrašyti kaip jie gali būti vykdomi ir surasti kaip dar galima būtų panaudoti informaciją, patikslinti ir suprastinti gautoms diagramoms.
 
 Algoritmas Pirmiausia sudėlioja pavienes užduotis į proceso žingsnius. Vėliau juostos tampa aktoriais, o žingsniai jose – vartojimo atvejais. Galiausiai pasikartojančios užduotis išimamos iš žingsnių ir prijungiamos asociacija įtraukia arba išplečia pagal situaciją.
+
+\section{Vertės grandinės modelio pritaikymas}
+
+\section{Algoritmas kurti \textbf{sekų diagramas} pagal \textbf{BPMN} pateiktą informaciją}
+Šio darbo tikslas yra algoritmas atlikti diagramų transformacijai. Pirmiausia pateikiama tai, kas literatūroje rašoma apie \textbf{UML} diagramų transformavimo algoritmus. Vėliau sukuriamas siekiamas algoritmas.
 
 
 \subsection{\textbf{Užduočių diagramos} išvedimas iš \textbf{BPMN} modelio}
@@ -172,67 +238,6 @@ Rasti ryšiai taip pat parodo kurie komponentai bus imami ir kurie gaunami. Taig
 %Citavimo pavyzdžiai: cituojamas vienas šaltinis \cite{PvzStraipsnLt}; cituojami
 %keli šaltiniai \cite{PvzStraipsnEn, PvzKonfLt, PvzKonfEn, PvzKnygLt, PvzKnygEn,
 %PvzElPubLt, PvzElPubEn, PvzMagistrLt, PvzPhdEn}.
-\subsubsection{BPMN diagrama}
-\textbf{BPMN} specifikacija leidžia atvaizduoti gana nemažai verslo proceso atributų \cite{bpmnFormal}. Bet šiame darbe ji bus nagrinėjama tik kaip įvesties duomenų formatas, naudojamas apibrėžti informaciją pagal kurią bus kuriama \textbf{sekų diagrama}. Taigi daugelį \textbf{BPMN} komponentų galima tiesiog ignoruoti, nes jie neturi jokios įtakos algoritmo vykdymo rezultatui. Norint pabrėžti svarbią informaciją, darbe bus tiriamos tik tos \textbf{BPMN} savybės kurios gali įtakoti algoritmo vykdymo rezultatą. Atitinkami komponentai pavaizduoti \ref{tab:investigated_bpmn_components} lentelėje.
-\newcounter{counter:table:reset}
-\newcounter{counter:table}[counter:table:reset]
-\newcommand\rownumber{\stepcounter{counter:table}\arabic{counter:table}}
-\begin{center}
-    \begin{longtable}{ | p{0.5cm} | p{2cm} |  p{7cm} | p{4cm} |}
-    \caption{BPMN diagramos komponentai}
-	\label{tab:investigated_bpmn_components}
-    \\ \hline 
-    Nr. & Komponentas & Aprašymas & Žymėjimo pavizdys\\ 
-    \hline 
-    \rownumber & Juosta & Komponentas žymintis diagramos dalyvį ir nurodantis, kad jis atsakingas už veiklų esančių šiame komponente vykdymą. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/bpm-components/pool}}} \\
-    \hline
-     \rownumber & Įvykis & Komponentas žymintis, kad ivyko kažkas kas įtakojo proceso būseną. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/bpm-components/event}}} \\ 
-    \hline 
-    \rownumber & Veikla & Komponentas žymintis užduoties vykdymo procesą & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/bpm-components/activity}}}\\
-    \hline 
-    \rownumber & Sekos srautas & Komponentas žymintis veiklų seką. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/bpm-components/transition}}}\\
-    \hline
-%    \rownumber & Duomenų objektas & Komponentas žymintis sukuriamus arba įeities duomenis. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/bpm-components/data_object}}}\\
-%    \hline
-%    \rownumber & Pranešimų srautas & Komponentas žymintis duomenų apsikeitimo srautus. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/bpm-components/message_flow}}}\\
-%    \hline
-    \rownumber & Sprendimas & Komponentas žymintis sekos srautų išsišakojimą. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/bpm-components/gateway}}}\\
-    \hline
-    \end{longtable}
-\end{center}
-
-Darbe bus nagrinėjamas procesas kuriam kuriama programų sistema, todėl materialios  veiklos bus atskirtos nuo duomenų tvarkymo veiklų \cite{bpmnPorterModel}. \textbf{BPMN} diagrama bus vaizduojama kaip detalizuotas M. Porterio vertės grandinės modelis (\ref{img:detalized_porter_vcm} pav), todėl į apibrėžimą įtrauktas sprendimas, kuris bus naudojamas išsišakojimui pavaizduoti. Tokiu būdu dėmesys telkiamas ties informacijos procesais.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=\textwidth]{img/detalized_porter_vcm}
-	\caption{Detalizuotas M. Porterio vertės grandinės modelis}
-	\label{img:detalized_porter_vcm}
-\end{figure} 
-
-\subsubsection{Užduočių diagrama}
-
-Čia pateikiamas \textbf{užduočių diagramos} naudojamos darbe apibrėžimas. Tai bus algoritmo rezultato formatas. Siekiama gauti kiek įmanoma tikslesnę užduočių diagramą. Jos komponentai pateikiam \ref{tab:investigated_use_case_diagram_components} lentelėje.
-\stepcounter{counter:table:reset}
-\begin{center}
-    \begin{longtable}{ | p{0.5cm} | p{2cm} |  p{7cm} | c |}
-    \caption{\textbf{Užduočių diagramos} komponentai}
-	\label{tab:investigated_use_case_diagram_components}
-    \\ \hline 
-    Nr. & Komponentas & Aprašymas & Žymėjimo pavizdys\\ 
-    \hline 
-    \rownumber & Aktorius & Komponentas žymintis sistemos naudotojo tipą. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/use_case_components/actor}}} \\
-    \hline
-    \rownumber & Vartojimo atvejis & Komponentas specifikuojantis elgsenų aibę, kuri generuoja rezultatą. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[height=3cm]{img/use_case_components/use_case}}} \\
-    \hline
-     \rownumber & Asociacija & Komponentas žymintis ryšį tarp aktoriaus ir vartojimo atvejo. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/use_case_components/association}}} \\
-    \hline
-     \rownumber & Įtraukia & Komponentas žymintis elgseną kuri yra bendra keliems vartojimo atvejams, todėl ji parodoma atskirai nuo jų, kad būtų galima perpanaudoti. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/use_case_components/includes}}} \\
-    \hline
-    \rownumber & Išplečia & Komponentas žymintis, kad esant tam tikram atvejui vartojimo atvejis įtraukia papildomus vartojimo atvejus. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/use_case_components/extend}}} \\
-    \hline
-    \end{longtable}
-\end{center}
 
 \subsubsection{Ryšių tarp diagramų panaudojimas transformacijai}
 
