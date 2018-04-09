@@ -1,17 +1,19 @@
-addNewUsecases = function(edges,useCases,newUsecases,transaction){
-	if(newUsecases.length < 1){
+addNewUsecases = function(edges,useCases,newUseCases,transaction){
+	if(newUseCases.length < 1){
 		return;
 	}
-	if(newUsecases.length == 1){
-		useCases.push(newUsecases[0]);
-		return;
-	}
-	mainUseCase = createUseCase(transaction);
-	useCases.push(mainUseCase);
-	for(useCase in newUseCases){
+	mainUseCase = createUseCase(transaction); (*\label{line:bpmn_to_uc_pseudocode_addNewUsecases_transactionUseCase}*)
+	useCases.add(mainUseCase);
+	if(newUseCases.length == 1){	(*\label{line:bpmn_to_uc_pseudocode_addNewUsecases_onlyMain_begin}*)
+		useCase = newUseCases[0];
+    mainUseCase.createdFromFlow = useCase.createdFromFlow;
+    mainUseCase.usedBy = useCase.usedBy;
+  	return;
+	}															(*\label{line:bpmn_to_uc_pseudocode_addNewUsecases_onlyMain_end}*)
+	for(useCase in newUseCases){	(*\label{line:bpmn_to_uc_pseudocode_addNewUsecases_addIncluded_begin}*)
 		useCases.push(useCase);
 		edge = createIncludeEdge(mainUseCase,useCase);
 		edges.push(edge);
-	}
+	}															(*\label{line:bpmn_to_uc_pseudocode_addNewUsecases_addIncluded_end}*)
 }
 

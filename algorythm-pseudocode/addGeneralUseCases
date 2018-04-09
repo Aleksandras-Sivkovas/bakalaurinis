@@ -1,10 +1,12 @@
 addGeneralUseCases = function(edges,useCases,functions){
-	for(function in functions){
-		useCasesUsingThisFunction = useCases.filter(useCase => useCase.createdFromFlow.to == function);
+	for(f in functions){
+		useCasesUsingThisFunction = useCases.filter(useCase => (
+			useCase.createdFromFlow.to == f
+		));
 		if(useCasesUsingThisFunction.length < 2){
 			continue;
 		}
-		generalUseCase = createGeneraluseCase(function);
+		generalUseCase = createGeneraluseCase(f);
 		useCases.push(generalUseCase);
 		for(useCase in useCasesUsingThisFunction){
 			edge = createExtendEdge(generalUseCase,useCase);

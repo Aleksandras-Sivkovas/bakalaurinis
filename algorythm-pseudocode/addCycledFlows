@@ -1,32 +1,34 @@
-addCycledFlows = function(cycledFlows,currentPath, newFlow,process,sequenceFlows){
-	if(newFlow.to == process){
+addCycledFlows = function(cycledFlows,currentPath, 
+		newFlow,process,sequenceFlows){
+	if(newFlow.target == process){ 	(*\label{line:bpmn_to_uc_pseudocode_addCycledFlows_isTargetProcess_begin}*)
 		return true;
-	}
-	if(newFlow.to.type != type.function){
+	}																(*\label{line:bpmn_to_uc_pseudocode_addCycledFlows_isTargetProcess_end}*)
+	if(currentPath.contains(newFlow)){	(*\label{line:bpmn_to_uc_pseudocode_addCycledFlows_isGoingInCircles_begin}*)
 		return false;
-	}
-	if(currentPath.contains(newFlow)){
+	}																		(*\label{line:bpmn_to_uc_pseudocode_addCycledFlows_isGoingInCircles_end}*)
+	if(cycledFlows.contains(newFlow)){								(*\label{line:bpmn_to_uc_pseudocode_addCycledFlows_isAlreadyFound_begin}*)
+		return true; // We already found path this way	
+	}																									(*\label{line:bpmn_to_uc_pseudocode_addCycledFlows_isAlreadyFound_end}*)
+	nextFlows = sequenceFlows.filter(flow => ( (*\label{line:bpmn_to_uc_pseudocode_addCycledFlows_getNextFlows}*)
+		flow.source == newFlow.target
+	));
+	if(nextFlows.length == 0){ 	(*\label{line:bpmn_to_uc_pseudocode_addCycledFlows_isDeadEnd_begin}*)
 		return false;
-	}
-	if(cycledFlows.contains(newFlow)){
-		return true; \\ We already found path this way
-	}
-	nextFlows = sequenceFlows.filter(flow => flow.from = newFlow.to);
-	if(nextFlows.length == 0){
-		return [];
-	}
-	cycledFlows.add(newFlow);
-	currentPath.add(newFlow);
+	}														(*\label{line:bpmn_to_uc_pseudocode_addCycledFlows_isDeadEnd_end}*)
+	cycledFlows.add(newFlow);		(*\label{line:bpmn_to_uc_pseudocode_addCycledFlows_soFarSoGood}*)
+	currentPath.add(newFlow);		(*\label{line:bpmn_to_uc_pseudocode_addCycledFlows_takeStep}*)
 	pathFound = false;
-	for(flow in nextFlows){
-		if(getCycledFlows(cycledFlows,currentPath,flow,process,sequenceFlows)){
-			pathFound = true;		
+	for(flow in nextFlows){			(*\label{line:bpmn_to_uc_pseudocode_addCycledFlows_continueRecursion_begin}*)
+		if(addCycledFlows(cycledFlows,currentPath,
+				flow,process,sequenceFlows)){
+			pathFound = true;
+			// No brake because we need to recursivelly add all paths		
 		}
-	}
-	if(!pathFound){
+	}														(*\label{line:bpmn_to_uc_pseudocode_addCycledFlows_continueRecursion_end}*)
+	if(!pathFound){							(*\label{line:bpmn_to_uc_pseudocode_addCycledFlows_isPathFound_begin}*)
 		cycledFlows.remove(newFlow);	
-	}
-	currentPath.remove(newFlow);
+	}														(*\label{line:bpmn_to_uc_pseudocode_addCycledFlows_isPathFound_end}*)
+	currentPath.remove(newFlow);	(*\label{line:bpmn_to_uc_pseudocode_addCycledFlows_stepBack}*)
 	return pathFound;
 }
 

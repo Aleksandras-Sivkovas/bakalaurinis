@@ -1,12 +1,16 @@
 useCasesFromBPMN = function(BPMN){
-	{transactions,sequenceFlows} = BPMN;
+	transactions = BPMN.transactions;
+	sequenceFlows = BPMN.sequenceFlows;
 	useCases = [];
 	edges = [];
 	for(transaction in transactions){
-		flowUsecases = getUseCasesForProcess(transaction.process,sequenceFlows);
-		addNewUsecases(edges,useCases,flowUsecases,transaction);
+		process = transaction.process; (*\label{line:bpmn_to_uc_pseudocode_get_process}*)
+		transactionSequenceFlows = transaction.sequenceFlows; (*\label{line:bpmn_to_uc_pseudocode_get_transactionSequenceFlows}*)
+		processUsecases = getUseCasesForProcess(process, (*\label{line:bpmn_to_uc_pseudocode_get_processUsecases}*)
+				transactionSequenceFlows);
+		addNewUsecases(edges,useCases,processUsecases,transaction);
 	}
-	functions = getFunctions(sequenceFlows);
+	functions = BPMN.functions;
 	addGeneralUseCases(edges,useCases,functions);
 	addUnusedCases(useCases,functions);
 

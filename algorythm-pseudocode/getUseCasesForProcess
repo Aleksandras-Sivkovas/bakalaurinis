@@ -1,13 +1,16 @@
 getUseCasesForProcess = function(process,sequenceFlows){
-	processFlows = sequenceFlows.filter(flow => flow.from = process);
+	processFlows = sequenceFlows.filter(flow => ( (*\label{line:bpmn_to_uc_pseudocode_getUseCasesForProcess_get_processFlows}*)
+		flow.source == process
+	));
 	cycledFlows = [];
 	for(flow in processFlows){
-		addCycledFlows(cycledFlows,[], flow,process,sequenceFlows)
+		addCycledFlows(cycledFlows,[], 
+				flow,process,sequenceFlows)
 	}
-	processUsecases = [];
+	processUsecases = [];	(*\label{line:bpmn_to_uc_pseudocode_getUseCasesForProcess_get_processUsecases_begin}*)
 	for(flow in cycledFlows){
 		usecase = createUseCase(flow);
 		processUsecases.add(usecase);
-	}
+	}											(*\label{line:bpmn_to_uc_pseudocode_getUseCasesForProcess_get_processUsecases_end}*)
 	return processUsecases;
 }

@@ -1,10 +1,13 @@
 addUnusedCases = function(useCases,functions){
 	for(function in functions){
-		useCasesUsingThisFunction = useCases.filter(useCase => useCase.createdFromFlow.to == function);
-		if(useCasesUsingThisFunction.length > 0){
+		if(useCases.includes(useCase =>(
+			useCase.createdFromFlow.target == f		
+		))){
 			continue;
 		}
 		useCase = createUnusedUsecase(function);
 		useCases.push(useCase);
 	}
 }
+
+

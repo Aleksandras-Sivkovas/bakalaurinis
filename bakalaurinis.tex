@@ -18,15 +18,48 @@
 \usepackage{longtable}
 \usepackage{rotating}
 
-\definecolor{mygray}{rgb}{0.5,0.5,0.5}
-\lstset{ %
-  numbers=left,                    % where to put the line-numbers;
-  numbersep=5pt,                   % how far the line-numbers are from the code
-  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers 
-  breaklines=true                 % sets automatic line breaking
+\usepackage{amsbsy}
+
+%\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+%\lstset{ %
+%  numbers=left,                    	% where to put the line-numbers;
+%  numbersep=5pt,                   	% how far the line-numbers are from the code
+%  numberstyle=\tiny\color{mygray}, 	% the style that is used for the line-numbers 
+%  breaklines=true,                 	% sets automatic line breaking
+%  frame=single,	                   	% adds a frame around the code
+%  morekeywords={of,in},				% if you want to add more keywords to the set
+%  tabsize=2	                   		% sets default tabsize to 2 spaces
+%}
+
+%if errors .aux, .toc
+
+%\definecolor{dkgreen}{rgb}{0,0.6,0}
+%\definecolor{gray}{rgb}{0.5,0.5,0.5}
+%\definecolor{mauve}{rgb}{0.58,0,0.82}
+%\definecolor{light-gray}{gray}{0.25}
+%keywordstyle=\bfseries\color{blue},
+%  commentstyle=\itshape\color{dkgreen},
+%  stringstyle=\color{mauve},
+
+\lstdefinestyle{pseudocode}{
+  language=Java,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\normalsize\ttfamily},
+  numberstyle={\tiny},
+  numbers=left,
+  keywordstyle=\pmb,
+  commentstyle=\itshape,
+  stringstyle=\itshape,
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=2,
+  morekeywords={of,in,function},
+  escapeinside={(*}{*)},          % if you want to add LaTeX within your code
+  frame=single	                   	% adds a frame around the code
 }
-
-
 
 %%% Table of contents to list down to subsections and no further
 \setcounter{tocdepth}{4}
@@ -79,7 +112,7 @@ Reikalavimų inžinerija yra sudėtinga programų kūrimo dalis. Proceso sudėti
 
 Siekiami rezultatai yra:
 \begin{enumerate}
-	\item Algoritmas galintis transformuoti \textbf{BPMN} modelį į \textbf{užduočių diagramą}.
+	\item Algoritmas galintis transformuoti \textbf{BPMN} modelį į \textbf{užduočių diagramą}(angl. Use case diagram).
 	\item Programa demonstruojanti algoritmo veikimą.
 \end{enumerate}
 
@@ -108,16 +141,18 @@ Siekiami rezultatai yra:
     \hline 
     \rownumber & Sekos srautas & Komponentas žymintis veiklų seką. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/bpm-components/transition}}}\\
     \hline
+    \rownumber & Transakcija & Subprocesas kuris užtikrina, kad veiklos jame būtų pilnai įvykdytos arba atšauktos. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/bpm-components/transaction}}}\\
+    \hline
 %    \rownumber & Duomenų objektas & Komponentas žymintis sukuriamus arba įeities duomenis. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/bpm-components/data_object}}}\\
 %    \hline
 %    \rownumber & Pranešimų srautas & Komponentas žymintis duomenų apsikeitimo srautus. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/bpm-components/message_flow}}}\\
 %    \hline
-    \rownumber & Sprendimas & Komponentas žymintis sekos srautų išsišakojimą. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/bpm-components/gateway}}}\\
-    \hline
+%    \rownumber & Sprendimas & Komponentas žymintis sekos srautų išsišakojimą. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/bpm-components/gateway}}}\\
+%    \hline
     \end{longtable}
 \end{center}
 
-Darbe bus nagrinėjamas procesas kuriam kuriama programų sistema, todėl materialios  veiklos bus atskirtos nuo duomenų tvarkymo veiklų \cite{bpmnPorterModel}. \textbf{BPMN} diagrama bus vaizduojama kaip detalizuotas M. Porterio vertės grandinės modelis (\ref{img:detalized_porter_vcm} pav), todėl į apibrėžimą įtrauktas sprendimas, kuris bus naudojamas išsišakojimui pavaizduoti. Tokiu būdu dėmesys telkiamas ties informacijos procesais.
+Darbe bus nagrinėjamas procesas kuriam modeliuojama programų sistema, todėl materialios  veiklos bus atskirtos nuo duomenų tvarkymo veiklų \cite{bpmnPorterModel}. \textbf{BPMN} diagrama bus vaizduojama kaip detalizuotas M. Porterio vertės grandinės modelis (\ref{img:detalized_porter_vcm} pav), todėl į apibrėžimą įtrauktas sprendimas, kuris bus naudojamas išsišakojimui pavaizduoti. Tokiu būdu dėmesys telkiamas ties informacijos procesais.
 
 \begin{figure}[H]
 	\centering
@@ -152,8 +187,8 @@ Darbe bus nagrinėjamas procesas kuriam kuriama programų sistema, todėl materi
 \end{center}
 
 \section{\textbf{UML} diagramų transformavimo algoritmai}
-\subsection{\textbf{Užduočių diagramos} išvedimas iš \textbf{BPMN} modelio} \label{section:use_cases_from_bpmn}
-Literatųroje yra parašyta apie \textbf{vartojimo atvejų diagramos} išvedimą iš \textbf{BPMN} modelio \cite{algUseCasesFromBpmn}. Darbe nagrinėjamas \cite{algUseCasesFromBpmn} straipsnyje aprašytas algoritmas (\ref{eq:use_cases_from_bpmn}). Imamas modifikuotas \textbf{BPMN} modelis (\ref{eq:use_cases_from_bpmn:bpmn_elements}) ir tie \textbf{vartojimo atvejų diagramos} komponentai, kurie gali būti iš jo išvesti (\ref{eq:use_cases_from_bpmn:use_case_elements}). 
+\subsection{ Algoritmas \textbf{BPMN} modeliui transformuoti į \textbf{Užduočių diagramą}} \label{section:use_cases_from_bpmn}
+Literatųroje yra parašyta apie \textbf{vartojimo atvejų diagramos} išvedimą iš \textbf{BPMN} modelio \cite{algUseCasesFromBpmn}. Straipsnyje aprašytas algoritmas atlieka (\ref{eq:use_cases_from_bpmn}) transformaciją. Imamas modifikuotas \textbf{BPMN} modelis (\ref{eq:use_cases_from_bpmn:bpmn_elements}) ir tie \textbf{vartojimo atvejų diagramos} komponentai, kurie gali būti iš jo išvesti (\ref{eq:use_cases_from_bpmn:use_case_elements}). 
 \begin{align}
 &BPMNElements = \left\{Start,End,Role,Branch,Task,Transition\right\}; \label{eq:use_cases_from_bpmn:bpmn_elements} \\
 \begin{split}
@@ -163,21 +198,15 @@ Literatųroje yra parašyta apie \textbf{vartojimo atvejų diagramos} išvedimą
 &BPMN(BPMNModelElements) \Rightarrow UseCases(UseCasesElements); \label{eq:use_cases_from_bpmn}
 \end{align}
 
-Algoritmo autoriai pirmiausia siūlo surasti ryšius tarp modelių. juostos atitinka aktorius. Užduotys tuo tarpu grupuojamos, kol nepasiekia maksimalaus skaičiaus vykdomų be pertraukos, tos pačios juostos ir pagaminančių rezultatą. Tokia grupė pavadinama žingsniu ir yra laikoma atitinkančia vartojimo atvejį. Taip  išsiaiškinami transformacijos žingsniai. Tuomet lieka tik formaliai užrašyti kaip jie gali būti vykdomi ir surasti kaip dar galima būtų panaudoti informaciją, patikslinti ir suprastinti gautoms diagramoms.
+Algoritmo autoriai pirmiausia siūlo surasti ryšius tarp modelių. Juostos atitinka aktorius. Užduotys tuo tarpu grupuojamos, kol nepasiekia maksimalaus skaičiaus vykdomų be pertraukos, priklausančių tai pačiai juostai ir pagaminančių rezultatą. Tokia grupė pavadinama žingsniu ir yra laikoma atitinkančia vartojimo atvejį.  Tuomet lieka surasti kaip dar galima būtų panaudoti informaciją, patikslinti ir suprastinti gautoms diagramoms.
 
-Algoritmas Pirmiausia sudėlioja pavienes užduotis į proceso žingsnius. Vėliau juostos tampa aktoriais, o žingsniai jose – vartojimo atvejais. Galiausiai pasikartojančios užduotis išimamos iš žingsnių ir prijungiamos asociacija įtraukia arba išplečia pagal situaciją.
+Vėliau pristatomas algoritmas. Jis Pirmiausia sudėlioja užduotis į proceso žingsnius. Vėliau juostos tampa aktoriais, o žingsniai jose – vartojimo atvejais. Galiausiai pasikartojančios užduotis išimamos iš žingsnių ir prijungiamos asociacija įtraukia arba išplečia pagal situaciją.
 
-\section{Vertės grandinės modelio pritaikymas}
+\section{\textbf{Užduočių diagramos} išvedimas iš \textbf{BPMN} modelio}
 
-\section{Algoritmas kurti \textbf{sekų diagramas} pagal \textbf{BPMN} pateiktą informaciją}
-Šio darbo tikslas yra algoritmas atlikti diagramų transformacijai. Pirmiausia pateikiama tai, kas literatūroje rašoma apie \textbf{UML} diagramų transformavimo algoritmus. Vėliau sukuriamas siekiamas algoritmas.
+Šio darbo tikslas, algoritmas galintis gauti \textbf{užduočių diagramas} iš \textbf{BPMN} modelio, bus kuriamas pagal \ref{section:use_cases_from_bpmn} aprašytą algoritmo sukūrimo pavyzdį. Pirmiausia bus rasti ryšiai tarp diagramų, vėliau sukurtas būdas juos panaudoti, galiausiai panaudota likusi modelio informacija patikslinti ir suprastinti diagramoms.
 
-
-\subsection{\textbf{Užduočių diagramos} išvedimas iš \textbf{BPMN} modelio}
-
-Šio darbo tikslas, algoritmas galintis gauti \textbf{užduočių diagramoms} iš \textbf{BPMN} modelio, bus kuriamas pagal \ref{section:use_cases_from_bpmn} aprašytą algoritmo sukūrimo pavyzdį. Pirmiausia bus rasti ryšiai tarp diagramų, vėliau sukurtas būdas juos panaudoti, galiausiai panaudota likusi modelio informacija patikslinti ir suprastinti diagramoms.
-
-\subsubsection{Ryšiai tarp \textbf{BPMN} ir \textbf{sekų diagramų}} \label{section:relations_sd_bpmn}
+\subsection{Ryšiai tarp \textbf{BPMN} ir \textbf{sekų diagramų}} \label{section:relations_sd_bpmn}
 
 Norint duomenis iš vieno modelio perkelti į kitą galima pasinaudoti ryšiais esančiais tarp jų.
 
@@ -208,14 +237,16 @@ Norint duomenis iš vieno modelio perkelti į kitą galima pasinaudoti ryšiais 
      %\end{turn} 
      \\ 
     \hline 
-    Juosta & + & & + & + & + \\
+    Juosta & + & & + &  &  \\
+    \hline
+    Veikla  & & + & + & + & + \\
+    \hline
+    Transakcija & & + & & + & + \\
+    \hline
+    Sekos srautas  & &  & & & \\
     \hline
     Įvykis  & & & & & \\
     \hline 
-    Veikla  & & + & + & + & + \\
-    \hline 
-    Sekos srautas  & & + & & & \\
-    \hline
     Duomenų objektas  & & & & & \\
     \hline
     Pranešimų srautas  & & & & & \\
@@ -227,42 +258,49 @@ Norint duomenis iš vieno modelio perkelti į kitą galima pasinaudoti ryšiais 
 
 \begin{enumerate}
 	\item Aktorius – galima gauti iš informacijos esančios juostoje. 
-	\item Vartojimo atvejis – gaunamas iš informacijos veiklose.
+	\item Vartojimo atvejis – gaunamas iš informacijos veiklose arba transakcijose. Vartojimo atvejis paprastai yra transakcijos tipo.
 	\item Asociacija – ryšys tarp juostos ir veiklų joje.
-	\item Įtraukia – pasikartojančios veiklos.
-	\item Išplečia – ryšys randamas kai veikla yra atskiras kitos veiklos atvejis.
+	\item Įtraukia – veiklos kurias apima transakcija.
+	\item Išplečia – ryšys randamas kai veikla pasikartoja skirtingose transakcijose.
 \end{enumerate} 
 
-Rasti ryšiai taip pat parodo kurie komponentai bus imami ir kurie gaunami. Taigi galima apibrėžti \textbf{BPMN} ir \textbf{Užduočių diagramas}. Tai taps algoritmo įvestimi ir išvestimi.
+Rasti ryšiai taip pat parodo kurie komponentai bus imami ir kurie gaunami. Taigi galima apibrėžti algoritmo įvesties ir išvesties duomenis.
 
 %Citavimo pavyzdžiai: cituojamas vienas šaltinis \cite{PvzStraipsnLt}; cituojami
 %keli šaltiniai \cite{PvzStraipsnEn, PvzKonfLt, PvzKonfEn, PvzKnygLt, PvzKnygEn,
 %PvzElPubLt, PvzElPubEn, PvzMagistrLt, PvzPhdEn}.
 
-\subsubsection{Ryšių tarp diagramų panaudojimas transformacijai}
+\subsection{Ryšių tarp diagramų panaudojimas transformacijai}
 
-Rasti ryšiai parodo į kokius \textbf{BPMN} komponentus reikia žiūrėti išvedant \textbf{užduočių diagramos} dalis. Toliau peržiūrimi diagramos variantai ir sudėliojami konkretūs žingsniai kuriuos reikia atlikti. Galiausiai gaunamas pseudokodas (Listing \ref{lst:bpmn_to_sd_algorythm_pseudocode}). 
+Rasti ryšiai parodo į kokius \textbf{BPMN} komponentus reikia žiūrėti išvedant \textbf{užduočių diagramos} dalis. Toliau peržiūrimi diagramos variantai ir sudėliojami konkretūs žingsniai kuriuos reikia atlikti. Galiausiai gaunamas pseudokodas (Pseudokodas \ref{lst:bpmn_to_uc_pseudocode}). Jo veikimas pažingsniui aprašomas, taip pat pavaizduotas (pav. \ref{img:algorythm_activity_diagram}).
 
-%\begin{lstlisting}[language=java, caption={\textbf{UML} \textbf{Sekų diagramos} gavimo iš \textbf{BPMN} modelio algoritmo pseudokodas}, label={lst:bpmn_to_sd_algorythm_pseudocode}]
+\begin{figure}[H]
+	\centering
+	\caption{Algoritmo diagrama}
+	\includegraphics[scale=0.5]{img/algorythm-activity-diagram}
+	\label{img:algorythm_activity_diagram}
+\end{figure} 
+
+%\begin{lstlisting}[language=java, caption={\textbf{UML} \textbf{Sekų diagramos} gavimo iš \textbf{BPMN} modelio algoritmo pseudokodas}, label={lst:bpmn_to_uc_pseudocode}]
 %\end{lstlisting}
-\lstinputlisting[language=java, caption={\textbf{UML} \textbf{Sekų diagramos} gavimo iš \textbf{BPMN} modelio algoritmo pseudokodas}, label={lst:bpmn_to_sd_algorythm_pseudocode}]{algorythm-pseudocode/useCasesFromBPMN}
-
+\renewcommand{\lstlistingname}{Pseudokodas}% Listing -> Algorithm
+\renewcommand{\lstlistlistingname}{Pseudokodo fragmentai}% List of Listings -> List of Algorithms
 \begin{enumerate}
-	\item Pirmiausia imamas transakcijos procesas. 
-	\item Vėliau jam sukuriami vartojimo atvejai funkcija getUseCasesForProcess (Listing  \ref{lst:bpmn_to_sd_algorythm_pseudocode_getUseCasesForProcess}).
-	\lstinputlisting[language=java, caption={Funkcija getUseCasesForProcess}, label={lst:bpmn_to_sd_algorythm_pseudocode_getUseCasesForProcess}]{algorythm-pseudocode/getUseCasesForProcess}
-	Joje funkcija addCycledFlows (Listing  \ref{lst:bpmn_to_sd_algorythm_pseudocode_addCycledFlows}) paima tik tuos sekos srautus, kurie sudaro ciklą su procesu.
-	\lstinputlisting[language=java, caption={Funkcija addCycledFlows}, label={lst:bpmn_to_sd_algorythm_pseudocode_addCycledFlows}]{algorythm-pseudocode/addCycledFlows}
-	
-	\item Sukurti vartojimo atvejai pridedami prie jau gautų vartojimo atvejų kartu su ryšiais tarp jų funkcija addNewUsecases (Listing  \ref{lst:bpmn_to_sd_algorythm_pseudocode_addNewUsecases}). 
-\lstinputlisting[language=java, caption={Funkcija addNewUsecases}, label={lst:bpmn_to_sd_algorythm_pseudocode_addNewUsecases}]{algorythm-pseudocode/addNewUsecases}	
-
-	\item Vėliau gaunamos visos diagramos funkcijos (Listing  \ref{lst:bpmn_to_sd_algorythm_pseudocode_getFunctions}).
-	\lstinputlisting[language=java, caption={Funkcija getFunctions}, label={lst:bpmn_to_sd_algorythm_pseudocode_getFunctions}]{algorythm-pseudocode/getFunctions}
-	\item Randamos bendros funkcijos tarp tranzakcijų ir sukuriami apibendrinantys vartojimo atvejai (Listing  \ref{lst:bpmn_to_sd_algorythm_pseudocode_addGeneralUseCases}).
-	\lstinputlisting[language=java, caption={Funkcija addGeneralUseCases}, label={lst:bpmn_to_sd_algorythm_pseudocode_addGeneralUseCases}]{algorythm-pseudocode/addGeneralUseCases}
-	\item Galiausiai randamos nepanaudotos funkcijos ir sukuriami vartojimo atvejai su perspėjimais \ref{lst:bpmn_to_sd_algorythm_pseudocode_addUnusedCases}).
-	\lstinputlisting[language=java, caption={Funkcija addUnusedCases}, label={lst:bpmn_to_sd_algorythm_pseudocode_addUnusedCases}]{algorythm-pseudocode/addUnusedCases}
+	\item Iškviečiama funkcija useCasesFromBPMN (Pseudokodas \ref{lst:bpmn_to_uc_pseudocode}) paduodant jai \textbf{BPMN} modelį.
+	\lstinputlisting[style=pseudocode, caption={\textbf{UML} \textbf{Sekų diagramos} gavimo iš \textbf{BPMN} modelio algoritmo pseudokodas}, label={lst:bpmn_to_uc_pseudocode}]{algorythm-pseudocode/useCasesFromBPMN}
+	\item Po duomenų inicializavimo pirmiausia imamas transakcijos procesas (eil. \ref{line:bpmn_to_uc_pseudocode_get_process}) ir gaunami sekos srautai jungiantys komponentus transakcijoje (eil. \ref{line:bpmn_to_uc_pseudocode_get_transactionSequenceFlows}). 
+	\item Vėliau sukuriami vartojimo atvejai apibrėžiantys proceso valdymą (eil. \ref{line:bpmn_to_uc_pseudocode_get_processUsecases}) funkcija getUseCasesForProcess (Pseudokodas  \ref{lst:bpmn_to_uc_pseudocode_getUseCasesForProcess}).
+	\lstinputlisting[style=pseudocode, caption={Funkcija getUseCasesForProcess}, label={lst:bpmn_to_uc_pseudocode_getUseCasesForProcess}]{algorythm-pseudocode/getUseCasesForProcess}
+	\item Joje randami sekos srautai išeinantys iš proceso (eil. \ref{line:bpmn_to_uc_pseudocode_getUseCasesForProcess_get_processFlows}) ir kiekvienam iš jų rekursijos būdu surandami ciklai su procesu funkcija addCycledFlows (Pseudokodas  \ref{lst:bpmn_to_uc_pseudocode_addCycledFlows}). Kiekvienam iš cikle esančių sekos srautų sukuriamas vartojimo atvejis (eil. \ref{line:bpmn_to_uc_pseudocode_getUseCasesForProcess_get_processUsecases_begin} - \ref{line:bpmn_to_uc_pseudocode_getUseCasesForProcess_get_processUsecases_end}). Jų kolekcija ir yra (Pseudokodas  \ref{lst:bpmn_to_uc_pseudocode_getUseCasesForProcess}) grąžinamas rezultatas.
+	\lstinputlisting[style=pseudocode, caption={Funkcija addCycledFlows}, label={lst:bpmn_to_uc_pseudocode_addCycledFlows}]{algorythm-pseudocode/addCycledFlows}
+Minėta Funkcija (Pseudokodas  \ref{lst:bpmn_to_uc_pseudocode_addCycledFlows}) pirmiausia patikrina ar jau nėra ciklo su procesu ir jei taip patvirtina, kad parametras currentPath turi savyje kelia į procesą (eil. \ref{line:bpmn_to_uc_pseudocode_addCycledFlows_isTargetProcess_begin} - \ref{line:bpmn_to_uc_pseudocode_addCycledFlows_isTargetProcess_end}). Jei kelias užsiciklino grąžinamas neigiamas atsakymas (eil. \ref{line:bpmn_to_uc_pseudocode_addCycledFlows_isGoingInCircles_begin} - \ref{line:bpmn_to_uc_pseudocode_addCycledFlows_isGoingInCircles_end}), tai reiškia grįžimą atgal. Jei žingsnis veda į jau išsaugotą sėkmingą kelio atkarpą patvirtinamas jo teisingumas (eil. \ref{line:bpmn_to_uc_pseudocode_addCycledFlows_isAlreadyFound_begin} - \ref{line:bpmn_to_uc_pseudocode_addCycledFlows_isAlreadyFound_end}). Jei nei viena iš šių sąlygų nepasitvirtino paimami sekantys žingsniai  (eil. \ref{line:bpmn_to_uc_pseudocode_addCycledFlows_getNextFlows}). Jų neradus pranešama apie aklavietę (eil. \ref{line:bpmn_to_uc_pseudocode_addCycledFlows_isDeadEnd_begin} - \ref{line:bpmn_to_uc_pseudocode_addCycledFlows_isDeadEnd_end}). Kol kas pažymima, kad žingsnis yra sėkmingas (eil. \ref{line:bpmn_to_uc_pseudocode_addCycledFlows_soFarSoGood}) ir žengtas (eil. \ref{line:bpmn_to_uc_pseudocode_addCycledFlows_takeStep}). Toliau ieškoma ciklų su procesu einant sekančiais sekos srautais (eil.  \ref{line:bpmn_to_uc_pseudocode_addCycledFlows_continueRecursion_begin} - \ref{line:bpmn_to_uc_pseudocode_addCycledFlows_continueRecursion_end}). Neradus nei vieno kelio į procesą ištrinamas pažymėjimas apie žingsnio teisingumą (eil.  \ref{line:bpmn_to_uc_pseudocode_addCycledFlows_isPathFound_begin} - \ref{line:bpmn_to_uc_pseudocode_addCycledFlows_isPathFound_end}). Kadangi keliai žengus šį žingsnį ištyrinėti grįžtama atgal (eil. \ref{line:bpmn_to_uc_pseudocode_addCycledFlows_stepBack}).
+	\item (Pseudokodas \ref{lst:bpmn_to_uc_pseudocode_getUseCasesForProcess}) sukurti vartojimo atvejai pridedami prie jau gautų vartojimo atvejų kartu su ryšiais tarp jų funkcija addNewUsecases (Pseudokodas  \ref{lst:bpmn_to_uc_pseudocode_addNewUsecases}). 
+\lstinputlisting[style=pseudocode, caption={Funkcija addNewUsecases}, label={lst:bpmn_to_uc_pseudocode_addNewUsecases}]{algorythm-pseudocode/addNewUsecases}	
+Joje sukuriamas vartojimo atvejis visai transakcijai (eil. \ref{line:bpmn_to_uc_pseudocode_addNewUsecases_transactionUseCase}), pažiūrima kiek vartojimo atvejų rasta, jei vienas tai jo informacija išsaugoma į pagrindinį vartojimo atvejį (eil.  \ref{line:bpmn_to_uc_pseudocode_addNewUsecases_onlyMain_begin} - \ref{line:bpmn_to_uc_pseudocode_addNewUsecases_onlyMain_end}). Radus daugiau, jie išsaugomi kaip įeinantys į transakciją (eil.  \ref{line:bpmn_to_uc_pseudocode_addNewUsecases_addIncluded_begin} - \ref{line:bpmn_to_uc_pseudocode_addNewUsecases_addIncluded_end}). 
+	\item Galiausiai randamos bendros funkcijos tarp transakcijų ir sukuriami apibendrinantys vartojimo atvejai (Pseudokodas  \ref{lst:bpmn_to_uc_pseudocode_addGeneralUseCases}).
+	\lstinputlisting[style=pseudocode, caption={Funkcija addGeneralUseCases}, label={lst:bpmn_to_uc_pseudocode_addGeneralUseCases}]{algorythm-pseudocode/addGeneralUseCases}
+	\item Jeigu liko nepanaudotų funkcijų, iš jų sukuriami vartojimo atvejai su perspėjimais (Pseudokodas \ref{lst:bpmn_to_uc_pseudocode_addUnusedCases}).
+	\lstinputlisting[style=pseudocode, caption={Funkcija addUnusedCases}, label={lst:bpmn_to_uc_pseudocode_addUnusedCases}]{algorythm-pseudocode/addUnusedCases}
 \end{enumerate} 
 
 
@@ -281,7 +319,7 @@ Rasti ryšiai parodo į kokius \textbf{BPMN} komponentus reikia žiūrėti išve
 %	\label{img:sequence}
 %\end{figure} 
 
-\subsubsection{Likusios informacijos panaudojimas suprastinti ar patikslinti diagramai}
+%\subsection{Likusios informacijos panaudojimas suprastinti ar patikslinti diagramai}
 
 
 \section{Programa \textbf{BPMN} transformacijai į \textbf{sekų diagramą}}   
