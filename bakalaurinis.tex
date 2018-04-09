@@ -90,17 +90,7 @@
 
 \tableofcontents
 
-%Sutartinių ženklų, simbolių, vienetų ir terminų sutrumpinimų sąrašas (jeigu
-%ženklų, simbolių, vienetų ir terminų bendras skaičius didesnis nei 10 ir
-%kiekvienas iš jų tekste kartojasi daugiau nei 3 kartus).
-\sectionnonum{Sąvokų apibrėžimai}
-Šiame darbe naudojami žymėjimai:
-\begin{enumerate}
-	\item \textbf{BPMN} – modeliavimo kalba, skirta pavaizduoti informaciją plačiai auditorijai. \textbf{BPMN} buvo sukurta ir dažniausia naudojama pavaizduoti verslo procesams \cite{bpmnFormal}.
-	\item \textbf{UML} – modeliavimo kalba, skirta suteikti standartinį sistemos analizės, architektūros, veikimo ir kūrimo pavaizdavimą \cite{omgUmlFormal}.
-	\item \textbf{Sekų diagrama} (angl. sequence diagram) – \textbf{UML} diagrama, skirta pavaizduoti žinučių tarp apibrėžtų objektų sekai tų objektų gyvavimo metu \cite{omgUmlFormal}.
-	\item \textbf{Užduočių diagrama} (angl. use case diagram) – \textbf{UML} diagrama, skirta pavaizduoti pavaizduoti kaip gali būti naudojama programų sistema \cite{algUseCasesFromBpmn}.
-\end{enumerate}
+
 
 
 %Įvade apibūdinamas darbo tikslas, temos aktualumas ir siekiami rezultatai.
@@ -206,7 +196,7 @@ Vėliau pristatomas algoritmas. Jis Pirmiausia sudėlioja užduotis į proceso �
 
 Šio darbo tikslas, algoritmas galintis gauti \textbf{užduočių diagramas} iš \textbf{BPMN} modelio, bus kuriamas pagal \ref{section:use_cases_from_bpmn} aprašytą algoritmo sukūrimo pavyzdį. Pirmiausia bus rasti ryšiai tarp diagramų, vėliau sukurtas būdas juos panaudoti, galiausiai panaudota likusi modelio informacija patikslinti ir suprastinti diagramoms.
 
-\subsection{Ryšiai tarp \textbf{BPMN} ir \textbf{sekų diagramų}} \label{section:relations_sd_bpmn}
+\subsection{Ryšiai tarp \textbf{BPMN} ir \textbf{užduočių diagramų}} \label{section:relations_sd_bpmn}
 
 Norint duomenis iš vieno modelio perkelti į kitą galima pasinaudoti ryšiais esančiais tarp jų.
 
@@ -303,6 +293,7 @@ Joje sukuriamas vartojimo atvejis visai transakcijai (eil. \ref{line:bpmn_to_uc_
 	\lstinputlisting[style=pseudocode, caption={Funkcija addUnusedCases}, label={lst:bpmn_to_uc_pseudocode_addUnusedCases}]{algorythm-pseudocode/addUnusedCases}
 \end{enumerate} 
 
+Atlikusi šio algoritmo veiksmus programa iš \ref{appendix:dvcm_window} priede pavaizduoto vertės grandinės modelio gauna \ref{appendix:use_cases_window} priede pavaizduotą \textbf{užduočių diagramą}.
 
 %Iš diagramos \ref{img:bpmn} gaunama diagrama \ref{img:sequence}.
 
@@ -322,7 +313,7 @@ Joje sukuriamas vartojimo atvejis visai transakcijai (eil. \ref{line:bpmn_to_uc_
 %\subsection{Likusios informacijos panaudojimas suprastinti ar patikslinti diagramai}
 
 
-\section{Programa \textbf{BPMN} transformacijai į \textbf{sekų diagramą}}   
+\section{Programa \textbf{BPMN} transformacijai į \textbf{užduočių diagramą}}   
 
 
 %Išvadose ir pasiūlymuose, nekartojant atskirų dalių apibendrinimų,
@@ -340,6 +331,14 @@ Joje sukuriamas vartojimo atvejis visai transakcijai (eil. \ref{line:bpmn_to_uc_
 % netransliteruoti.
 \printbibliography[heading=bibintoc] % Literatūros šaltiniai aprašomi
 
+\sectionnonum{Santrumpos}
+Šiame darbe naudojami žymėjimai:
+\begin{enumerate}
+	\item \textbf{BPMN} – modeliavimo kalba, skirta pavaizduoti informaciją plačiai auditorijai. \textbf{BPMN} buvo sukurta ir dažniausia naudojama pavaizduoti verslo procesams \cite{bpmnFormal}.
+	\item \textbf{UML} – modeliavimo kalba, skirta suteikti standartinį sistemos analizės, architektūros, veikimo ir kūrimo pavaizdavimą \cite{omgUmlFormal}.
+	\item \textbf{Sekų diagrama} (angl. sequence diagram) – \textbf{UML} diagrama, skirta pavaizduoti žinučių tarp apibrėžtų objektų sekai tų objektų gyvavimo metu \cite{omgUmlFormal}.
+	\item \textbf{Užduočių diagrama} (angl. use case diagram) – \textbf{UML} diagrama, skirta pavaizduoti pavaizduoti kaip gali būti naudojama programų sistema \cite{algUseCasesFromBpmn}.
+\end{enumerate}
 
 % Prieduose gali būti pateikiama pagalbinė, ypač darbo autoriaus savarankiškai
 % parengta, medžiaga. Savarankiški priedai gali būti pateikiami kompiuterio
@@ -348,14 +347,20 @@ Joje sukuriamas vartojimo atvejis visai transakcijai (eil. \ref{line:bpmn_to_uc_
 \appendix  % Priedai
 
 
-%\section{Niauroninio tinklo struktūra}
-%\begin{figure}[H]
-%    \centering
-%    \includegraphics[scale=0.5]{img/MLP}
+\section{Vertės grandinės modelis programos lange} \label{appendix:dvcm_window}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{img/dvcm_window}
 %    \caption{Paveikslėlio pavyzdys}
-%    \label{img:mlp}
-%\end{figure}
-
+%    \label{img:dvcm_window}
+\end{figure}
+\section{Transformuotas užduočių diagrama programos lange} \label{appendix:use_cases_window}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{img/use_cases_window}
+%    \caption{Paveikslėlio pavyzdys}
+%    \label{img:use_cases_window}
+\end{figure}
 
 %\section{Eksperimentinio palyginimo rezultatai}
 % tablesgenerator.com - converts calculators (e.g. excel) tables to LaTeX
