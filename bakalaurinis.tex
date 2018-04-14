@@ -9,7 +9,6 @@
 \usepackage{color}
 \usepackage{float}
 \usepackage{graphicx}
-% \usepackage{hyperref}  % Nuorodų aktyvavimas
 \usepackage{listings}
 \usepackage{subfig}
 \usepackage{url}
@@ -19,6 +18,8 @@
 \usepackage{rotating}
 
 \usepackage{amsbsy}
+
+\usepackage{hyperref} %[pdfpagelabels,bookmarks,hyperindex,hyperfigures]
 
 %\definecolor{mygray}{rgb}{0.5,0.5,0.5}
 %\lstset{ %
@@ -32,6 +33,18 @@
 %}
 
 %if errors .aux, .toc
+
+\hypersetup{
+    bookmarks=true,         % show bookmarks bar?
+    %unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+    %pdftoolbar=true,        % show Acrobat’s toolbar?
+    %pdfmenubar=true,        % show Acrobat’s menu?
+    %pdffitwindow=false,     % window fit to page when opened
+    %pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={Dalykinės srities modelio transformavimas į UML užduočių diagramas},    % title
+    pdfauthor={Aleksandras Sivkovas},     % author
+    hidelinks
+}
 
 %\definecolor{dkgreen}{rgb}{0,0.6,0}
 %\definecolor{gray}{rgb}{0.5,0.5,0.5}
@@ -86,6 +99,7 @@
 \bibliography{bibliografija} 
 
 \begin{document}
+
 \maketitle
 
 \tableofcontents
@@ -112,7 +126,7 @@ Siekiami rezultatai yra:
 %klasifikacijos, sisteminimo metodus bei apibendrinimus, dėstoma sukaupta ir
 %išanalizuota medžiaga. 
 \section{BPMN diagrama}
-\textbf{BPMN} specifikacija leidžia atvaizduoti gana nemažai verslo proceso atributų \cite{bpmnFormal}. Bet šiame darbe ji bus nagrinėjama tik kaip įvesties duomenų formatas, naudojamas apibrėžti informaciją pagal kurią bus kuriama \textbf{sekų diagrama}. Taigi daugelį \textbf{BPMN} komponentų galima tiesiog ignoruoti, nes jie neturi jokios įtakos algoritmo vykdymo rezultatui. Norint pabrėžti svarbią informaciją, darbe bus tiriamos tik tos \textbf{BPMN} savybės kurios gali įtakoti algoritmo vykdymo rezultatą. Atitinkami komponentai pavaizduoti \ref{tab:investigated_bpmn_components} lentelėje.
+\textbf{BPMN} specifikacija leidžia atvaizduoti gana nemažai verslo proceso atributų \cite{bpmnFormal}. Bet šiame darbe ji bus nagrinėjama tik kaip įvesties duomenų formatas, naudojamas apibrėžti informaciją pagal kurią bus kuriama \textbf{užduočių diagrama}. Taigi daugelį \textbf{BPMN} komponentų galima tiesiog ignoruoti, nes jie neturi jokios įtakos algoritmo vykdymo rezultatui. Norint pabrėžti svarbią informaciją, darbe bus tiriamos tik tos \textbf{BPMN} savybės kurios gali įtakoti algoritmo vykdymo rezultatą. Atitinkami komponentai pavaizduoti \ref{tab:investigated_bpmn_components} lentelėje.
 \newcounter{counter:table:reset}
 \newcounter{counter:table}[counter:table:reset]
 \newcommand\rownumber{\stepcounter{counter:table}\arabic{counter:table}}
@@ -202,7 +216,7 @@ Norint duomenis iš vieno modelio perkelti į kitą galima pasinaudoti ryšiais 
 
 \begin{center}
     \begin{longtable}{ | c | c |  c | c | c | c |}
-    \caption{Ryšiai tarp \textbf{BPMN} ir \textbf{sekų diagramų}}
+    \caption{Ryšiai tarp \textbf{BPMN} ir \textbf{užduočių diagramų}}
 	\label{tab:relations_sd_bpmn}
     \\ \hline 
      & 
@@ -271,13 +285,11 @@ Rasti ryšiai parodo į kokius \textbf{BPMN} komponentus reikia žiūrėti išve
 	\label{img:algorythm_activity_diagram}
 \end{figure} 
 
-%\begin{lstlisting}[language=java, caption={\textbf{UML} \textbf{Sekų diagramos} gavimo iš \textbf{BPMN} modelio algoritmo pseudokodas}, label={lst:bpmn_to_uc_pseudocode}]
-%\end{lstlisting}
 \renewcommand{\lstlistingname}{Pseudokodas}% Listing -> Algorithm
 \renewcommand{\lstlistlistingname}{Pseudokodo fragmentai}% List of Listings -> List of Algorithms
 \begin{enumerate}
 	\item Iškviečiama funkcija useCasesFromBPMN (Pseudokodas \ref{lst:bpmn_to_uc_pseudocode}) paduodant jai \textbf{BPMN} modelį.
-	\lstinputlisting[style=pseudocode, caption={\textbf{UML} \textbf{Sekų diagramos} gavimo iš \textbf{BPMN} modelio algoritmo pseudokodas}, label={lst:bpmn_to_uc_pseudocode}]{algorythm-pseudocode/useCasesFromBPMN}
+	\lstinputlisting[style=pseudocode, caption={\textbf{UML} \textbf{Užduočių diagramos} gavimo iš \textbf{BPMN} modelio algoritmo pseudokodas}, label={lst:bpmn_to_uc_pseudocode}]{algorythm-pseudocode/useCasesFromBPMN}
 	\item Po duomenų inicializavimo pirmiausia imamas transakcijos procesas (eil. \ref{line:bpmn_to_uc_pseudocode_get_process}) ir gaunami sekos srautai jungiantys komponentus transakcijoje (eil. \ref{line:bpmn_to_uc_pseudocode_get_transactionSequenceFlows}). 
 	\item Vėliau sukuriami vartojimo atvejai apibrėžiantys proceso valdymą (eil. \ref{line:bpmn_to_uc_pseudocode_get_processUsecases}) funkcija getUseCasesForProcess (Pseudokodas  \ref{lst:bpmn_to_uc_pseudocode_getUseCasesForProcess}).
 	\lstinputlisting[style=pseudocode, caption={Funkcija getUseCasesForProcess}, label={lst:bpmn_to_uc_pseudocode_getUseCasesForProcess}]{algorythm-pseudocode/getUseCasesForProcess}
@@ -306,7 +318,7 @@ Atlikusi šio algoritmo veiksmus programa iš \ref{appendix:dvcm_window} priede 
 %\begin{figure}[H]
 %	\centering
 %	\includegraphics[scale=0.5]{img/sequence_example}
-%	\caption{\textbf{sekų diagramą} diagrama}
+%	\caption{\textbf{užduočių diagramą} diagrama}
 %	\label{img:sequence}
 %\end{figure} 
 
@@ -376,5 +388,4 @@ Atlikusi šio algoritmo veiksmus programa iš \ref{appendix:dvcm_window} priede 
 %  \end{tabular}}
 %  \label{tab:table example}
 %\end{table}
-
 \end{document}
