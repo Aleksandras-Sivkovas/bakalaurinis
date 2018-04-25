@@ -156,17 +156,18 @@ Siekiami rezultatai yra:
     \end{longtable}
 \end{center}
 
-\section{Detalizuotas grandinės vertės modelis}
+\section{Detalizuotas vertės grandinės modelis}
 BPMN modelyje galima pastebėti įmonės valdymo veiklų supratimo neapibrėžtumus \cite{bpmnPorterModel}. Taip yra todėl, kad išorinio modeliavimo metodai neparodo informacijos arba resursų transformavimo priežasčių. Tačiau įmonę galima analizuoti ir save valdančių procesų (\ref{img:plan_do_check_act} pav) požiūriu.  
-
+%TODO: probably paint myself
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{img/plan_do_check_act}
+	\includegraphics[width=10cm]{img/plan_do_check_act}
 	\caption{Save valdančio proceso pavizdys}
 	\label{img:plan_do_check_act}
 \end{figure} 
 
-Darbe įmonės procesas bus nagrinėjamas kaip save valdančių transakcijų visuma. Materialios veiklos atskiriamos nuo valdymo veiklų. Taip pat pavaizduoti tikslai kuriuos įmonės procesai siekia įgyvendinti. Tokiu būdu modelis pateiks daugiau informacijos apie įmonę. Diagrama bus vaizduojama kaip detalizuotas M. Porterio vertės grandinės modelis (\ref{img:detalized_porter_vcm} pav).
+Darbe įmonės procesas bus nagrinėjamas kaip save valdančių procesų visuma. Modelis yra suskirstytas į valdymo transakcijas $ MT_{ij} = F_j \times P_i$. Materialios veiklos atskiriamos nuo valdymo veiklų. $P_i$ žymi veiklos procesą, kuris transformuoja žaliavas, medžiagas, energiją ir formuoja materialią išeigą.
+$F_j$ yra veiklos valdymo funkcija, informacijos (duomenų, žinių) transformavimo veikla, būtina valdant procesą $P_i$. Tokiu būdu modelis pateiks daugiau informacijos apie įmonę. Diagrama bus vaizduojama kaip detalizuotas M. Porterio vertės grandinės modelis (\ref{img:detalized_porter_vcm} pav).
 
 %TODO: show goles in diagram
 \begin{figure}[H]
