@@ -112,6 +112,38 @@
 
 Reikalavimų inžinerija yra sudėtinga programų kūrimo dalis. Proceso sudėtingumas dažnai tampa klaidų priežastimi. Čia atsiradusios klaidos sunkiai aptinkamos ir sukelia brangiai kainuojančias pasekmes, nes sekančiuose etapuose bus kuriama neteisingai apibrėžta programa. Norint išvengti klaidų galima kai kurias proceso veiklas automatizuoti. Nors yra daug modeliavimo įrankių, juose trūksta automatinio vieno modelio generavimo iš kito.
 
+Projektuojant sistemą gali atsitikti toks atvejis (\ref{img:bad_model_use_cases} pav.). Čia pavaizduota, kad analitikas aptiko kokias funkcijas reikia įgyvendinti. Analizuodamas \ref{img:bad_model} pav. pavaizduotą veiklą jis aptiko vartojimo atvejus pažymėtus 1, 2, 3, 5. Taigi nuspręsta kurti sistemą pavaizduotą  \ref{img:bad_model_use_cases} pav. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{img/bad_modeling/bad_model}
+	\caption{Veiklos modelio pavyzdys}
+	\label{img:bad_model}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=15cm]{img/bad_modeling/bad_model_use_cases}
+	\caption{Vartojimo atvejų diagramos sukurtos pagal \ref{img:bad_model} pav. veiklą pavyzdys}
+	\label{img:bad_model_use_cases}
+\end{figure} 
+
+Bet vėliau paaiškėjo, kad norint įgyvendinti veiklą pažmėtą 5 kartais reikia duomenų iš 4 veiklos pažymėtos punktyrine linija (\ref{img:corrected_model} pav.). Taigi vartojimo atvejų diagramoje trūko 4 vartojimo atvejo (\ref{img:corrected_model_use_cases} pav.). Analitikas to nepastebėjo ir įvyko projektavimo klaida apie kurią niekas nesužinojo.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{img/bad_modeling/corrected_model}
+	\caption{Pataisyto veiklos modelio pavyzdys}
+	\label{img:corrected_model}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=15cm]{img/bad_modeling/corrected_model_use_cases}
+	\caption{Vartojimo atvejų diagramos sukurtos pagal \ref{img:corrected_model} pav. pavyzdys}
+	\label{img:corrected_model_use_cases}
+\end{figure}
+
+Sumažinti klaidų kiekį galima užrąšant turimus duomenis ir automatiškai generuojant modelius. Generavimo įrankis galėtų patikrinti ar įvesties duomenys atitinka keliamus reikalavimus. Taip bus parodyti netikslumai ir analitikas galės pakoreguoti modelį.
+
 Šio darbo tikslas – sukurti algoritmą \textbf{BPMN} modelio transformacijai į \textbf{užduočių diagramas} ir įgyvendinti programos prototipą. \textbf{Užduočių diagramos} yra svarbi reikalavimų inžinerijos dalis, kadangi ji apibrėžia naudotojo reikalavimus. Įmonės dažniausiai žino kaip ir kokias veiklas jos vykdo. Verslo procesą galima apibrėžti \textbf{BPMN} diagramomis. Bet ne viską, kas yra \textbf{BPMN} modelyje, galima perkelti į \textbf{užduočių diagramą}, todėl darbe bus apibrėžtas modifikuotas \textbf{BPMN} modelis, kuriame bus vaizduojama tik algoritmui aktuali informacija. Taip pat gali tekti pridėti papildomų atributų, kurie padės pasiekti tikslesnius rezultatus. Čia bus tiriamas \textbf{BPMN} modelio transformacijos į \textbf{užduočių diagramas} algoritmas.
 
 Siekiami rezultatai yra:
@@ -135,7 +167,7 @@ Siekiami rezultatai yra:
     \caption{BPMN diagramos komponentai}
 	\label{tab:investigated_bpmn_components}
     \\ \hline 
-    Nr. & Komponentas & Aprašymas & Žymėjimo pavizdys\\ 
+    Nr. & Komponentas & Aprašymas & Žymėjimo pavyzdys\\ 
     \hline 
     \rownumber & Juosta & Komponentas žymintis diagramos dalyvį ir nurodantis, kad jis atsakingas už veiklų esančių šiame komponente vykdymą. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/bpm-components/pool}}} \\
     \hline
@@ -157,13 +189,12 @@ Siekiami rezultatai yra:
 \end{center}
 
 \section{Detalizuotas vertės grandinės modelis}
-BPMN modelyje galima pastebėti įmonės valdymo veiklų supratimo neapibrėžtumus \cite{bpmnPorterModel}. Taip yra todėl, kad išorinio modeliavimo metodai neparodo informacijos arba resursų transformavimo priežasčių. Tačiau įmonę galima analizuoti ir transakcinių darbų sekų modelio (\ref{img:plan_do_check_act} pav) požiūriu.  
-%TODO: probably paint myself
+BPMN modelyje galima pastebėti įmonės valdymo veiklų supratimo neapibrėžtumus \cite{bpmnPorterModel}. Taip yra todėl, kad išorinio modeliavimo metodai neparodo informacijos arba resursų transformavimo priežasčių. Tačiau įmonę galima analizuoti ir transakcinių darbų sekų modelio (\ref{img:pdca} pav) požiūriu.  
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=10cm]{img/plan_do_check_act}
-	\caption{Save valdančio proceso pavizdys}
-	\label{img:plan_do_check_act}
+	\includegraphics[width=10cm]{img/pdca}
+	\caption{Save valdančio proceso pavyzdys}
+	\label{img:pdca}
 \end{figure} 
 
 Darbe įmonės procesas bus nagrinėjamas kaip transakcijų visuma. Materialios veiklos atskiriamos nuo valdymo veiklų. $P_i$ žymi veiklos procesą, kuris transformuoja žaliavas, medžiagas, energiją ir formuoja materialią išeigą. $F_j$ yra veiklos valdymo funkcija, informacijos (duomenų, žinių) transformavimo veikla, būtina valdant procesą $P_i$. Modelis yra suskirstytas į valdymo transakcijas $ MT_{ij} = F_j \times P_i$. Tokiu būdu pateikiama daugiau informacijos apie įmonę. Diagrama bus vaizduojama kaip detalizuotas M. Porterio vertės grandinės modelis (\ref{img:detalized_porter_vcm} pav).
@@ -176,6 +207,14 @@ Darbe įmonės procesas bus nagrinėjamas kaip transakcijų visuma. Materialios 
 	\label{img:detalized_porter_vcm}
 \end{figure} 
 
+Valdymo funkcija $F_j$ gali būti suskaidyta smulkiau. (\ref{img:splitted_management_function} pav) parodytas pavyzdys kai $F_j$ susideda iš smulkesnių dalių $F_{j1}$, $F_{j2}$ ir $F_{j3}$. Kartu visa tai suteikia veiklos procesui $P_i$ valdymo duomenis kuriuos jis panaudoja vykdymui. Vėliau grąžinami būsenos duomenys, jie panaudojami valdymo funkcijoje ir ciklas kartojasi.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{img/splitted_management_function}
+	\caption{Valdymo funkcijos $F_j$ išskaidymo pavyzdys}
+	\label{img:splitted_management_function}
+\end{figure} 
 
 \section{Užduočių diagrama}
 
@@ -186,7 +225,7 @@ Darbe įmonės procesas bus nagrinėjamas kaip transakcijų visuma. Materialios 
     \caption{\textbf{Užduočių diagramos} komponentai}
 	\label{tab:investigated_use_case_diagram_components}
     \\ \hline 
-    Nr. & Komponentas & Aprašymas & Žymėjimo pavizdys\\ 
+    Nr. & Komponentas & Aprašymas & Žymėjimo pavyzdys\\ 
     \hline 
     \rownumber & Aktorius & Komponentas žymintis sistemos naudotojo tipą. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/use_case_components/actor}}} \\
     \hline
