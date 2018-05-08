@@ -158,9 +158,66 @@ Siekiami rezultatai yra:
 %klasifikacijos, sisteminimo metodus bei apibendrinimus, dėstoma sukaupta ir
 %išanalizuota medžiaga. 
 \section{BPMN diagrama}
-\textbf{BPMN} specifikacija leidžia atvaizduoti gana nemažai verslo proceso atributų \cite{bpmnFormal}. Bet šiame darbe ji bus nagrinėjama tik kaip įvesties duomenų formatas, naudojamas apibrėžti informaciją pagal kurią bus kuriama \textbf{užduočių diagrama}. Taigi daugelį \textbf{BPMN} komponentų galima tiesiog ignoruoti, nes jie neturi jokios įtakos algoritmo vykdymo rezultatui. Norint pabrėžti svarbią informaciją, darbe bus tiriamos tik tos \textbf{BPMN} savybės kurios gali įtakoti algoritmo vykdymo rezultatą. Atitinkami komponentai pavaizduoti \ref{tab:investigated_bpmn_components} lentelėje.
+\textbf{BPMN} specifikacija leidžia atvaizduoti gana nemažai verslo proceso atributų \cite{bpmnFormal}. Bet šiame darbe ji bus nagrinėjama tik kaip įvesties duomenų formatas, naudojamas apibrėžti informaciją pagal kurią bus kuriama \textbf{užduočių diagrama}. Taigi daugelį \textbf{BPMN} komponentų galima tiesiog ignoruoti, nes jie neturi jokios įtakos algoritmo vykdymo rezultatui. Norint pabrėžti svarbią informaciją, darbe bus tiriamos tik tos \textbf{BPMN} savybės kurios gali įtakoti algoritmo vykdymo rezultatą. Toliau pateikiami pagrindiniai BPMN komponentai.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=5cm]{img/bpm-components/pool}
+	\caption{Juostos žymėjimo pavyzdys}
+	\label{img:bpm_components_pool}
+\end{figure}
+
+Juosta (pool) žymi diagramos dalyvį. Šio komponento paskirtis yra parodyti už kokias veiklas ir koks vykdytojas yra atsakingas. Juosta gali būti skaidoma smulkiau norint konkrečiau nurodyti vykdytojų grupes ir jų pareigas. Juosta žymima apibraukiant tam tikrą sritį (\ref{img:bpm_components_pool} pav.). Viduje yra vieta komponentams už kurių atlikimą atsakingas dalyvis.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=5cm]{img/bpm-components/event}
+	\caption{Įvykio žymėjimo pavyzdys}
+	\label{img:bpm_components_event}
+\end{figure}
+
+Įvykis (event) žymi, kad ivyko kažkas, kas įtakojo proceso būseną. Šis komponentas dažniausiai turi priežastį (trigger) dėl ko jis įvyko ir pasekmes (result). Specifikacijoje įvykiai skirstomi į tris tipus: pradžios, pabaigos ir tarpinius. Žymėjimas yra tuščias apskritimas (\ref{img:bpm_components_event} pav.), viduje paliekant vietos tipo konkretizacijai.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=5cm]{img/bpm-components/activity}
+	\caption{Veiklos žymėjimo pavyzdys}
+	\label{img:bpm_components_activity}
+\end{figure}
+
+Veikla (Activity) yra darbas atliekamas organizacijos procesuose. Ji gali būti atominė ir turėti tik pavadinimą arba  skaidoma labiau, tokiu būdu tapdama subprocesu. Visais atvejais žymėjimas yra stačiakampis su užapvalintais kampais (\ref{img:bpm_components_activity} pav.).
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=5cm]{img/bpm-components/transition}
+	\caption{Sekos srauto žymėjimo pavyzdys}
+	\label{img:bpm_components_sequence_flow}
+\end{figure}
+
+Sekos srautas (Sequence Flow) žymi veiklų seką. Jeigu nenurodyta lygiagretumo veiklos modelyje vykdomos iš eilės. Šis komponentas parodo kokia tvarka tai vyks. Jį galima apibųdinti kaip grafo su kryptimis briauna, kryptis parodo kuri veikla turi būti įvykdyta vėliau. Sekos srautas žymimas solidžia linija ir užpildyto trikampio formos rodykle parodančia kryptį (\ref{img:bpm_components_sequence_flow} pav.).
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=5cm]{img/bpm-components/gateway}
+	\caption{Sprendimo žymėjimo pavyzdys}
+	\label{img:bpm_components_gateway}
+\end{figure}
+
+Sprendimas (gateway) gali būti įterptas sekos srautuose tarp veiklų. Jis žymi srautų išsišakojimą arba susijungimą. Šis komponentas parodo, kad priklausomai nuo konkretaus proceso būsenos bus vykdomos veiklos į kurias eina sekos srautai atitinkantys sprendimo sąlygas. Žymėjimas yra kvadratas pasuktas 45 laipsniu kampu (\ref{img:bpm_components_gateway} pav.). Viduje yra vieta sprendimo konkretizacijai.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=5cm]{img/bpm-components/data_object}
+	\caption{Duomenų objekto žymėjimo pavyzdys}
+	\label{img:bpm_components_data_object}
+\end{figure}
+
+Duomenų objektas (data Object) pateikia informaciją apie tai kokių duomenų reikalauja veiklos vykdytojas norėdamas ją atlikti ir kokie duomenys pagaminami po jos vykdymo. Komponentas gali žymėti tiek neskaidomus tiek sudėtinius duomenis. Jis vaizduojamas (\ref{img:bpm_components_data_object} pav.) kaip stačiakampis su nukirptu dešiniuoju viršutiniu kampu ir trikampiu prie jo (arba kaip stačiakampis lapas su užlenktu dešiniuoju viršutiniu kampu). 
+
 \newcounter{counter:table:reset}
 \newcounter{counter:table}[counter:table:reset]
+
+
 \newcommand\rownumber{\stepcounter{counter:table}\arabic{counter:table}}
 \begin{center}
     \begin{longtable}{ | p{0.5cm} | p{2cm} |  p{7cm} | p{4cm} |}
