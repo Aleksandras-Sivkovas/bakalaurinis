@@ -100,6 +100,10 @@
 
 \begin{document}
 
+\newcounter{counter:table:reset}
+\newcounter{counter:table}[counter:table:reset]
+\newcommand\rownumber{\stepcounter{counter:table}\arabic{counter:table}}
+
 \maketitle
 
 \tableofcontents
@@ -142,7 +146,7 @@ Bet vėliau paaiškėjo, kad norint įgyvendinti veiklą pažmėtą 5 kartais re
 	\label{img:corrected_model_use_cases}
 \end{figure}
 
-Sumažinti klaidų kiekį galima užrąšant turimus duomenis ir automatiškai generuojant modelius. Generavimo įrankis galėtų patikrinti ar įvesties duomenys atitinka keliamus reikalavimus. Taip bus parodyti netikslumai ir analitikas galės pakoreguoti modelį.
+Sumažinti klaidų kiekį galima užrašant turimus duomenis ir automatiškai generuojant modelius. Generavimo įrankis galėtų patikrinti ar įvesties duomenys atitinka keliamus reikalavimus. Taip bus parodyti netikslumai ir analitikas galės pakoreguoti modelį.
 
 Šio darbo tikslas – sukurti algoritmą \textbf{BPMN} modelio transformacijai į \textbf{užduočių diagramas} ir įgyvendinti programos prototipą. \textbf{Užduočių diagramos} yra svarbi reikalavimų inžinerijos dalis, kadangi ji apibrėžia naudotojo reikalavimus. Įmonės dažniausiai žino kaip ir kokias veiklas jos vykdo. Verslo procesą galima apibrėžti \textbf{BPMN} diagramomis. Bet ne viską, kas yra \textbf{BPMN} modelyje, galima perkelti į \textbf{užduočių diagramą}, todėl darbe bus apibrėžtas modifikuotas \textbf{BPMN} modelis, kuriame bus vaizduojama tik algoritmui aktuali informacija. Taip pat gali tekti pridėti papildomų atributų, kurie padės pasiekti tikslesnius rezultatus. Čia bus tiriamas \textbf{BPMN} modelio transformacijos į \textbf{užduočių diagramas} algoritmas.
 
@@ -157,8 +161,14 @@ Siekiami rezultatai yra:
 %pagal atitinkamas darbo dalis, nuosekliai, panaudojant lyginamosios analizės,
 %klasifikacijos, sisteminimo metodus bei apibendrinimus, dėstoma sukaupta ir
 %išanalizuota medžiaga. 
-\section{BPMN diagrama}
-\textbf{BPMN} specifikacija leidžia atvaizduoti gana nemažai verslo proceso atributų \cite{bpmnFormal}. Bet šiame darbe ji bus nagrinėjama tik kaip įvesties duomenų formatas, naudojamas apibrėžti informaciją pagal kurią bus kuriama \textbf{užduočių diagrama}. Taigi daugelį \textbf{BPMN} komponentų galima tiesiog ignoruoti, nes jie neturi jokios įtakos algoritmo vykdymo rezultatui. Norint pabrėžti svarbią informaciją, darbe bus tiriamos tik tos \textbf{BPMN} savybės kurios gali įtakoti algoritmo vykdymo rezultatą. Toliau pateikiami pagrindiniai BPMN komponentai.
+\section{\textbf{BPMN} diagrama}
+Norint standartizuoti verslo modelių atvaizdavimą 2004 metais organizacija BPMI išleido BPMN 1.0 specifikaciją. Vėliau BPMI susijungė su OMG ir 2013 metais buvo išleista BPMN 2.0 versija, kurioje buvo BPMN įgavo geresnį skaitomumą, lankstumą ir išplečiamumą. Ji leido tiek vaizduoti esamus tiek apsikeisti kuriamų procesų reikalavimais. BPMN greitai išpopuliarėjo tarp vadybininkų, verslo analitikų ir programuotojų, nes pasiūlė pažįstamą verslo procesų atvaizdavimą ir turėjo matematinį pagrindą.
+
+\subsection{\textbf{BPMN} apimtis}
+BPMN specifikacija standartizuoja verslo procesų modelį,jų atvaizdavimo būdą ir duomenų apsikeitimo formatą perduoti tiek modelį, tiek jo atvaizdavimą. Sutelkti dėmesiui į skirtingas proceso dalis pateikiami procesų ir choreografijos submodeliai. Bendradarbiavimo submodelis, į save įtraukiantis kitus, gali būti naudojamas pateikti iš karto viskam. Specifikacijos apimtis yra verslo procesai taigi dalykai kaip strategija, duomenų struktūros, resursai, taisyklės ir įstatymai neįeina į ją. 
+ 
+\subsection{\textbf{BPMN} komponentai} \label{section:bpmn_components}
+\textbf{BPMN} specifikacija leidžia atvaizduoti gana nemažai verslo proceso atributų \cite{bpmnFormal}. Specifikacijoje jie yra suskirstyti į pagrindinius ir išvestinius. Toliau pateikiami pagrindiniai \textbf{BPMN} komponentai.
 
 \begin{figure}[H]
 	\centering
@@ -167,16 +177,16 @@ Siekiami rezultatai yra:
 	\label{img:bpm_components_pool}
 \end{figure}
 
-Juosta (pool) žymi diagramos dalyvį. Šio komponento paskirtis yra parodyti už kokias veiklas ir koks vykdytojas yra atsakingas. Juosta gali būti skaidoma smulkiau norint konkrečiau nurodyti vykdytojų grupes ir jų pareigas. Juosta žymima apibraukiant tam tikrą sritį (\ref{img:bpm_components_pool} pav.). Viduje yra vieta komponentams už kurių atlikimą atsakingas dalyvis.
+Juosta (pool) žymi diagramos dalyvį. Šio komponento paskirtis yra parodyti už kokias veiklas ir koks vykdytojas yra atsakingas. Juosta gali būti skaidoma smulkiau norint konkrečiau nurodyti vykdytojų grupes ir jų pareigas, tuomet ji gali būti vadinama linija (lane). Juosta žymima apibraukiant tam tikrą sritį (\ref{img:bpm_components_pool} pav.). Viduje yra vieta komponentams už kurių atlikimą atsakingas dalyvis.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=5cm]{img/bpm-components/event}
+	\includegraphics[width=5cm]{img/bpm-components/event_types}
 	\caption{Įvykio žymėjimo pavyzdys}
-	\label{img:bpm_components_event}
+	\label{img:bpm_event_types}
 \end{figure}
 
-Įvykis (event) žymi, kad ivyko kažkas, kas įtakojo proceso būseną. Šis komponentas dažniausiai turi priežastį (trigger) dėl ko jis įvyko ir pasekmes (result). Specifikacijoje įvykiai skirstomi į tris tipus: pradžios, pabaigos ir tarpinius. Žymėjimas yra tuščias apskritimas (\ref{img:bpm_components_event} pav.), viduje paliekant vietos tipo konkretizacijai.
+Įvykis (event) žymi, kad įvyko kažkas, kas įtakojo proceso būseną. Šis komponentas dažniausiai turi priežastį (trigger) dėl ko jis įvyko ir pasekmes (result). Specifikacijoje įvykiai skirstomi į tris tipus: pradžios (\ref{img:bpm_event_types} pav. a), pabaigos (\ref{img:bpm_event_types} pav. b) ir tarpinius (\ref{img:bpm_event_types} pav. c). Žymėjimas yra tuščias apskritimas (\ref{img:bpm_event_types} pav.), viduje paliekant vietos tipo konkretizavimui.
 
 \begin{figure}[H]
 	\centering
@@ -194,7 +204,7 @@ Veikla (Activity) yra darbas atliekamas organizacijos procesuose. Ji gali būti 
 	\label{img:bpm_components_sequence_flow}
 \end{figure}
 
-Sekos srautas (Sequence Flow) žymi veiklų seką. Jeigu nenurodyta lygiagretumo veiklos modelyje vykdomos iš eilės. Šis komponentas parodo kokia tvarka tai vyks. Jį galima apibųdinti kaip grafo su kryptimis briauna, kryptis parodo kuri veikla turi būti įvykdyta vėliau. Sekos srautas žymimas solidžia linija ir užpildyto trikampio formos rodykle parodančia kryptį (\ref{img:bpm_components_sequence_flow} pav.).
+Sekos srautas (Sequence Flow) žymi veiklų seką. Jeigu nenurodyta lygiagretumo veiklos modelyje vykdomos iš eilės. Šis komponentas parodo kokia tvarka tai vyks. Jį galima apibūdinti kaip grafo su kryptimis briauna, kryptis parodo kuri veikla turi būti įvykdyta vėliau. Sekos srautas žymimas solidžia linija ir užpildyto trikampio formos rodykle parodančia kryptį (\ref{img:bpm_components_sequence_flow} pav.).
 
 \begin{figure}[H]
 	\centering
@@ -203,7 +213,7 @@ Sekos srautas (Sequence Flow) žymi veiklų seką. Jeigu nenurodyta lygiagretumo
 	\label{img:bpm_components_gateway}
 \end{figure}
 
-Sprendimas (gateway) gali būti įterptas sekos srautuose tarp veiklų. Jis žymi srautų išsišakojimą arba susijungimą. Šis komponentas parodo, kad priklausomai nuo konkretaus proceso būsenos bus vykdomos veiklos į kurias eina sekos srautai atitinkantys sprendimo sąlygas. Žymėjimas yra kvadratas pasuktas 45 laipsniu kampu (\ref{img:bpm_components_gateway} pav.). Viduje yra vieta sprendimo konkretizacijai.
+Sprendimas (gateway) gali būti įterptas sekos srautuose tarp veiklų. Jis žymi srautų išsišakojimą arba susijungimą. Šis komponentas parodo, kad priklausomai nuo konkretaus proceso būsenos bus vykdomos veiklos į kurias eina sekos srautai atitinkantys sprendimo sąlygas. Žymėjimas yra kvadratas pasuktas 45 laipsniu kampu (\ref{img:bpm_components_gateway} pav.). Viduje yra vieta sprendimo konkretizavimui.
 
 \begin{figure}[H]
 	\centering
@@ -214,36 +224,66 @@ Sprendimas (gateway) gali būti įterptas sekos srautuose tarp veiklų. Jis žym
 
 Duomenų objektas (data Object) pateikia informaciją apie tai kokių duomenų reikalauja veiklos vykdytojas norėdamas ją atlikti ir kokie duomenys pagaminami po jos vykdymo. Komponentas gali žymėti tiek neskaidomus tiek sudėtinius duomenis. Jis vaizduojamas (\ref{img:bpm_components_data_object} pav.) kaip stačiakampis su nukirptu dešiniuoju viršutiniu kampu ir trikampiu prie jo (arba kaip stačiakampis lapas su užlenktu dešiniuoju viršutiniu kampu). 
 
-\newcounter{counter:table:reset}
-\newcounter{counter:table}[counter:table:reset]
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=5cm]{img/bpm-components/message}
+	\caption{Pranešimo žymėjimo pavyzdys}
+	\label{img:bpm_components_message}
+\end{figure}
 
+Pranešimas (message) žymi bendravimą tarp dalyviu. Šis komponentas skirtas apibrėžti perduodamai informacijai tarp jų. Vaizduojamas (\ref{img:bpm_components_message} pav.) stačiakampiu su trikampiu viduje (vokas).
 
-\newcommand\rownumber{\stepcounter{counter:table}\arabic{counter:table}}
-\begin{center}
-    \begin{longtable}{ | p{0.5cm} | p{2cm} |  p{7cm} | p{4cm} |}
-    \caption{BPMN diagramos komponentai}
-	\label{tab:investigated_bpmn_components}
-    \\ \hline 
-    Nr. & Komponentas & Aprašymas & Žymėjimo pavyzdys\\ 
-    \hline 
-    \rownumber & Juosta & Komponentas žymintis diagramos dalyvį ir nurodantis, kad jis atsakingas už veiklų esančių šiame komponente vykdymą. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/bpm-components/pool}}} \\
-    \hline
-     \rownumber & Įvykis & Komponentas žymintis, kad ivyko kažkas kas įtakojo proceso būseną. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/bpm-components/event}}} \\ 
-    \hline 
-    \rownumber & Veikla & Komponentas žymintis užduoties vykdymo procesą & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/bpm-components/activity}}}\\
-    \hline 
-    \rownumber & Sekos srautas & Komponentas žymintis veiklų seką. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/bpm-components/transition}}}\\
-    \hline
-    \rownumber & Transakcija & Subprocesas kuris užtikrina, kad veiklos jame būtų pilnai įvykdytos arba atšauktos. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/bpm-components/transaction}}}\\
-    \hline
-%    \rownumber & Duomenų objektas & Komponentas žymintis sukuriamus arba įeities duomenis. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/bpm-components/data_object}}}\\
-%    \hline
-%    \rownumber & Pranešimų srautas & Komponentas žymintis duomenų apsikeitimo srautus. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/bpm-components/message_flow}}}\\
-%    \hline
-%    \rownumber & Sprendimas & Komponentas žymintis sekos srautų išsišakojimą. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/bpm-components/gateway}}}\\
-%    \hline
-    \end{longtable}
-\end{center}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=5cm]{img/bpm-components/message_flow}
+	\caption{Pranešimų srauto žymėjimo pavyzdys}
+	\label{img:bpm_components_message_flow}
+\end{figure}
+
+Pranešimų srautas (Message flow) žymi duomenų perdavimą. Tai yra kryptinė grafo briauna, kuri jungia duomenų objektus ir žinutes su juos sukuriančiomis arba naudojančiomis veiklomis. Duomenų srautas į objektą ar žinutę rodo kad tai yra veiklos išeiga, priešingu atveju tai yra veiklos įeiga, duomenys reikalingi jai įvykdyti. Vaizduojama (\ref{img:bpm_components_message} pav.) punktyrine linija su rodykle rodančia kryptį.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=5cm]{img/bpm-components/group}
+	\caption{Grupės žymėjimo pavyzdys}
+	\label{img:bpm_components_group}
+\end{figure}
+
+Grupė (group) skirta nurodyti modelio komponentų kategorijas. Ji neturi įtakos sekų ar duomenų srautams, o tik pasako kas priklauso tai pačiai kategorijai. Vaizdavimas diagramoje yra komponentų apibraukimas ir grupės pavadinimo nurodymas (\ref{img:bpm_components_group} pav.).
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=5cm]{img/bpm-components/text_annotation}
+	\caption{Komentaro žymėjimo pavyzdys}
+	\label{img:bpm_components_text_annotation}
+\end{figure}
+
+Komentaras (text annotation) yra mechanizmas skirtas pateikti papildomai informacijai diagramos skaitytojams. Šis komponentas neįtakoja sekos ar duomenų srautų, o tik paaiškina kas ir kodėl vyksta. Žymimas skliaustu iš kairės komentaro teksto pusės (\ref{img:bpm_components_text_annotation} pav.).
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=5cm]{img/bpm-components/association}
+	\caption{Asociacijos žymėjimo pavyzdys}
+	\label{img:bpm_components_text_association}
+\end{figure}
+
+Asociacija (association) skirta komentarams susieti su modelio komponentais. Ji nurodo kuri diagramos dalis yra komentuojama. Asociacija vaizduojama punktyrine linija (\ref{img:bpm_components_text_association} pav.).
+
+\subsection{\textbf{BPMN} komponentų tarpusavio ryšiai}
+Norint modeliuoti verslo procesus vien komponentų nepakanka, taip pat reikia žinoti ir kaip jie sąveikauja tarpusavyje. Tarpusavio ryšius gana neblogai apibūdina metamodelis. Šiame darbe jis bus dažnai naudojamas tam tikslui. Skyriuje \ref{section:bpmn_components} aprašytų komponentų sąveiką galima pavaizduoti (\ref{img:bpmn_metamodel} pav.) metamodeliu.
+
+Šiame metamodelyje tipas BPMNModelis yra šakninis komponentas. Jis savyje laiko sekos viršūnes, sekos srautus, juostas, grupes, duomenų komponentus, duomenų srautus, komentarus ir asociacijas.
+Komponentus metamodelyje galima suskirstyti į tris grupes: sekos komponentus, duomenų komponentus ir komentavimo komponentus. Sekos komponentams priklauso SekosElemento tipų hierarchija, duomenų komponentams priklauso DuomenųKomponento hierarchija ir DuomenųSrautas, komentavimui priklauso Komentaras ir Asociacija. Taigi galima iš eilės apibūdinti šias grupes iš kurių susideda \textbf{BPMN} modelis.
+
+SekosViršūnė yra abstraktus tipas nurodantis, kad tai yra komponentai jungiami sekos srautais, tokie kaip Veikla, Sprendimas ir Įvykio subtipai. Jis išplėstas abstrakčiais tipais: SekosSrautoŠaltinis ir SekosSrautoTikslas, nes kai kurios sekos viršūnės negali turėti ir įeinančius ir išeinančius sekos srautus. Pavyzdžiui komponentas PradžiosĮvykis gali turėti tik išeinančius, PabaigosĮvykis gali turėti tik įeinančius. Įvykis yra abstraktus tipas nes modelyje būna kurie nors iš jo subtipų. Sekos srautas turi vieną šaltinį ir vieną tikslą. Grupės ir Juostos nurodo kurios sekos viršunės joms priklauso. Juosta dar gali turėti linijų. Metamodelyje taip pat parodoma, kad Veikla gali būti Subprocesas, tokiu būdu savyje laikydama kitą procesą. DuomenųSrautoElementas yra abstraktus tipas parodantis, kad jo subtipai gali būti jungiami duomenų srautais. Įvestas abstraktus tipas DuomenųKomponentas norint apibendrinti PraneŠimą ir DuomenųObjektą. Komentaras jungiamas Asociacija ir gali komentuoti sekos komponentus.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{img/bpmn_metamodel}
+	\caption{BPMN pagrindinių komponentų metamodelis}
+	\label{img:bpmn_metamodel}
+\end{figure}
+
 
 \section{Detalizuotas vertės grandinės modelis}
 BPMN modelyje galima pastebėti įmonės valdymo veiklų supratimo neapibrėžtumus \cite{bpmnPorterModel}. Taip yra todėl, kad išorinio modeliavimo metodai neparodo informacijos arba resursų transformavimo priežasčių. Tačiau įmonę galima analizuoti ir transakcinių darbų sekų modelio (\ref{img:pdca} pav) požiūriu.  
@@ -273,9 +313,11 @@ Valdymo funkcija $F_j$ gali būti suskaidyta smulkiau. (\ref{img:splitted_manage
 	\label{img:splitted_management_function}
 \end{figure} 
 
+
 \section{Užduočių diagrama}
 
 Čia pateikiamas \textbf{užduočių diagramos} naudojamos darbe apibrėžimas. Tai bus algoritmo rezultato formatas. Siekiama gauti kiek įmanoma tikslesnę užduočių diagramą. Jos komponentai pateikiam \ref{tab:investigated_use_case_diagram_components} lentelėje.
+
 \stepcounter{counter:table:reset}
 \begin{center}
     \begin{longtable}{ | p{0.5cm} | p{2cm} |  p{7cm} | c |}
