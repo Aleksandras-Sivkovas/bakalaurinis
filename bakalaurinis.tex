@@ -162,7 +162,7 @@ Siekiami rezultatai yra:
 %klasifikacijos, sisteminimo metodus bei apibendrinimus, dėstoma sukaupta ir
 %išanalizuota medžiaga. 
 \section{\textbf{BPMN} diagrama}
-Norint standartizuoti verslo modelių atvaizdavimą 2004 metais organizacija BPMI išleido BPMN 1.0 specifikaciją. Vėliau BPMI susijungė su OMG ir 2013 metais buvo išleista BPMN 2.0 versija, kurioje buvo BPMN įgavo geresnį skaitomumą, lankstumą ir išplečiamumą. Ji leido tiek vaizduoti esamus tiek apsikeisti kuriamų procesų reikalavimais. BPMN greitai išpopuliarėjo tarp vadybininkų, verslo analitikų ir programuotojų, nes pasiūlė pažįstamą verslo procesų atvaizdavimą ir turėjo matematinį pagrindą.
+Norint standartizuoti verslo modelių atvaizdavimą 2004 metais organizacija BPMI išleido BPMN 1.0 specifikaciją. Ji leido tiek vaizduoti esamus, tiek apsikeisti kuriamų procesų reikalavimais. BPMN greitai išpopuliarėjo tarp vadybininkų, verslo analitikų ir programuotojų, nes pasiūlė pažįstamą verslo procesų atvaizdavimą ir turėjo matematinį pagrindą. Vėliau BPMI susijungė su \textbf{OMG} ir 2013 metais buvo išleista BPMN 2.0 versija, kurioje BPMN įgavo geresnį skaitomumą, lankstumą ir išplečiamumą.
 
 \subsection{\textbf{BPMN} apimtis}
 BPMN specifikacija standartizuoja verslo procesų modelį,jų atvaizdavimo būdą ir duomenų apsikeitimo formatą perduoti tiek modelį, tiek jo atvaizdavimą. Sutelkti dėmesiui į skirtingas proceso dalis pateikiami procesų ir choreografijos submodeliai. Bendradarbiavimo submodelis, į save įtraukiantis kitus, gali būti naudojamas pateikti iš karto viskam. Specifikacijos apimtis yra verslo procesai taigi dalykai kaip strategija, duomenų struktūros, resursai, taisyklės ir įstatymai neįeina į ją. 
@@ -299,7 +299,7 @@ Darbe įmonės procesas bus nagrinėjamas kaip transakcijų visuma. Materialios 
 %TODO: show goles in diagram
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{img/detalized_porter_vcm}
+	\includegraphics[height=8cm]{img/detalized_porter_vcm}
 	\caption{Detalizuotas M. Porterio vertės grandinės modelis}
 	\label{img:detalized_porter_vcm}
 \end{figure} 
@@ -308,7 +308,7 @@ Valdymo funkcija $F_j$ gali būti suskaidyta smulkiau. (\ref{img:splitted_manage
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{img/splitted_management_function}
+	\includegraphics[width=7cm]{img/splitted_management_function}
 	\caption{Valdymo funkcijos $F_j$ išskaidymo pavyzdys}
 	\label{img:splitted_management_function}
 \end{figure} 
@@ -316,28 +316,81 @@ Valdymo funkcija $F_j$ gali būti suskaidyta smulkiau. (\ref{img:splitted_manage
 
 \section{Užduočių diagrama}
 
-Čia pateikiamas \textbf{užduočių diagramos} naudojamos darbe apibrėžimas. Tai bus algoritmo rezultato formatas. Siekiama gauti kiek įmanoma tikslesnę užduočių diagramą. Jos komponentai pateikiam \ref{tab:investigated_use_case_diagram_components} lentelėje.
+1992 metais Ivar Jacobson apibrėžė metodologiją specifikuoti vartojimo atvejus \cite{Jacobson1992}. Jis pateikė būdą apibrėžti atvejus tiek tekstu (TODO: pav), tiek diagrama (TODO: pav). Tarp programų sistemų kūrėjų ši metodologija išpopuliarėjo kaip funkcinių reikalavimų apibrėžimo technika. \textbf{OMG} savo specifikacijose UML \cite{omgUmlFormal} ir SysML \cite{OMGSysML} standartizuoja vartojimo atvejų modelį ir priskiria jį prie elgsenos apibūdinimo diagramų..
 
-\stepcounter{counter:table:reset}
-\begin{center}
-    \begin{longtable}{ | p{0.5cm} | p{2cm} |  p{7cm} | c |}
-    \caption{\textbf{Užduočių diagramos} komponentai}
-	\label{tab:investigated_use_case_diagram_components}
-    \\ \hline 
-    Nr. & Komponentas & Aprašymas & Žymėjimo pavyzdys\\ 
-    \hline 
-    \rownumber & Aktorius & Komponentas žymintis sistemos naudotojo tipą. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/use_case_components/actor}}} \\
-    \hline
-    \rownumber & Vartojimo atvejis & Komponentas specifikuojantis elgsenų aibę, kuri generuoja rezultatą. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[height=3cm]{img/use_case_components/use_case}}} \\
-    \hline
-     \rownumber & Asociacija & Komponentas žymintis ryšį tarp aktoriaus ir vartojimo atvejo. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/use_case_components/association}}} \\
-    \hline
-     \rownumber & Įtraukia & Komponentas žymintis elgseną kuri yra bendra keliems vartojimo atvejams, todėl ji parodoma atskirai nuo jų, kad būtų galima perpanaudoti. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/use_case_components/includes}}} \\
-    \hline
-    \rownumber & Išplečia & Komponentas žymintis, kad esant tam tikram atvejui vartojimo atvejis įtraukia papildomus vartojimo atvejus. & \vtop{\hbox{\strut }\hbox{\strut \includegraphics[width=3cm]{img/use_case_components/extend}}} \\
-    \hline
-    \end{longtable}
-\end{center}
+\subsection{Užduočių diagramos apimtis}
+Užduočių diagrama skirta apibūdinti kaip naudotojai siekia savo tikslų pasitelkdami sistemą. Ji parodo kokie yra funkciniai reikalavimai, naudotojų taksonomiją, duomenų srautus tarp naudotojų ir sistemos. Taip pat pateikia funkcijų hierarchijos modeliavimą ir leidžia jas suskaidyti (naudojant įtraukimo ryšį). Užduočių diagrama apibūdina funkcinius reikalavimus, ji nepateikia nei funkcijų atlikimo tvarkos, nei duomenų struktūrų naudojamų sistemoje.
+
+\subsection{Užduočių diagramos komponentai} \label{section:use_cases_components}
+Skirtingi šaltiniai pateikia kiek skirtingus komponentus ir jų apibrėžimus. Šiame darbe daugiausia taikomi \textbf{OMG} standartuose pateikti apibrėžimai. Toliau bus pateikiami UML standarte apibrėžtos užduočių diagramos komponentai.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=5cm]{img/use_case_components/actor}
+	\caption{Aktoriaus žymėjimo pavyzdys}
+	\label{img:use_case_components_actor}
+\end{figure}
+
+Aktorius (actor) žymi naudotojo rolę. Ją gali atlikti tiek žmogus, tiek išorinė programų sistema. Aktoriai sąveikauja su bendravimo kanalais prijungtais naudojimo atvejais. Šis komponentas žymimas žmogumi iš pagaliukų (\ref{img:use_case_components_actor} pav.).
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=5cm]{img/use_case_components/use_case}
+	\caption{Naudojimo atvejo žymėjimo pavyzdys}
+	\label{img:use_case_components_use_case}
+\end{figure}
+
+Naudojimo atvejis (use case) žymi veiklų kurias atlikus gaunamas naudingas rezultatas aibę. Rezultatas gali būti naudingas tiek vykdytojui, tiek kitiems suinteresuotiems žmonėms. Šis komponentas vaizduojamas elipse (\ref{img:use_case_components_use_case} pav.),
+naudojimo atvejo pavadinimas gali būti tiek elipsėje, tiek po ja.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=5cm]{img/use_case_components/association}
+	\caption{Bendravimo kanalo žymėjimo pavyzdys}
+	\label{img:use_case_components_communication_path}
+\end{figure}
+
+Bendravimo kanalas (communication path) žymi sąveika tarp aktoriaus ir sistemos. Šis komponentas diagramoje jungia aktorių su naudojimo atveju, taip parodydamas, kad prieš atlikdamas veiklas (sistemos funkcijas) naudotojas pateikia įvestį o po jų atlikimo gaunamas rezultatas. Jeigu bendravimo kanalo ryšio su aktoriumi gausa yra daugiau nei 1 reiškia naudojimo atvejui atlikti reikalingi keli vykdytojai, jeigu bendravimo kanalo ryšio su naudojimo atveju gausa yra daugiau nei 1 reiškia aktorius gali atlikti tas pačias veiklas daugiau nei vieną kartą. Asosijacija žymima solidžia linija (\ref{img:use_case_components_communication_path} pav.).
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=5cm]{img/use_case_components/includes}
+	\caption{Įtraukimo žymėjimo pavyzdys}
+	\label{img:use_case_components_includes}
+\end{figure}
+
+Įtraukimas (includes) žymi naudojimo atvejo suskaidymą. Šis komponentas modeliuoja sąryši tarp dviejų vartojimo atvejų, taip parodydamas, kad įtraukiamo naudojimo atvejo veiklos yra atliekamos įtraukiančiame naudojimo atvejyje. Įtraukimą numatyta naudoti tuomet, kai tos pačios veiklos pasikartoja keliuose naudojimo atvejuose. Tos veiklos įdedamos į atskirą naudojimo atvejį ir prijungiamos šiuo ryšiu, tokiu būdu iškeliamas pasikartojantis funkcionalumas. Įtraukimas vaizduojamas punktyrine linija su rodykle  prie įtraukiamo naudojimo atvejo ir patikslinimu dvigubuose kampiniuose skliaustuose (\ref{img:use_case_components_includes} pav.).
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=5cm]{img/use_case_components/extend}
+	\caption{Išplėtimo žymėjimo pavyzdys}
+	\label{img:use_case_components_extends}
+\end{figure}
+
+Išplėtimas (extends) žymi, kad esant tam tikroms sąlygoms naudojimo atvejis įtraukia veiklas iš kitų naudojimo atvejų. Šis komponentas numatytas naudoti bendram funkcionalumui iškelti, bet kitaip nei ryšys „Įtraukia“, parodo, kad veiklos įtraukiamos ne visada. Jis vaizduojamas punktyrine linija su rodykle prie išplečiamo naudojimo atvejo ir patikslinimu dvigubuose kampiniuose skliaustuose (\ref{img:use_case_components_extends} pav.).
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=5cm]{img/use_case_components/generalization}
+	\caption{Apibendrinimo žymėjimo pavyzdys}
+	\label{img:use_case_components_generalization}
+\end{figure}
+
+Apibendrinimas (generalization) žymi, kad elementas yra bendresnio elemento variantas. Nuo išplėtimo naudojimo atvejo apibendrinimas skiriasi tuo, kad pasakoma jog bent vienas iš apibendrinamų naudojimo atvejų funkcionalumų įtraukiamas į apibendrinančio naudojimo atvejo funkcionalumą. Žymimas solidžia linija su rodykle prie apibendrinamo naudojimo atvejo (\ref{img:use_case_components_generalization} pav.).
+
+\subsection{ Užduočių diagramos komponentų tarpusavio ryšiai}
+
+Komponentų aprašytų \ref{section:use_cases_components} skyriuje tarpusavio ryšiai  pavaizduoti metamodeliu (\ref{img:use_cases_metamodel} pav.). Jis sudarytas pagal UML ir SysML standartuose pateiktą informaciją. 
+
+Užduočių diagrama yra paketas savyje laikantis aktorius, naudojimo atvejus, bendravimo kanalus, įtraukimus, išplėtimus ir apibendrinimus. Bendravimo kanalas jungia vieną aktorių su vienu naudojimo atveju. Įtraukimas yra ryšys tarp įtraukiamo ir įtraukiančio naudojimo atvejo. Išplėtimas jungia išplečiamą naudojimo atvejį su išplečiančiu. UML modelis leidžia abstraktaus tipo klasifikatoriaus apibendrinimą. Aktorius ir naudojimo atvejis yra klasifikatoriaus subtipai, todėl gali būti apibendrinti.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{img/use_cases_metamodel}
+	\caption{Užduočių diagramos metamodelis}
+	\label{img:use_cases_metamodel}
+\end{figure} 
 
 \section{\textbf{UML} diagramų transformavimo algoritmai}
 \subsection{ Algoritmas \textbf{BPMN} modeliui transformuoti į \textbf{Užduočių diagramą}} \label{section:use_cases_from_bpmn}
@@ -353,7 +406,7 @@ Literatųroje yra parašyta apie \textbf{vartojimo atvejų diagramos} išvedimą
 
 Algoritmo autoriai pirmiausia siūlo surasti ryšius tarp modelių. Juostos atitinka aktorius. Užduotys tuo tarpu grupuojamos, kol nepasiekia maksimalaus skaičiaus vykdomų be pertraukos, priklausančių tai pačiai juostai ir pagaminančių rezultatą. Tokia grupė pavadinama žingsniu ir yra laikoma atitinkančia vartojimo atvejį.  Tuomet lieka surasti kaip dar galima būtų panaudoti informaciją, patikslinti ir suprastinti gautoms diagramoms.
 
-Vėliau pristatomas algoritmas. Jis Pirmiausia sudėlioja užduotis į proceso žingsnius. Vėliau juostos tampa aktoriais, o žingsniai jose – vartojimo atvejais. Galiausiai pasikartojančios užduotis išimamos iš žingsnių ir prijungiamos asociacija įtraukia arba išplečia pagal situaciją.
+Vėliau pristatomas algoritmas. Jis Pirmiausia sudėlioja užduotis į proceso žingsnius. Vėliau juostos tampa aktoriais, o žingsniai jose – vartojimo atvejais. Galiausiai pasikartojančios užduotis išimamos iš žingsnių ir prijungiamos bendravimo kanalu įtraukia arba išplečia pagal situaciją.
 
 \section{\textbf{Užduočių diagramos} išvedimas iš \textbf{BPMN} modelio}
 
@@ -378,7 +431,7 @@ Norint duomenis iš vieno modelio perkelti į kitą galima pasinaudoti ryšiais 
      %\end{turn}  
      & 
      %\begin{turn}{-90}
-     Asociacija 
+     Bendravimo kanalas 
      %\end{turn}  
      & 
      %\begin{turn}{-90}
@@ -412,7 +465,7 @@ Norint duomenis iš vieno modelio perkelti į kitą galima pasinaudoti ryšiais 
 \begin{enumerate}
 	\item Aktorius – galima gauti iš informacijos esančios juostoje. 
 	\item Vartojimo atvejis – gaunamas iš informacijos veiklose arba transakcijose. Vartojimo atvejis paprastai yra transakcijos tipo.
-	\item Asociacija – ryšys tarp juostos ir veiklų joje.
+	\item Bendravimo kanalas – ryšys tarp juostos ir veiklų joje.
 	\item Įtraukia – veiklos kurias apima transakcija.
 	\item Išplečia – ryšys randamas kai veikla pasikartoja skirtingose transakcijose.
 \end{enumerate} 
@@ -499,6 +552,7 @@ Atlikusi šio algoritmo veiksmus programa iš \ref{appendix:dvcm_window} priede 
 	\item \textbf{UML} – modeliavimo kalba, skirta suteikti standartinį sistemos analizės, architektūros, veikimo ir kūrimo pavaizdavimą \cite{omgUmlFormal}.
 	\item \textbf{Sekų diagrama} (angl. sequence diagram) – \textbf{UML} diagrama, skirta pavaizduoti žinučių tarp apibrėžtų objektų sekai tų objektų gyvavimo metu \cite{omgUmlFormal}.
 	\item \textbf{Užduočių diagrama} (angl. use case diagram) – \textbf{UML} diagrama, skirta pavaizduoti pavaizduoti kaip gali būti naudojama programų sistema \cite{algUseCasesFromBpmn}.
+	\item \textbf{OMG} (angl. Object Management Group) – atviras, tarptautinis ne pelno siekiantis technologijų standartų konsorciumas (https://www.omg.org/).
 \end{enumerate}
 
 % Prieduose gali būti pateikiama pagalbinė, ypač darbo autoriaus savarankiškai
