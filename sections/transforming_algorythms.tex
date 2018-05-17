@@ -1,0 +1,15 @@
+\section{\textbf{UML} diagramų transformavimo algoritmai}
+\subsection{ Algoritmas \textbf{BPMN} modeliui transformuoti į \textbf{Užduočių diagramą}} \label{section:use_cases_from_bpmn}
+Literatųroje yra parašyta apie \textbf{vartojimo atvejų diagramos} išvedimą iš \textbf{BPMN} modelio \cite{algUseCasesFromBpmn}. Straipsnyje aprašytas algoritmas atlieka (\ref{eq:use_cases_from_bpmn}) transformaciją. Imamas modifikuotas \textbf{BPMN} modelis (\ref{eq:use_cases_from_bpmn:bpmn_elements}) ir tie \textbf{vartojimo atvejų diagramos} komponentai, kurie gali būti iš jo išvesti (\ref{eq:use_cases_from_bpmn:use_case_elements}). 
+\begin{align}
+&BPMNElements = \left\{Start,End,Role,Branch,Task,Transition\right\}; \label{eq:use_cases_from_bpmn:bpmn_elements} \\
+\begin{split}
+&UseCasesElements = \left\{Actor, Generalization, Association,Use Case,\right. \\
+&\left. Include, Extension Point, Extend\right\}; \label{eq:use_cases_from_bpmn:use_case_elements}\\
+\end{split} \\
+&BPMN(BPMNModelElements) \Rightarrow UseCases(UseCasesElements); \label{eq:use_cases_from_bpmn}
+\end{align}
+
+Algoritmo autoriai pirmiausia siūlo surasti ryšius tarp modelių. Juostos atitinka aktorius. Užduotys tuo tarpu grupuojamos, kol nepasiekia maksimalaus skaičiaus vykdomų be pertraukos, priklausančių tai pačiai juostai ir pagaminančių rezultatą. Tokia grupė pavadinama žingsniu ir yra laikoma atitinkančia vartojimo atvejį.  Tuomet lieka surasti kaip dar galima būtų panaudoti informaciją, patikslinti ir suprastinti gautoms diagramoms.
+
+Vėliau pristatomas algoritmas. Jis Pirmiausia sudėlioja užduotis į proceso žingsnius. Vėliau juostos tampa aktoriais, o žingsniai jose – vartojimo atvejais. Galiausiai pasikartojančios užduotis išimamos iš žingsnių ir prijungiamos bendravimo kanalu įtraukia arba išplečia pagal situaciją.
