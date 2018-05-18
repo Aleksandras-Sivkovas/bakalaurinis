@@ -1,11 +1,11 @@
-\section{\textbf{BPMN} diagrama}
-Norint standartizuoti verslo modelių atvaizdavimą 2004 metais organizacija BPMI išleido BPMN 1.0 specifikaciją. Ji leido tiek vaizduoti esamus, tiek apsikeisti kuriamų procesų reikalavimais. BPMN greitai išpopuliarėjo tarp vadybininkų, verslo analitikų ir programuotojų, nes pasiūlė pažįstamą verslo procesų atvaizdavimą ir turėjo matematinį pagrindą. Vėliau BPMI susijungė su \textbf{OMG} ir 2013 metais buvo išleista BPMN 2.0 versija, kurioje BPMN įgavo geresnį skaitomumą, lankstumą ir išplečiamumą.
+\section{BPMN diagrama} \label{section:bpmn}
+Norint standartizuoti verslo modelių atvaizdavimą 2004 metais organizacija BPMI išleido \BPMN 1.0 specifikaciją. Ji leido tiek vaizduoti esamus, tiek apsikeisti kuriamų procesų reikalavimais. \BPMN greitai išpopuliarėjo tarp vadybininkų, verslo analitikų ir programuotojų, nes pasiūlė pažįstamą verslo procesų atvaizdavimą ir turėjo matematinį pagrindą. Vėliau BPMI susijungė su \OMG ir 2013 metais buvo išleista \BPMN 2.0 versija, kurioje \BPMN įgavo geresnį skaitomumą, lankstumą ir išplečiamumą.
 
-\subsection{\textbf{BPMN} apimtis}
-BPMN specifikacija standartizuoja verslo procesų modelį,jų atvaizdavimo būdą ir duomenų apsikeitimo formatą perduoti tiek modelį, tiek jo atvaizdavimą. Sutelkti dėmesiui į skirtingas proceso dalis pateikiami procesų ir choreografijos submodeliai. Bendradarbiavimo submodelis, į save įtraukiantis kitus, gali būti naudojamas pateikti iš karto viskam. Specifikacijos apimtis yra verslo procesai taigi dalykai kaip strategija, duomenų struktūros, resursai, taisyklės ir įstatymai neįeina į ją. 
+\subsection{BPMN apimtis}
+\BPMN specifikacija standartizuoja verslo procesų modelį, jų atvaizdavimo būdą ir duomenų apsikeitimo formatą perduoti tiek modelį, tiek jo atvaizdavimą. Sutelkti dėmesiui į skirtingas proceso dalis pateikiami procesų ir choreografijos submodeliai. Bendradarbiavimo submodelis, į save įtraukiantis kitus, gali būti naudojamas pateikti iš karto viskam. Specifikacijos apimtis yra verslo procesai taigi dalykai kaip strategija, duomenų struktūros, resursai, taisyklės ir įstatymai neįeina į ją. 
  
-\subsection{\textbf{BPMN} komponentai} \label{section:bpmn_components}
-\textbf{BPMN} specifikacija leidžia atvaizduoti gana nemažai verslo proceso atributų \cite{bpmnFormal}. Specifikacijoje jie yra suskirstyti į pagrindinius ir išvestinius. Toliau pateikiami pagrindiniai \textbf{BPMN} komponentai.
+\subsection{BPMN komponentai} \label{section:bpmn_components}
+\BPMN specifikacija leidžia atvaizduoti gana nemažai verslo proceso atributų \cite{bpmnFormal}. Specifikacijoje jie yra suskirstyti į pagrindinius ir išvestinius. Toliau pateikiami pagrindiniai \BPMN komponentai.
 
 \begin{figure}[H]
 	\centering
@@ -106,18 +106,18 @@ Komentaras (text annotation) yra mechanizmas skirtas pateikti papildomai informa
 
 Asociacija (association) skirta komentarams susieti su modelio komponentais. Ji nurodo kuri diagramos dalis yra komentuojama. Asociacija vaizduojama punktyrine linija (\ref{img:bpm_components_text_association} pav.).
 
-\subsection{\textbf{BPMN} komponentų tarpusavio ryšiai}
+\subsection{BPMN komponentų tarpusavio ryšiai}
 Norint modeliuoti verslo procesus vien komponentų nepakanka, taip pat reikia žinoti ir kaip jie sąveikauja tarpusavyje. Tarpusavio ryšius gana neblogai apibūdina metamodelis. Šiame darbe jis bus dažnai naudojamas tam tikslui. Skyriuje \ref{section:bpmn_components} aprašytų komponentų sąveiką galima pavaizduoti (\ref{img:bpmn_metamodel} pav.) metamodeliu.
 
 Šiame metamodelyje tipas BPMNModelis yra šakninis komponentas. Jis savyje laiko sekos viršūnes, sekos srautus, juostas, grupes, duomenų komponentus, duomenų srautus, komentarus ir asociacijas.
-Komponentus metamodelyje galima suskirstyti į tris grupes: sekos komponentus, duomenų komponentus ir komentavimo komponentus. Sekos komponentams priklauso SekosElemento tipų hierarchija, duomenų komponentams priklauso DuomenųKomponento hierarchija ir DuomenųSrautas, komentavimui priklauso Komentaras ir Asociacija. Taigi galima iš eilės apibūdinti šias grupes iš kurių susideda \textbf{BPMN} modelis.
+Komponentus metamodelyje galima suskirstyti į tris grupes: sekos komponentus, duomenų komponentus ir komentavimo komponentus. Sekos komponentams priklauso SekosElemento tipų hierarchija, duomenų komponentams priklauso DuomenųKomponento hierarchija ir DuomenųSrautas, komentavimui priklauso Komentaras ir Asociacija. Taigi galima iš eilės apibūdinti šias grupes iš kurių susideda \BPMN modelis.
 
 SekosViršūnė yra abstraktus tipas nurodantis, kad tai yra komponentai jungiami sekos srautais, tokie kaip Veikla, Sprendimas ir Įvykio subtipai. Jis išplėstas abstrakčiais tipais: SekosSrautoŠaltinis ir SekosSrautoTikslas, nes kai kurios sekos viršūnės negali turėti ir įeinančius ir išeinančius sekos srautus. Pavyzdžiui komponentas PradžiosĮvykis gali turėti tik išeinančius, PabaigosĮvykis gali turėti tik įeinančius. Įvykis yra abstraktus tipas nes modelyje būna kurie nors iš jo subtipų. Sekos srautas turi vieną šaltinį ir vieną tikslą. Grupės ir Juostos nurodo kurios sekos viršunės joms priklauso. Juosta dar gali turėti linijų. Metamodelyje taip pat parodoma, kad Veikla gali būti Subprocesas, tokiu būdu savyje laikydama kitą procesą. DuomenųSrautoElementas yra abstraktus tipas parodantis, kad jo subtipai gali būti jungiami duomenų srautais. Įvestas abstraktus tipas DuomenųKomponentas norint apibendrinti PraneŠimą ir DuomenųObjektą. Komentaras jungiamas Asociacija ir gali komentuoti sekos komponentus.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{img/bpmn_metamodel}
-	\caption{BPMN pagrindinių komponentų metamodelis}
+	\caption{\BPMN pagrindinių komponentų metamodelis}
 	\label{img:bpmn_metamodel}
 \end{figure}
 

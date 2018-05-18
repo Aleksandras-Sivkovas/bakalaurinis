@@ -1,6 +1,6 @@
-\section{\textbf{Užduočių diagrama}}
+\section{Užduočių diagrama}
 
-1992 metais Ivar Jacobson apibrėžė metodologiją specifikuoti vartojimo atvejus \cite{Jacobson1992}. Jis pateikė būdą apibrėžti atvejus tiek tekstu (\ref{tab:text_use_cases_login} lentelė), tiek diagrama (\ref{img:use_cases_login} pav.). Tarp programų sistemų kūrėjų ši metodologija išpopuliarėjo kaip funkcinių reikalavimų apibrėžimo technika. \textbf{OMG} savo specifikacijose UML \cite{omgUmlFormal} ir SysML \cite{OMGSysML} standartizuoja vartojimo atvejų modelį ir priskiria jį prie elgsenos apibūdinimo diagramų. 2011 metais Ivar Jacobson paskelbė užduočių modelio 2.0 versiją \cite{jacobson2011usecase}, kuri pritaikyta prie judrių metodologijų projektų įgyvendinimo.
+1992 metais Ivar Jacobson apibrėžė metodologiją specifikuoti vartojimo atvejus \cite{Jacobson1992}. Jis pateikė būdą apibrėžti atvejus tiek tekstu (\ref{tab:text_use_cases_login} lentelė), tiek diagrama (\ref{img:use_cases_login} pav.). Tarp programų sistemų kūrėjų ši metodologija išpopuliarėjo kaip funkcinių reikalavimų apibrėžimo technika. \OMG savo specifikacijose \UML \cite{omgUmlFormal} ir \SysML \cite{OMGSysML} standartizuoja vartojimo atvejų modelį ir priskiria jį prie elgsenos apibūdinimo diagramų. 2011 metais Ivar Jacobson paskelbė užduočių modelio 2.0 versiją \cite{jacobson2011usecase}, kuri pritaikyta prie judrių metodologijų projektų įgyvendinimo.
 
 \begin{center}
     \begin{longtable}{|p{\textwidth}|}
@@ -83,22 +83,22 @@ Lentelėje nr.\ref{tab:text_use_cases_login} pavaizduotas autentifikavimosi sist
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=8cm]{img/use_cases_login}
-	\caption{\textbf{Užduočių diagrama} pagal \ref{tab:text_use_cases_login} lentelę}
+	\caption{Užduočių diagrama pagal \ref{tab:text_use_cases_login} lentelę}
 	\label{img:use_cases_login}
 \end{figure}
 
 Naudojimo atvejus galima atvaizduoti užduočių diagrama. \ref{img:use_cases_login} paveikslas vaizduoja \ref{tab:text_use_cases_login} lentelėje aprašytą naudojimo atvejo užduočių diagramą. Pagrindinė užduočių seka pavaizduota naudojimo atveju „Autentifikavimasis sistemos funkcionalumu”,  alternatyvi – „Autentifikavimasis išorine sistema”, išimtinės sekos nepavaizduotos.
 
 
-\subsection{\textbf{Užduočių diagramos} apimtis}
-\textbf{Užduočių diagrama} skirta apibūdinti kaip naudotojai siekia savo tikslų pasitelkdami sistemą. Ji parodo kokie yra funkciniai reikalavimai, naudotojų taksonomiją, duomenų srautus tarp naudotojų ir sistemos. Taip pat pateikia funkcijų hierarchijos modeliavimą ir leidžia jas suskaidyti (naudojant įtraukimo ryšį). \textbf{Užduočių diagrama} apibūdina funkcinius reikalavimus, ji nepateikia nei funkcijų atlikimo tvarkos, nei duomenų struktūrų naudojamų sistemoje.
+\subsection{Užduočių diagramos apimtis}
+Užduočių diagrama skirta apibūdinti kaip naudotojai siekia savo tikslų pasitelkdami sistemą. Ji parodo kokie yra funkciniai reikalavimai, naudotojų taksonomiją, duomenų srautus tarp naudotojų ir sistemos. Taip pat pateikia funkcijų hierarchijos modeliavimą ir leidžia jas suskaidyti (naudojant įtraukimo ryšį). Užduočių diagrama apibūdina funkcinius reikalavimus, ji nepateikia nei funkcijų atlikimo tvarkos, nei duomenų struktūrų naudojamų sistemoje.
 
-\subsection{\textbf{Užduočių diagramos} komponentai} \label{section:use_cases_components}
-Skirtingi šaltiniai pateikia kiek skirtingus komponentus ir jų apibrėžimus. Šiame darbe daugiausia taikomi \textbf{OMG} standartuose pateikti apibrėžimai. Toliau bus pateikiami UML standarte apibrėžtos \textbf{užduočių diagramos} komponentai.
+\subsection{Užduočių diagramos komponentai} \label{section:use_cases_components}
+Skirtingi šaltiniai pateikia kiek skirtingus komponentus ir jų apibrėžimus. Šiame darbe daugiausia taikomi \OMG standartuose pateikti apibrėžimai. Toliau bus pateikiami \UML standarte apibrėžtos užduočių diagramos komponentai.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=5cm]{img/use_case_components/actor}
+	\includegraphics[height=2cm]{img/use_case_components/actor}
 	\caption{Aktoriaus žymėjimo pavyzdys}
 	\label{img:use_case_components_actor}
 \end{figure}
@@ -107,7 +107,7 @@ Aktorius (actor) žymi naudotojo rolę. Ją gali atlikti tiek žmogus, tiek išo
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=5cm]{img/use_case_components/use_case}
+	\includegraphics[height=2cm]{img/use_case_components/use_case}
 	\caption{Naudojimo atvejo žymėjimo pavyzdys}
 	\label{img:use_case_components_use_case}
 \end{figure}
@@ -126,7 +126,7 @@ Bendravimo kanalas (communication path) žymi sąveika tarp aktoriaus ir sistemo
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=5cm]{img/use_case_components/includes}
+	\includegraphics[height=2cm]{img/use_case_components/includes}
 	\caption{Įtraukimo žymėjimo pavyzdys}
 	\label{img:use_case_components_includes}
 \end{figure}
@@ -135,7 +135,7 @@ Bendravimo kanalas (communication path) žymi sąveika tarp aktoriaus ir sistemo
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=5cm]{img/use_case_components/extend}
+	\includegraphics[height=2cm]{img/use_case_components/extend}
 	\caption{Išplėtimo žymėjimo pavyzdys}
 	\label{img:use_case_components_extends}
 \end{figure}
@@ -144,23 +144,23 @@ Išplėtimas (extends) žymi, kad esant tam tikroms sąlygoms naudojimo atvejis 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=5cm]{img/use_case_components/generalization}
+	\includegraphics[height=2cm]{img/use_case_components/generalization}
 	\caption{Apibendrinimo žymėjimo pavyzdys}
 	\label{img:use_case_components_generalization}
 \end{figure}
 
 Apibendrinimas (generalization) žymi, kad elementas yra bendresnio elemento variantas. Nuo išplėtimo naudojimo atvejo apibendrinimas skiriasi tuo, kad pasakoma jog bent vienas iš apibendrinamų naudojimo atvejų funkcionalumų įtraukiamas į apibendrinančio naudojimo atvejo funkcionalumą. Žymimas solidžia linija su rodykle prie apibendrinamo naudojimo atvejo (\ref{img:use_case_components_generalization} pav.).
 
-\subsection{ \textbf{Užduočių diagramos} komponentų tarpusavio ryšiai}
+\subsection{Užduočių diagramos komponentų tarpusavio ryšiai}
 
-Komponentų aprašytų \ref{section:use_cases_components} skyriuje tarpusavio ryšiai  pavaizduoti metamodeliu (\ref{img:use_cases_metamodel} pav.). Jis sudarytas pagal UML ir SysML standartuose pateiktą informaciją. 
+Komponentų aprašytų \ref{section:use_cases_components} skyriuje tarpusavio ryšiai  pavaizduoti metamodeliu (\ref{img:use_cases_metamodel} pav.). Jis sudarytas pagal \UML ir \SysML standartuose pateiktą informaciją. 
 
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{img/use_cases_metamodel}
-	\caption{\textbf{Užduočių diagramos} metamodelis}
+	\caption{Užduočių diagramos metamodelis}
 	\label{img:use_cases_metamodel}
 \end{figure} 
 
-\textbf{Užduočių diagrama} yra paketas savyje laikantis aktorius, naudojimo atvejus, bendravimo kanalus, įtraukimus, išplėtimus ir apibendrinimus. Bendravimo kanalas jungia vieną aktorių su vienu naudojimo atveju. Įtraukimas yra ryšys tarp įtraukiamo ir įtraukiančio naudojimo atvejo. Išplėtimas jungia išplečiamą naudojimo atvejį su išplečiančiu. UML modelis leidžia abstraktaus tipo klasifikatoriaus apibendrinimą. Aktorius ir naudojimo atvejis yra klasifikatoriaus subtipai, todėl gali būti apibendrinti.
+Užduočių diagrama yra paketas savyje laikantis aktorius, naudojimo atvejus, bendravimo kanalus, įtraukimus, išplėtimus ir apibendrinimus. Bendravimo kanalas jungia vieną aktorių su vienu naudojimo atveju. Įtraukimas yra ryšys tarp įtraukiamo ir įtraukiančio naudojimo atvejo. Išplėtimas jungia išplečiamą naudojimo atvejį su išplečiančiu. \UML modelis leidžia abstraktaus tipo klasifikatoriaus apibendrinimą. Aktorius ir naudojimo atvejis yra klasifikatoriaus subtipai, todėl gali būti apibendrinti.
 

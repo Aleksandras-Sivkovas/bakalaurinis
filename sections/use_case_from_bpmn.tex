@@ -1,14 +1,14 @@
-\section{\textbf{Užduočių diagramos} išvedimas iš \textbf{BPMN} modelio}
+\section{Užduočių diagramos išvedimas iš BPMN modelio}
 
-Šio darbo tikslas, algoritmas galintis gauti \textbf{užduočių diagramas} iš \textbf{BPMN} modelio, bus kuriamas pagal \ref{section:use_cases_from_bpmn} aprašytą algoritmo sukūrimo pavyzdį. Pirmiausia bus rasti ryšiai tarp diagramų, vėliau sukurtas būdas juos panaudoti, galiausiai panaudota likusi modelio informacija patikslinti ir suprastinti diagramoms.
+Šio darbo tikslas, algoritmas galintis gauti užduočių diagramas iš \BPMN modelio, bus kuriamas pagal \ref{section:use_cases_from_bpmn} aprašytą algoritmo sukūrimo pavyzdį. Pirmiausia bus rasti ryšiai tarp diagramų, vėliau sukurtas būdas juos panaudoti, galiausiai panaudota likusi modelio informacija patikslinti ir suprastinti diagramoms.
 
-\subsection{Ryšiai tarp \textbf{BPMN} ir \textbf{užduočių diagramų}} \label{section:relations_sd_bpmn}
+\subsection{Ryšiai tarp BPMN ir užduočių diagramų} \label{section:relations_sd_bpmn}
 
 Norint duomenis iš vieno modelio perkelti į kitą galima pasinaudoti ryšiais esančiais tarp jų.
 
 \begin{center}
     \begin{longtable}{ | c | c |  c | c | c | c |}
-    \caption{Ryšiai tarp \textbf{BPMN} ir \textbf{užduočių diagramų}}
+    \caption{Ryšiai tarp \BPMN ir užduočių diagramų}
 	\label{tab:relations_sd_bpmn}
     \\ \hline 
      & 
@@ -68,7 +68,7 @@ Rasti ryšiai taip pat parodo kurie komponentai bus imami ir kurie gaunami. Taig
 
 \subsection{Ryšių tarp diagramų panaudojimas transformacijai}
 
-Rasti ryšiai parodo į kokius \textbf{BPMN} komponentus reikia žiūrėti išvedant \textbf{užduočių diagramos} dalis. Toliau peržiūrimi diagramos variantai ir sudėliojami konkretūs žingsniai kuriuos reikia atlikti. Galiausiai gaunamas pseudokodas (Pseudokodas \ref{lst:bpmn_to_uc_pseudocode}). Jo veikimas pažingsniui aprašomas, taip pat pavaizduotas (pav. \ref{img:algorythm_activity_diagram}).
+Rasti ryšiai parodo į kokius \BPMN komponentus reikia žiūrėti išvedant užduočių diagramos dalis. Toliau peržiūrimi diagramos variantai ir sudėliojami konkretūs žingsniai kuriuos reikia atlikti. Galiausiai gaunamas pseudokodas (Pseudokodas \ref{lst:bpmn_to_uc_pseudocode}). Jo veikimas pažingsniui aprašomas, taip pat pavaizduotas (pav. \ref{img:algorythm_activity_diagram}).
 
 \begin{figure}[H]
 	\centering
@@ -80,8 +80,8 @@ Rasti ryšiai parodo į kokius \textbf{BPMN} komponentus reikia žiūrėti išve
 \renewcommand{\lstlistingname}{Pseudokodas}% Listing -> Algorithm
 \renewcommand{\lstlistlistingname}{Pseudokodo fragmentai}% List of Listings -> List of Algorithms
 \begin{enumerate}
-	\item Iškviečiama funkcija useCasesFromBPMN (Pseudokodas \ref{lst:bpmn_to_uc_pseudocode}) paduodant jai \textbf{BPMN} modelį.
-	\lstinputlisting[style=pseudocode, caption={\textbf{UML} \textbf{Užduočių diagramos} gavimo iš \textbf{BPMN} modelio algoritmo pseudokodas}, label={lst:bpmn_to_uc_pseudocode}]{algorythm-pseudocode/useCasesFromBPMN}
+	\item Iškviečiama funkcija useCasesFromBPMN (Pseudokodas \ref{lst:bpmn_to_uc_pseudocode}) paduodant jai \BPMN modelį.
+	\lstinputlisting[style=pseudocode, caption={\UML Užduočių diagramos gavimo iš \BPMN modelio algoritmo pseudokodas}, label={lst:bpmn_to_uc_pseudocode}]{algorythm-pseudocode/useCasesFromBPMN}
 	\item Po duomenų inicializavimo pirmiausia imamas transakcijos procesas (eil. \ref{line:bpmn_to_uc_pseudocode_get_process}) ir gaunami sekos srautai jungiantys komponentus transakcijoje (eil. \ref{line:bpmn_to_uc_pseudocode_get_transactionSequenceFlows}). 
 	\item Vėliau sukuriami vartojimo atvejai apibrėžiantys proceso valdymą (eil. \ref{line:bpmn_to_uc_pseudocode_get_processUsecases}) funkcija getUseCasesForProcess (Pseudokodas  \ref{lst:bpmn_to_uc_pseudocode_getUseCasesForProcess}).
 	\lstinputlisting[style=pseudocode, caption={Funkcija getUseCasesForProcess}, label={lst:bpmn_to_uc_pseudocode_getUseCasesForProcess}]{algorythm-pseudocode/getUseCasesForProcess}
@@ -97,4 +97,4 @@ Joje sukuriamas vartojimo atvejis visai transakcijai (eil. \ref{line:bpmn_to_uc_
 	\lstinputlisting[style=pseudocode, caption={Funkcija addUnusedCases}, label={lst:bpmn_to_uc_pseudocode_addUnusedCases}]{algorythm-pseudocode/addUnusedCases}
 \end{enumerate} 
 
-Atlikusi šio algoritmo veiksmus programa iš \ref{appendix:dvcm_window} priede pavaizduoto vertės grandinės modelio gauna \ref{appendix:use_cases_window} priede pavaizduotą \textbf{užduočių diagramą}.
+Atlikusi šio algoritmo veiksmus programa iš \ref{appendix:dvcm_window} priede pavaizduoto vertės grandinės modelio gauna \ref{appendix:use_cases_window} priede pavaizduotą užduočių diagramą.
