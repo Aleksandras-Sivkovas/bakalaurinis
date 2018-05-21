@@ -7,7 +7,7 @@
 Norint duomenis iš vieno modelio perkelti į kitą galima pasinaudoti ryšiais esančiais tarp jų.
 
 \begin{center}
-    \begin{longtable}{ | c | c |  c | c | c | c |}
+    \begin{longtable}{ | l | c |  c | c | c | c |}
     \caption{Ryšiai tarp \BPMN ir užduočių diagramų}
 	\label{tab:relations_sd_bpmn}
     \\ \hline 
@@ -33,42 +33,32 @@ Norint duomenis iš vieno modelio perkelti į kitą galima pasinaudoti ryšiais 
      %\end{turn} 
      \\ 
     \hline 
-    Juosta & + & & + &  &  \\
+    Juosta & + & &  &  &  \\
     \hline
-    Veikla  & & + & + & + & + \\
+    Valdymo funkcija  & & + &  & + & + \\
     \hline
-    Transakcija & & + & & + & + \\
+    Įmonės procesas  & + &  &  &  &  \\
     \hline
-    Sekos srautas  & &  & & & \\
+    Valdymo transakcija & & + & & + & + \\
     \hline
-    Įvykis  & & & & & \\
-    \hline 
-    Duomenų objektas  & & & & & \\
+    Interakcijų sekos srautas  & &  & + & & \\
     \hline
-    Pranešimų srautas  & & & & & \\
-    \hline
-    Sprendimas  & & & & & \\
-    \hline
+    %Įvykis  & & & & & \\
+    %\hline 
+    %Duomenų objektas  & & & & & \\
+    %\hline
+    %Pranešimų srautas  & & & & & \\
+    %\hline
+    %Sprendimas  & & & & & \\
+    %\hline
     \end{longtable}
 \end{center} 
 
-\begin{enumerate}
-	\item Aktorius – galima gauti iš informacijos esančios juostoje. 
-	\item Vartojimo atvejis – gaunamas iš informacijos veiklose arba transakcijose. Vartojimo atvejis paprastai yra transakcijos tipo.
-	\item Bendravimo kanalas – ryšys tarp juostos ir veiklų joje.
-	\item Įtraukia – veiklos kurias apima transakcija.
-	\item Išplečia – ryšys randamas kai veikla pasikartoja skirtingose transakcijose.
-\end{enumerate} 
-
-Rasti ryšiai taip pat parodo kurie komponentai bus imami ir kurie gaunami. Taigi galima apibrėžti algoritmo įvesties ir išvesties duomenis.
-
-%Citavimo pavyzdžiai: cituojamas vienas šaltinis \cite{PvzStraipsnLt}; cituojami
-%keli šaltiniai \cite{PvzStraipsnEn, PvzKonfLt, PvzKonfEn, PvzKnygLt, PvzKnygEn,
-%PvzElPubLt, PvzElPubEn, PvzMagistrLt, PvzPhdEn}.
+Iš juostos galima gauti Aktorius. Valdymo funkcija turi informacijos apie tai kokie vartojimo atvejai yra sistemoje ir kaip jie susiję vienas su kitu. Įmonės procesas taip pat yra aktorius kuris naudoja sistemą. Valdymo transakcija yra vartojimo atvejis. Interakcijų sekos srautas parodo kokie duomenys keliauja bendravimo kanalais. Rasti ryšiai taip pat parodo kurie komponentai bus imami ir kurie gaunami. Taigi galima apibrėžti algoritmo įvesties ir išvesties duomenis.
 
 \subsection{Ryšių tarp diagramų panaudojimas transformacijai}
 
-Rasti ryšiai parodo į kokius \BPMN komponentus reikia žiūrėti išvedant užduočių diagramos dalis. Toliau peržiūrimi diagramos variantai ir sudėliojami konkretūs žingsniai kuriuos reikia atlikti. Galiausiai gaunamas pseudokodas (Pseudokodas \ref{lst:bpmn_to_uc_pseudocode}). Jo veikimas pažingsniui aprašomas, taip pat pavaizduotas (pav. \ref{img:algorythm_activity_diagram}).
+Rasti ryšiai parodo į kokius \DVCM komponentus reikia žiūrėti išvedant užduočių diagramos dalis. Toliau peržiūrimi diagramos variantai ir sudėliojami konkretūs žingsniai kuriuos reikia atlikti. Galiausiai gaunamas pseudokodas (Pseudokodas \ref{lst:bpmn_to_uc_pseudocode}). Jo veikimas pažingsniui aprašomas, taip pat pavaizduotas (pav. \ref{img:algorythm_activity_diagram}).
 
 \begin{figure}[H]
 	\centering
