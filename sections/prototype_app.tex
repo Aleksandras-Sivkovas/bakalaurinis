@@ -1,2 +1,16 @@
 \section{Programa BPMN transformacijai į užduočių diagramą}   
 
+
+Vienas iš šio darbo tikslų yra programa, demonstruojanti algoritmo \BPMN transformacijai į užduočių diagramą, veikimą. Programos įeigai pasirinktas \BPMN išplėtimas \DVCM modelis, išeiga – užduočių diagrama. Algoritmas aprašytas \ref{section:main_use_cases_from_bpmn} skyriuje. Programos kodas yra \href{https://github.com/Aleksandras-Sivkovas/diagrams-editor-app}{https://github.com/Aleksandras-Sivkovas/diagrams-editor-app}.
+
+\subsection{Technologijos pasirinktos programos įgyvendinimui}
+
+Programai įgyvendinti pasirinkta javascript programavimo kalba. Kadangi reikės atvaizduoti diagramas buvo nuspręsta atlikti tai pasinaudojant html. Pasirinkta 6 javascript versija. Ši versija suteikia kalbai objektines savybes ir daug kitų patogumų \cite{EcmaScript}.
+
+Pasirinkta atviro kodo Node.js programavimo aplinka \cite{nodeJs}. Ši aplinka pritaikyta dirbti su javascript projektais. Išoriniams paketams tvarkyti pasirinkta atviro kodo npm paketų tvarkyklė \cite{npmWebsite}. Ši tvarkyklė padeda tvarkyti javascript paketų versijas. Ji buvo pasirinkta nes yra pagrindinė Node.js aplinkos paketų tvarkyklė.
+
+Programos modelių surinkimas ir transpailinimas aprašomas naudojant atviro kodo javascript modulių surinkimo bibliotekos Webpack konfiguraciją \cite{webpack}. Ji leidžia pasirinkti kokie moduliai ir kokiu būdu turi būti surinkti ir transpailinti. Webpack naudojamas surinkti javascript projektą iš daugybės modulių ir transpailinti juos taip kad palaikytų norimą versiją. Šiuo atveju javascript 6 standarto kodas transpailinamas į 5, kad veiktų naršyklėse.
+ 
+Programa modeliuojama naudojant MVC metodologiją. Modeliui ir kontroleriui pasirinkta atviro kodo MobX modeliavimo biblioteka \cite{githubMobX}. Ji leidžia kurti programos duomenų modelius ir kontroliuoja jų būsenos klausymąsi naudodama javascript objekto duomenų priskyrimo ir gavimo metodus.
+
+Programos MVC vaizdavimo dalis kuriama naudojant atviro kodo React biblioteką \cite{reactJs}. Ji pateikia patogų virtualaus dokumento objekto modelio interfeisą kuris pritaikytas veikti vienodai visose naršyklėse ir optimizuoja dokumento objekto modelio atnaujinimus. Taip pat turi patogią sintaksę vaizdo apibrėžimui – JSX. React labai gerai integruojasi su MobX.
