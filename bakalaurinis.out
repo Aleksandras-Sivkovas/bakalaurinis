@@ -1,24 +1,27 @@
-\BOOKMARK [1][-]{section*.2}{Įvadas}{}% 1
-\BOOKMARK [1][-]{section.1}{BPMN\040diagrama}{}% 2
-\BOOKMARK [2][-]{subsection.1.1}{BPMN\040apimtis}{section.1}% 3
-\BOOKMARK [2][-]{subsection.1.2}{BPMN\040komponentai}{section.1}% 4
-\BOOKMARK [2][-]{subsection.1.3}{BPMN komponentų tarpusavio ryšiai}{section.1}% 5
-\BOOKMARK [1][-]{section.2}{Detalizuotas vertės grandinės modelis}{}% 6
-\BOOKMARK [2][-]{subsection.2.1}{Detalizuoto vertės grandinės modelio apimtis}{section.2}% 7
-\BOOKMARK [2][-]{subsection.2.2}{Detalizuoto vertės grandinės modelio komponentai}{section.2}% 8
-\BOOKMARK [2][-]{subsection.2.3}{Detalizuoto vertės grandinės modelio komponentų tarpusavio ryšiai}{section.2}% 9
-\BOOKMARK [1][-]{section.3}{Užduočių diagrama}{}% 10
-\BOOKMARK [2][-]{subsection.3.1}{Užduočių diagramos apimtis}{section.3}% 11
-\BOOKMARK [2][-]{subsection.3.2}{Užduočių diagramos komponentai}{section.3}% 12
-\BOOKMARK [2][-]{subsection.3.3}{Užduočių diagramos komponentų tarpusavio ryšiai}{section.3}% 13
-\BOOKMARK [1][-]{section.4}{UML diagramų transformavimo algoritmai}{}% 14
-\BOOKMARK [2][-]{subsection.4.1}{ Algoritmas BPMN modeliui transformuoti į Užduočių diagramą}{section.4}% 15
-\BOOKMARK [1][-]{section.5}{Užduočių diagramos išvedimas iš BPMN modelio}{}% 16
-\BOOKMARK [2][-]{subsection.5.1}{Ryšiai tarp BPMN ir užduočių diagramų}{section.5}% 17
-\BOOKMARK [2][-]{subsection.5.2}{Ryšių tarp diagramų panaudojimas transformacijai}{section.5}% 18
-\BOOKMARK [1][-]{section.6}{Programa BPMN transformacijai į užduočių diagramą}{}% 19
-\BOOKMARK [2][-]{subsection.6.1}{Technologijos pasirinktos programos įgyvendinimui}{section.6}% 20
-\BOOKMARK [1][-]{section*.36}{Išvados}{}% 21
-\BOOKMARK [1][-]{section*.37}{Conclusions}{}% 22
-\BOOKMARK [1][-]{section*.38}{Literatūra}{}% 23
-\BOOKMARK [1][-]{section*.39}{Santrumpos}{}% 24
+\BOOKMARK [1][-]{section*.4}{Įvadas}{}% 1
+\BOOKMARK [1][-]{section.1}{Veiklos\040srities\040modeliavimo\040metodai\040ir\040kalbos}{}% 2
+\BOOKMARK [2][-]{subsection.1.1}{BPMN\040diagrama}{section.1}% 3
+\BOOKMARK [3][-]{subsubsection.1.1.1}{BPMN\040apimtis}{subsection.1.1}% 4
+\BOOKMARK [3][-]{subsubsection.1.1.2}{BPMN\040komponentai}{subsection.1.1}% 5
+\BOOKMARK [3][-]{subsubsection.1.1.3}{BPMN komponentų tarpusavio ryšiai}{subsection.1.1}% 6
+\BOOKMARK [2][-]{subsection.1.2}{Veiklos\040modeliavimas}{section.1}% 7
+\BOOKMARK [2][-]{subsection.1.3}{Detalizuotas vertės grandinės modelis – DVGM}{section.1}% 8
+\BOOKMARK [3][-]{subsubsection.1.3.1}{DVGM\040apimtis}{subsection.1.3}% 9
+\BOOKMARK [3][-]{subsubsection.1.3.2}{DVGM\040komponentai}{subsection.1.3}% 10
+\BOOKMARK [3][-]{subsubsection.1.3.3}{DVGM komponentų tarpusavio ryšiai}{subsection.1.3}% 11
+\BOOKMARK [3][-]{subsubsection.1.3.4}{DVGM kaip BPMN praplėtimas}{subsection.1.3}% 12
+\BOOKMARK [2][-]{subsection.1.4}{Užduočių diagrama}{section.1}% 13
+\BOOKMARK [3][-]{subsubsection.1.4.1}{Užduočių diagramos apimtis}{subsection.1.4}% 14
+\BOOKMARK [3][-]{subsubsection.1.4.2}{Užduočių diagramos komponentai}{subsection.1.4}% 15
+\BOOKMARK [3][-]{subsubsection.1.4.3}{Užduočių diagramos komponentų tarpusavio ryšiai}{subsection.1.4}% 16
+\BOOKMARK [1][-]{section.2}{Veiklos modelių konvertavimas}{}% 17
+\BOOKMARK [2][-]{subsection.2.1}{UML diagramų transformavimo algoritmai}{section.2}% 18
+\BOOKMARK [2][-]{subsection.2.2}{ Algoritmas BPMN modeliui transformuoti į Užduočių diagramą}{section.2}% 19
+\BOOKMARK [2][-]{subsection.2.3}{Užduočių diagramos išvedimas iš BPMN modelio}{section.2}% 20
+\BOOKMARK [3][-]{subsubsection.2.3.1}{Ryšiai tarp BPMN ir užduočių diagramų}{subsection.2.3}% 21
+\BOOKMARK [3][-]{subsubsection.2.3.2}{Ryšių tarp diagramų panaudojimas transformacijai}{subsection.2.3}% 22
+\BOOKMARK [1][-]{section.3}{Programa BPMN transformacijai į užduočių diagramą}{}% 23
+\BOOKMARK [2][-]{subsection.3.1}{Technologijos pasirinktos programos įgyvendinimui}{section.3}% 24
+\BOOKMARK [1][-]{section*.40}{Rezultatai ir išvados}{}% 25
+\BOOKMARK [1][-]{section*.41}{Literatūra}{}% 26
+\BOOKMARK [1][-]{section*.42}{Santrumpos}{}% 27

@@ -1,14 +1,14 @@
-\section{Užduočių diagramos išvedimas iš BPMN modelio}
+\subsection{Užduočių diagramos išvedimas iš BPMN modelio}
 
-Šio darbo tikslas, algoritmas galintis gauti užduočių diagramas iš \BPMN modelio, bus kuriamas pagal \ref{section:use_cases_from_bpmn} aprašytą algoritmo sukūrimo pavyzdį. Pirmiausia bus rasti ryšiai tarp diagramų, vėliau sukurtas būdas juos panaudoti, galiausiai panaudota likusi modelio informacija patikslinti ir suprastinti diagramoms.
+Šio darbo tikslas, algoritmas galintis gauti užduočių diagramas iš \BPMN{} modelio, bus kuriamas pagal \ref{section:use_cases_from_bpmn} aprašytą algoritmo sukūrimo pavyzdį. Pirmiausia bus rasti ryšiai tarp diagramų, vėliau sukurtas būdas juos panaudoti, galiausiai panaudota likusi modelio informacija patikslinti ir suprastinti diagramoms.
 
-\subsection{Ryšiai tarp BPMN ir užduočių diagramų} \label{section:relations_sd_bpmn}
+\subsubsection{Ryšiai tarp BPMN ir užduočių diagramų} \label{section:relations_sd_bpmn}
 
 Norint duomenis iš vieno modelio perkelti į kitą galima pasinaudoti ryšiais esančiais tarp jų.
 
 \begin{center}
     \begin{longtable}{ | l | c |  c | c | c | c |}
-    \caption{Ryšiai tarp \BPMN ir užduočių diagramų}
+    \caption{Ryšiai tarp \BPMN{} ir užduočių diagramų}
 	\label{tab:relations_sd_bpmn}
     \\ \hline 
      & 
@@ -56,9 +56,9 @@ Norint duomenis iš vieno modelio perkelti į kitą galima pasinaudoti ryšiais 
 
 Iš juostos galima gauti Aktorius. Valdymo funkcija turi informacijos apie tai kokie vartojimo atvejai yra sistemoje ir kaip jie susiję vienas su kitu. Įmonės procesas taip pat yra aktorius kuris naudoja sistemą. Valdymo transakcija yra vartojimo atvejis. Interakcijų sekos srautas parodo kokie duomenys keliauja bendravimo kanalais. Rasti ryšiai taip pat parodo kurie komponentai bus imami ir kurie gaunami. Taigi galima apibrėžti algoritmo įvesties ir išvesties duomenis.
 
-\subsection{Ryšių tarp diagramų panaudojimas transformacijai}
+\subsubsection{Ryšių tarp diagramų panaudojimas transformacijai}
 
-Rasti ryšiai parodo į kokius \DVCM komponentus reikia žiūrėti išvedant užduočių diagramos dalis. Toliau peržiūrimi diagramos variantai ir sudėliojami konkretūs žingsniai kuriuos reikia atlikti. Galiausiai gaunamas pseudokodas (Pseudokodas \ref{lst:bpmn_to_uc_pseudocode}). Jo veikimas pažingsniui aprašomas, taip pat pavaizduotas (pav. \ref{img:algorythm_activity_diagram}).
+Rasti ryšiai parodo į kokius \DVCM{} komponentus reikia žiūrėti išvedant užduočių diagramos dalis. Toliau peržiūrimi diagramos variantai ir sudėliojami konkretūs žingsniai kuriuos reikia atlikti. Galiausiai gaunamas pseudokodas (Pseudokodas \ref{lst:bpmn_to_uc_pseudocode}). Jo veikimas pažingsniui aprašomas, taip pat pavaizduotas (pav. \ref{img:algorythm_activity_diagram}).
 
 \begin{figure}[H]
 	\centering
@@ -70,9 +70,9 @@ Rasti ryšiai parodo į kokius \DVCM komponentus reikia žiūrėti išvedant už
 \renewcommand{\lstlistingname}{Pseudokodas}% Listing -> Algorithm
 \renewcommand{\lstlistlistingname}{Pseudokodo fragmentai}% List of Listings -> List of Algorithms
 \begin{enumerate}
-	\item Iškviečiama funkcija useCasesFromBPMN (Pseudokodas \ref{lst:bpmn_to_uc_pseudocode}) paduodant jai \BPMN modelį.
+	\item Iškviečiama funkcija useCasesFromBPMN (Pseudokodas \ref{lst:bpmn_to_uc_pseudocode}) paduodant jai \BPMN{} modelį.
 	
-	\lstinputlisting[style=pseudocode, caption={\UML Užduočių diagramos gavimo iš \BPMN modelio algoritmo pseudokodas}, label={lst:bpmn_to_uc_pseudocode}]{algorythm-pseudocode/useCasesFromBPMN}
+	\lstinputlisting[style=pseudocode, caption={\UML{} Užduočių diagramos gavimo iš \BPMN{} modelio algoritmo pseudokodas}, label={lst:bpmn_to_uc_pseudocode}]{algorythm-pseudocode/useCasesFromBPMN}
 	
 	\item Po duomenų inicializavimo pirmiausia imamas transakcijos procesas (eil. \ref{line:bpmn_to_uc_pseudocode_get_process}) ir gaunami sekos srautai jungiantys komponentus transakcijoje (eil. \ref{line:bpmn_to_uc_pseudocode_get_transactionSequenceFlows}). 
 	\item Vėliau sukuriami vartojimo atvejai apibrėžiantys proceso valdymą (eil. \ref{line:bpmn_to_uc_pseudocode_get_processUsecases}) funkcija getUseCasesForProcess (Pseudokodas  \ref{lst:bpmn_to_uc_pseudocode_getUseCasesForProcess}).

@@ -50,11 +50,11 @@
 
 \newcommand{\bref}[1]{\textbf{\ref{#1}}}
 \newcommand{\bhyperref}[2]{\hyperref[#1]{\textbf{#2}}}
-\newcommand{\DVCM}{\bhyperref{section:dvcm}{DVGM }}
-\newcommand{\BPMN}{\bhyperref{section:bpmn}{BPMN }}
-\newcommand{\OMG}{\bhyperref{def:omg}{OMG }}
-\newcommand{\UML}{\bhyperref{def:uml}{UML }}
-\newcommand{\SysML}{\bhyperref{def:sysml}{SysML }}
+\newcommand{\DVCM}{\bhyperref{section:dvcm}{DVGM}}
+\newcommand{\BPMN}{\bhyperref{section:bpmn}{BPMN}}
+\newcommand{\OMG}{\bhyperref{def:omg}{OMG}}
+\newcommand{\UML}{\bhyperref{def:uml}{UML}}
+\newcommand{\SysML}{\bhyperref{def:sysml}{SysML}}
 
 
 %\definecolor{dkgreen}{rgb}{0,0.6,0}
@@ -117,6 +117,18 @@
 
 \maketitle
 
+\sectionnonumnocontent{Santrauka}
+Glaustai aprašomas darbo turinys: pristatoma nagrinėta problema ir padarytos
+išvados. Santraukos apimtis ne didesnė nei 0,5 puslapio. Santraukų gale
+nurodomi darbo raktiniai žodžiai. 
+% Nurodomi iki 5 svarbiausių temos raktinių žodžių (terminų).
+% Vienas terminas gali susidėti iš kelių žodžių.
+\raktiniaizodziai{raktinis žodis 1, raktinis žodis 2, raktinis žodis 3, raktinis žodis 4, raktinis žodis 5}   
+
+\sectionnonumnocontent{Summary}
+Santrauka anglų kalba. Santraukos apimtis ne didesnė nei 0,5 puslapio.
+\keywords{keyword 1, keyword 2, keyword 3, keyword 4, keyword 5}
+
 \tableofcontents
 
 %xelatex bakalaurinis.tex|biber bakalaurinis|xelatex bakalaurinis.tex|evince %.pdf
@@ -158,39 +170,35 @@ Bet vėliau paaiškėjo, kad norint įgyvendinti veiklą pažmėtą 5 kartais re
 
 Sumažinti klaidų kiekį galima užrašant turimus duomenis ir automatiškai generuojant modelius. Generavimo įrankis galėtų patikrinti ar įvesties duomenys atitinka keliamus reikalavimus. Taip bus parodyti netikslumai ir analitikas galės pakoreguoti modelį.
 
-Šio darbo tikslas – sukurti algoritmą \BPMN modelio transformacijai į užduočių diagramas ir įgyvendinti programos prototipą. Užduočių diagramos yra svarbi reikalavimų inžinerijos dalis, kadangi ji apibrėžia naudotojo reikalavimus. Įmonės dažniausiai žino kaip ir kokias veiklas jos vykdo. Verslo procesą galima apibrėžti \BPMN diagramomis. Bet ne viską, kas yra \BPMN modelyje, galima perkelti į užduočių diagramą, todėl darbe bus apibrėžtas modifikuotas \BPMN modelis, kuriame bus vaizduojama tik algoritmui aktuali informacija. Taip pat gali tekti pridėti papildomų atributų, kurie padės pasiekti tikslesnius rezultatus. Čia bus tiriamas \BPMN modelio transformacijos į užduočių diagramas algoritmas.
+Šio darbo tikslas – sukurti algoritmą \BPMN{} modelio transformacijai į užduočių diagramas ir įgyvendinti programos prototipą. Užduočių diagramos yra svarbi reikalavimų inžinerijos dalis, kadangi ji apibrėžia naudotojo reikalavimus. Įmonės dažniausiai žino kaip ir kokias veiklas jos vykdo. Verslo procesą galima apibrėžti \BPMN{} diagramomis. Bet ne viską, kas yra \BPMN{} modelyje, galima perkelti į užduočių diagramą, todėl darbe bus apibrėžtas modifikuotas \BPMN{} modelis, kuriame bus vaizduojama tik algoritmui aktuali informacija. Taip pat gali tekti pridėti papildomų atributų, kurie padės pasiekti tikslesnius rezultatus. Čia bus tiriamas \BPMN{} modelio transformacijos į užduočių diagramas algoritmas.
 
 Siekiami rezultatai yra:
 \begin{enumerate}
-	\item Algoritmas galintis transformuoti \BPMN modelį į užduočių diagramą(angl. Use case diagram).
+	\item Algoritmas galintis transformuoti \BPMN{} modelį į užduočių diagramą(angl. Use case diagram).
 	\item Programa demonstruojanti algoritmo veikimą.
 \end{enumerate}
 
-
-\input{./sections/bpmn.tex}
-\input{./sections/dvcm.tex}
-\input{./sections/use_cases.tex}
-\input{./sections/transforming_algorythms.tex}
-\input{./sections/use_case_from_bpmn.tex}
+\input{./sections/modeling_methods_and_languages/index.tex}
+\input{./sections/konverting_models/index.tex}
 \input{./sections/prototype_app.tex}
 
 
-\sectionnonum{Išvados}
+\sectionnonum{Rezultatai ir išvados}
 
 %Šiame skyriuje pateikiamos išvados (reziume) anglų kalba.
-\sectionnonum{Conclusions}
+%\sectionnonum{Conclusions}
 \printbibliography[heading=bibintoc] % Literatūros šaltiniai aprašomi
 
 \sectionnonum{Santrumpos}
 Šiame darbe naudojami žymėjimai:
 \begin{enumerate}
-	%\item \BPMN – modeliavimo kalba, skirta pavaizduoti informaciją plačiai auditorijai. \BPMN buvo sukurta ir dažniausia naudojama pavaizduoti verslo procesams \cite{bpmnFormal}.
+	%\item \BPMN{} – modeliavimo kalba, skirta pavaizduoti informaciją plačiai auditorijai. \BPMN{} buvo sukurta ir dažniausia naudojama pavaizduoti verslo procesams \cite{bpmnFormal}.
 	\item \textbf{UML} – modeliavimo kalba, skirta suteikti standartinį sistemos analizės, architektūros, veikimo ir kūrimo pavaizdavimą \cite{omgUmlFormal}. \label{def:uml}
-	\item \textbf{SysML} – \UML išplėtimas skirtas modeliuoti programų sistemas. \cite{OMGSysML} \label{def:sysml}
-	%\item \textbf{Sekų diagrama} (angl. sequence diagram) – \UML diagrama, skirta pavaizduoti žinučių tarp apibrėžtų objektų sekai tų objektų gyvavimo metu \cite{omgUmlFormal}.
-	%\item Užduočių diagrama (angl. use case diagram) – \UML diagrama, skirta pavaizduoti pavaizduoti kaip gali būti naudojama programų sistema \cite{algUseCasesFromBpmn}.
+	\item \textbf{SysML} – \UML{} išplėtimas skirtas modeliuoti programų sistemas. \cite{OMGSysML} \label{def:sysml}
+	%\item \textbf{Sekų diagrama} (angl. sequence diagram) – \UML{} diagrama, skirta pavaizduoti žinučių tarp apibrėžtų objektų sekai tų objektų gyvavimo metu \cite{omgUmlFormal}.
+	%\item Užduočių diagrama (angl. use case diagram) – \UML{} diagrama, skirta pavaizduoti pavaizduoti kaip gali būti naudojama programų sistema \cite{algUseCasesFromBpmn}.
 	\item \textbf{OMG} (angl. Object Management Group) – atviras, tarptautinis ne pelno siekiantis technologijų standartų konsorciumas (https://www.omg.org/). \label{def:omg}
-	%\item \textbf{DVGM} – Detalizuotas grandinės vertės modelis, transakcinių darbų sekų modelis, \BPMN modelio praplėtimas atskiriantis įmonės procesus ir valdymo funkcijas kaip M. Porterio modelis ir suskirstantis juos į valdymo transakcijas.
+	%\item \textbf{DVGM} – Detalizuotas grandinės vertės modelis, transakcinių darbų sekų modelis, \BPMN{} modelio praplėtimas atskiriantis įmonės procesus ir valdymo funkcijas kaip M. Porterio modelis ir suskirstantis juos į valdymo transakcijas.
 \end{enumerate}
 
 \appendix  % Priedai
