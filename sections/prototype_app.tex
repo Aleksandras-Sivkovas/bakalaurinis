@@ -1,16 +1,35 @@
-\section{Programa BPMN transformacijai į užduočių diagramą}   
+\section{Programa BPMN transformacijai į užduočių diagramą}
 
 
 Vienas iš šio darbo tikslų yra programa, demonstruojanti algoritmo \BPMN{} transformacijai į užduočių diagramą, veikimą. Programos įeigai pasirinktas \BPMN{} išplėtimas \DVCM{} modelis, išeiga – užduočių diagrama. Algoritmas aprašytas \ref{section:main_use_cases_from_bpmn} skyriuje. Programos kodas yra \href{https://github.com/Aleksandras-Sivkovas/diagrams-editor-app}{https://github.com/Aleksandras-Sivkovas/diagrams-editor-app}.
 
 \subsection{Technologijos pasirinktos programos įgyvendinimui}
 
-Programai įgyvendinti pasirinkta javascript programavimo kalba. Kadangi reikės atvaizduoti diagramas buvo nuspręsta atlikti tai pasinaudojant html. Pasirinkta 6 javascript versija. Ši versija suteikia kalbai objektines savybes ir daug kitų patogumų \cite{EcmaScript}.
+\subsubsection{Javascript}
 
-Pasirinkta atviro kodo Node.js programavimo aplinka \cite{nodeJs}. Ši aplinka pritaikyta dirbti su javascript projektais. Išoriniams paketams tvarkyti pasirinkta atviro kodo npm paketų tvarkyklė \cite{npmWebsite}. Ši tvarkyklė padeda tvarkyti javascript paketų versijas. Ji buvo pasirinkta nes yra pagrindinė Node.js aplinkos paketų tvarkyklė.
+Programai įgyvendinti pasirinkta „Javascript“ programavimo kalba. Kadangi reikės atvaizduoti diagramas buvo nuspręsta atlikti tai panaudojant HTML galimybes.  „Javascript“ yra aukšto lygio programavimo kalba. Naujausios jos versijos yra objektiškai orientuotos ir pateikia nemažai kitų aukšto lygio abstrakcijų. Ši kalba yra silpnai tipizuota, objektų išplėtimams naudoja prototipus. „Javascript“ suteikia naršyklių rodomiems puslapiams dinamiškumą. Ilgą laiką ji buvo naudojama tik tam, bet kalbai išpopuliarėjus, ją imta taikyti ir srityse kaip serverinės ar net darbastalio programos. „Javascript“ naudojama kaip interpretuojama programavimo kalba. Interpretavimo standartas „ECMAScript“ buvo išleistas 1997 metais, nuo to laiko jis smarkiai pasikeitė. 2018 metais labiausiai naršyklių pilnai palaikomas yra 5 standartas, šiame darbe rašomas kodas bus transliuojamas į jį.
+%Programa yra pilnai klientinės puses (client side), ji neturi serverinės dalies (backend), yra galimybė generuoti failus sukurtiems duomenims saugoti. Failai yra JSON arba JPG formato.
 
-Programos modelių surinkimas ir transpailinimas aprašomas naudojant atviro kodo javascript modulių surinkimo bibliotekos Webpack konfiguraciją \cite{webpack}. Ji leidžia pasirinkti kokie moduliai ir kokiu būdu turi būti surinkti ir transpailinti. Webpack naudojamas surinkti javascript projektą iš daugybės modulių ir transpailinti juos taip kad palaikytų norimą versiją. Šiuo atveju javascript 6 standarto kodas transpailinamas į 5, kad veiktų naršyklėse.
- 
-Programa modeliuojama naudojant MVC metodologiją. Modeliui ir kontroleriui pasirinkta atviro kodo MobX modeliavimo biblioteka \cite{githubMobX}. Ji leidžia kurti programos duomenų modelius ir kontroliuoja jų būsenos klausymąsi naudodama javascript objekto duomenų priskyrimo ir gavimo metodus.
+Programos „Javascript“ kodui rašyti pasirinkta 6 „ECMAScript“ versija \cite{EcmaScript}.
 
-Programos MVC vaizdavimo dalis kuriama naudojant atviro kodo React biblioteką \cite{reactJs}. Ji pateikia patogų virtualaus dokumento objekto modelio interfeisą kuris pritaikytas veikti vienodai visose naršyklėse ir optimizuoja dokumento objekto modelio atnaujinimus. Taip pat turi patogią sintaksę vaizdo apibrėžimui – JSX. React labai gerai integruojasi su MobX.
+\subsubsection{Node.js}
+
+Pasirinkta atviro kodo „Node.js“ programavimo aplinka \cite{nodeJs}. Ši aplinka pritaikyta dirbti su „Javascript“ projektais. Išoriniams paketams tvarkyti pasirinkta atviro kodo „NPM“ paketų tvarkyklė \cite{npmWebsite}. Ši tvarkyklė padeda tvarkyti „Javascript“ paketų versijas. Ji buvo pasirinkta nes yra pagrindinė „Node.js“ aplinkos paketų tvarkyklė.
+
+
+\subsubsection{Webpack}
+
+Programos modelių surinkimas ir transliavimas aprašomas naudojant atviro kodo „Javascript“ modulių surinkimo bibliotekos „Webpack“ konfiguraciją \cite{webpack}. Ji leidžia pasirinkti kokie moduliai ir kokiu būdu turi būti surinkti ir transliuoti. „Webpack“ naudojamas surinkti „Javascript“ projektą iš daugybės modulių ir transliuoti juos taip, kad palaikytų norimą versiją. Šiuo atveju „Javascript“ 6 standarto kodas transliavimas į 5, kad veiktų naršyklėse.
+
+\subsubsection{Babel}
+
+Programos kodas transliuojamas atviro kodo transliatoriumi „Babel“, kuris naudojamas kaip „Webpack“ prijungimas (plugin).
+
+
+\subsubsection{MobX}
+
+Programa modeliuojama naudojant MVC metodologiją. Modeliui ir kontroleriui pasirinkta atviro kodo „MobX“ modeliavimo biblioteka \cite{githubMobX}. Ji leidžia kurti programos duomenų modelius ir kontroliuoja jų būsenos klausymąsi naudodama „Javascript“ objekto duomenų priskyrimo ir gavimo metodus.
+
+\subsubsection{React}
+
+Programos „MVC“ vaizdavimo dalis kuriama naudojant atviro kodo „React“ biblioteką \cite{reactJs}. Ji pateikia patogų virtualaus dokumento objekto modelio interfeisą kuris pritaikytas veikti vienodai visose naršyklėse ir optimizuoja dokumento objekto modelio atnaujinimus. Taip pat turi patogią sintaksę vaizdo apibrėžimui – „JSX“. „React“ labai gerai integruojasi su „MobX“.

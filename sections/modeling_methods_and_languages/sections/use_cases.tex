@@ -6,88 +6,88 @@
     \begin{longtable}{|p{\textwidth}|}
     \caption{Tekstinio naudojimo atvejo pavyzdys}
 	\label{tab:text_use_cases_login}
-	\\ \hline 
+	\\ \hline
     \begin{tabular}{@{}p{3.5cm}p{12cm}}
-    	\\ 
+    	\\
     	\textbf{ID} & NA1
-    	\\ 
-    	\textbf{Pavadinimas} & Registruoto naudotojo autentifikacija
-    	\\ 
+    	\\
+    	\textbf{Pavadinimas} & Registruoto naudotojo autentifikavimas
+    	\\
     \end{tabular}
     \\
     \textbf{Aktoriai}
     \begin{enumerate}
     	\item Registruotas naudotojas.
-    	\item Išorinė autentifikavimosi sistema.
-	\end{enumerate} 
+    	\item Išorinė autentifikavimo sistema.
+	\end{enumerate}
     \\
     \textbf{Aprašas}
-    
-    Registruotas naudotojas autentifikuojasi sistemoje. 
-    
+
+    Registruotas naudotojas autentifikuojamas sistemoje.
+
     \\
     \textbf{Prieš sąlygos}
     \begin{enumerate}
     	\item Naudotojas nėra autentifikuotas sistemoje.
-	\end{enumerate} 
+	\end{enumerate}
     \\
     \textbf{Priežastys}
     \begin{enumerate}
     	\item Naudotojas pareikalavo būti autentifikuotas.
-	\end{enumerate} 
+	\end{enumerate}
     \\
     \textbf{Po sąlygos}
     \begin{enumerate}
     	\item Naudotojas yra autentifikuotas sistemoje.
-	\end{enumerate} 
+	\end{enumerate}
     \\
     \textbf{Pagrindinė užduočių seka}
     \begin{enumerate}
-    	\item Sistema pateikia autentifikacijos variantus.
-    	\item Naudotojas autentifikuojasi sistemos turimu autentifikacijos būdu.\label{seka:1_main_choose_autentification} 
-		\item Sistema pateikia patvirtinimą, kad naudotojas autentifikavosi. \label{seka:1_main_success} 
+    	\item Sistema pateikia autentifikavimo variantus.
+    	\item Naudotojas autentifikuojamas sistemos turimu autentifikavimo būdu.\label{seka:1_main_choose_autentification}
+		  \item Sistema pateikia patvirtinimą, kad naudotojas autentifikuotas. \label{seka:1_main_success}
 	\end{enumerate}
     \\
     \textbf{Alternatyvios užduočių sekos}
     \newlist{seka}{enumerate}{5}
 	\setlist[seka]{label*=\arabic*.,leftmargin=2em}
 	\setlist[seka,1]{label=\ref{seka:1_main_choose_autentification}.\arabic*.,leftmargin=2em}
-	\begin{seka} 
-  		\item Naudotojas autentifikuojasi išorine autentifikavimosi sistema.
-	\end{seka}   
-    \\ 
+	\begin{seka}
+  		\item Naudotojas autentifikuojamas išorine autentifikavimo sistema.
+	\end{seka}
+    \\
     \textbf{Išimtinės užduočių sekos}
 	\newlist{seka}{enumerate}{5}
 	\setlist[seka]{label*=\arabic*.,leftmargin=2em}
 	\setlist[seka,1]{label=*.\arabic*.,leftmargin=2em}
-	\begin{seka} 
-  		\item Naudotojas atsisako autentifikuotis.
+	\begin{seka}
+  		\item Naudotojas atsisako autentifikavimo.
   		\begin{seka}
-  			\item Naudotojas pateikia atsisakymą autentifikuotis.
-  			\item Sistema nebereikalauja autentifikacijos duomenų.
-  		\end{seka}
-	\end{seka}    
-	\setlist[seka,1]{label=\ref{seka:1_main_success}.\arabic*.,leftmargin=2em}
-	\begin{seka} 
-  		\item Naudotojo pateikti duomenys neautentifikuoja jo.
-  		\begin{seka}
-  			\item Sistema naudotojui pateikia pranešimą apie tai, kad jo pateikti duomenys neautentifikuoja registruoto sistemos naudotojo.
+  			\item Naudotojas pateikia autentifikavimo atsisakymą.
+  			\item Sistema nebereikalauja autentifikavimo duomenų.
   		\end{seka}
 	\end{seka}
-    \\ 
-    \\ \hline 
+	\setlist[seka,1]{label=\ref{seka:1_main_success}.\arabic*.,leftmargin=2em}
+	\begin{seka}
+  		\item Nepavyksta autentifikuoti naudotojo pateiktais duomenimis.
+  		\begin{seka}
+  			\item Sistema naudotojui pateikia pranešimą apie tai, kad jis negali būti autentifikuotas pateiktais duomenimis.
+  		\end{seka}
+	\end{seka}
+    \\
+    \\ \hline
     \end{longtable}
-\end{center} 
-Lentelėje nr.\ref{tab:text_use_cases_login} pavaizduotas autentifikavimosi sistemoje  tekstinio naudojimo atvejo pavyzdys. Naudojimo atvejai paprastai turi identifikacijos numerį pagal kurį nurodomi reikalavimų specifikacijoje. Taip pat pavadinimą, kad būtų patogiau apie jį kalbėti. Išvardinami aktoriai dalyvaujantys vykdyme. Naudojimo atvejis trumpai ir aiškiai aprašomas. Nurodomos kokios aktualios sąlygos būna prieš vykdant, kas įtakojo vykdymą ir rezultatai. Tuomet išvardinamos užduotys reikalingos pasiekti rezultatui. Jeigu naudojimo atvejis gali būti įvykdytas keliais būdais, jie nurodomi alternatyviose užduočių sekose. Jeigu vykdant užduočių sekas gali atsitikti kažkas, dėl ko nepavyksta pasiekti sėkmingo rezultato sąlygų, tai nurodoma išimtinėse užduočių sekose.
+\end{center}
+Lentelėje nr. \ref{tab:text_use_cases_login} pavaizduotas autentifikavimo sistemoje  tekstinio naudojimo atvejo pavyzdys. Naudojimo atvejai paprastai turi identifikacijos numerį pagal kurį nurodomi reikalavimų specifikacijoje. Taip pat pavadinimą, kad būtų patogiau apie jį kalbėti. Išvardinami aktoriai dalyvaujantys vykdyme. Naudojimo atvejis trumpai ir aiškiai aprašomas. Nurodomos kokios aktualios sąlygos būna prieš vykdant, kas įtakojo vykdymą ir rezultatai. Tuomet išvardinamos užduotys reikalingos pasiekti rezultatui. Jeigu naudojimo atvejis gali būti įvykdytas keliais būdais, jie nurodomi alternatyviose užduočių sekose. Jeigu vykdant užduočių sekas gali atsitikti kažkas, dėl ko nepavyksta pasiekti sėkmingo rezultato sąlygų, tai nurodoma išimtinėse užduočių sekose.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[height=8cm]{img/use_cases_login}
+	\includegraphics[height=8cm]{sections/modeling_methods_and_languages/img/use_cases_login}
 	\caption{Užduočių diagrama pagal \ref{tab:text_use_cases_login} lentelę}
 	\label{img:use_cases_login}
 \end{figure}
 
-Naudojimo atvejus galima atvaizduoti užduočių diagrama. \ref{img:use_cases_login} paveikslas vaizduoja \ref{tab:text_use_cases_login} lentelėje aprašytą naudojimo atvejo užduočių diagramą. Pagrindinė užduočių seka pavaizduota naudojimo atveju „Autentifikavimasis sistemos funkcionalumu”,  alternatyvi – „Autentifikavimasis išorine sistema”, išimtinės sekos nepavaizduotos.
+Naudojimo atvejus galima atvaizduoti užduočių diagrama. \ref{img:use_cases_login} paveikslas vaizduoja \ref{tab:text_use_cases_login} lentelėje aprašytą naudojimo atvejo užduočių diagramą. Pagrindinė užduočių seka pavaizduota naudojimo atveju „Autentifikavimas sistemos funkcionalumu”,  alternatyvi – „Autentifikavimas išorine sistema”, išimtinės sekos nepavaizduotos.
 
 
 \subsubsection{Užduočių diagramos apimtis}
@@ -99,7 +99,7 @@ Skirtingi šaltiniai pateikia kiek skirtingus komponentus ir jų apibrėžimus. 
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=2cm]{img/use_case_components/actor}
-	\caption{Aktoriaus žymėjimo pavyzdys}
+	\caption{Aktoriaus žymuo}
 	\label{img:use_case_components_actor}
 \end{figure}
 
@@ -108,7 +108,7 @@ Aktorius (actor) žymi naudotojo rolę. Ją gali atlikti tiek žmogus, tiek išo
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=2cm]{img/use_case_components/use_case}
-	\caption{Naudojimo atvejo žymėjimo pavyzdys}
+	\caption{Naudojimo atvejo žymuo}
 	\label{img:use_case_components_use_case}
 \end{figure}
 
@@ -118,7 +118,7 @@ naudojimo atvejo pavadinimas gali būti tiek elipsėje, tiek po ja.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=5cm]{img/use_case_components/association}
-	\caption{Bendravimo kanalo žymėjimo pavyzdys}
+	\caption{Bendravimo kanalo žymuo}
 	\label{img:use_case_components_communication_path}
 \end{figure}
 
@@ -127,7 +127,7 @@ Bendravimo kanalas (communication path) žymi sąveika tarp aktoriaus ir sistemo
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=2cm]{img/use_case_components/includes}
-	\caption{Įtraukimo žymėjimo pavyzdys}
+	\caption{Įtraukimo žymuo}
 	\label{img:use_case_components_includes}
 \end{figure}
 
@@ -136,7 +136,7 @@ Bendravimo kanalas (communication path) žymi sąveika tarp aktoriaus ir sistemo
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=2cm]{img/use_case_components/extend}
-	\caption{Išplėtimo žymėjimo pavyzdys}
+	\caption{Išplėtimo žymuo}
 	\label{img:use_case_components_extends}
 \end{figure}
 
@@ -145,7 +145,7 @@ Išplėtimas (extends) žymi, kad esant tam tikroms sąlygoms naudojimo atvejis 
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=2cm]{img/use_case_components/generalization}
-	\caption{Apibendrinimo žymėjimo pavyzdys}
+	\caption{Apibendrinimo žymuo}
 	\label{img:use_case_components_generalization}
 \end{figure}
 
@@ -153,14 +153,13 @@ Apibendrinimas (generalization) žymi, kad elementas yra bendresnio elemento var
 
 \subsubsection{Užduočių diagramos komponentų tarpusavio ryšiai}
 
-Komponentų aprašytų \ref{section:use_cases_components} skyriuje tarpusavio ryšiai  pavaizduoti metamodeliu (\ref{img:use_cases_metamodel} pav.). Jis sudarytas pagal \UML{} ir \SysML{} standartuose pateiktą informaciją. 
+Komponentų aprašytų \ref{section:use_cases_components} skyriuje tarpusavio ryšiai  pavaizduoti metamodeliu (\ref{img:use_cases_metamodel} pav.). Jis sudarytas pagal \UML{} ir \SysML{} standartuose pateiktą informaciją.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{img/use_cases_metamodel}
 	\caption{Užduočių diagramos metamodelis}
 	\label{img:use_cases_metamodel}
-\end{figure} 
+\end{figure}
 
 Užduočių diagrama yra paketas savyje laikantis aktorius, naudojimo atvejus, bendravimo kanalus, įtraukimus, išplėtimus ir apibendrinimus. Bendravimo kanalas jungia vieną aktorių su vienu naudojimo atveju. Įtraukimas yra ryšys tarp įtraukiamo ir įtraukiančio naudojimo atvejo. Išplėtimas jungia išplečiamą naudojimo atvejį su išplečiančiu. \UML{} modelis leidžia abstraktaus tipo klasifikatoriaus apibendrinimą. Aktorius ir naudojimo atvejis yra klasifikatoriaus subtipai, todėl gali būti apibendrinti.
-
