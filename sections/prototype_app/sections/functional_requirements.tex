@@ -1,1 +1,181 @@
 \subsection{Funkciniai reikalavimai programai}
+
+Čia aprašomi demonstracinės programos funkciniai reikalavimai. Jie pateikiami užduočių diagramos pavidalu (\ref{img:program_functional_requirements} pav.) bei aprašomi \ref{tab:program_re_dvcm_creation}, \ref{tab:program_re_dvcm_save} ir \ref{tab:program_re_uc_generation} lentelėse. Šie reikalavimai parodys kokiomis funkcijos galės pasinaudoti naudotojas norėdamas pasižiūrėti algoritmo veikimą.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{sections/prototype_app/img/program_functional_requirements}
+	\caption{Demonstracinės programos funkciniai reikalavimai.}
+	\label{img:program_functional_requirements}
+\end{figure}
+
+\begin{center}
+    \begin{longtable}{|p{\textwidth}|}
+    \caption{\DVCM{} kūrimo naudojimo atvejis}
+	\label{tab:program_re_dvcm_creation}
+	\\ \hline
+    \begin{tabular}{@{}p{3.5cm}p{12cm}}
+    	\\
+    	\textbf{ID} & NA1
+    	\\
+    	\textbf{Pavadinimas} & \DVCM{} sukūrimas
+    	\\
+    \end{tabular}
+    \\
+    \textbf{Aktoriai}
+    \begin{enumerate}
+    	\item Naudotojas.
+	\end{enumerate}
+    \\
+    \textbf{Aprašas}
+
+      Naudotojas pasinaudojęs programa sukuria \DVCM{}.
+
+    \\
+    \textbf{Prieš sąlygos}
+    \begin{enumerate}
+    	\item Naudotojas yra atidaręs programos langą.
+	\end{enumerate}
+    \\
+    \textbf{Priežastys}
+    \begin{enumerate}
+    	\item Naudotojas pareikalavo sukurti \DVCM{}.
+	\end{enumerate}
+    \\
+    \textbf{Po sąlygos}
+    \begin{enumerate}
+    	\item Naudotojas yra sukūręs \DVCM{}.
+      \item Naudotojas mato savo sukurtą \DVCM{} programos lange.
+	\end{enumerate}
+    \\
+    \textbf{Pagrindinė užduočių seka}
+    \begin{enumerate}
+    	\item Sistema pateikia interfeisą \DVCM{} kūrimui.
+    	\item Naudotojas kuria \DVCM{}.
+	\end{enumerate}
+    \\
+    \textbf{Alternatyvios užduočių sekos}
+
+    \\
+    \textbf{Išimtinės užduočių sekos}
+
+    \\
+    \\ \hline
+    \end{longtable}
+\end{center}
+
+\begin{center}
+    \begin{longtable}{|p{\textwidth}|}
+    \caption{\DVCM{} saugojimo naudojimo atvejis}
+	\label{tab:program_re_dvcm_save}
+	\\ \hline
+    \begin{tabular}{@{}p{3.5cm}p{12cm}}
+    	\\
+    	\textbf{ID} & NA2
+    	\\
+    	\textbf{Pavadinimas} & \DVCM{} išsaugojimas
+    	\\
+    \end{tabular}
+    \\
+    \textbf{Aktoriai}
+    \begin{enumerate}
+    	\item Naudotojas.
+	\end{enumerate}
+    \\
+    \textbf{Aprašas}
+
+      Naudotojas išsaugo programna sukurtą \DVCM{}.
+
+    \\
+    \textbf{Prieš sąlygos}
+    \begin{enumerate}
+    	\item Naudotojas yra atidaręs \DVCM{} kūrimo interfeisą.
+	\end{enumerate}
+    \\
+    \textbf{Priežastys}
+    \begin{enumerate}
+    	\item Naudotojas pareikalavo išsaugoti \DVCM{}.
+	\end{enumerate}
+    \\
+    \textbf{Po sąlygos}
+    \begin{enumerate}
+    	\item Naudotojas yra išsaugojęs \DVCM{}.
+      \item Naudotojas žino kad \DVCM{} išsaugotas.
+	\end{enumerate}
+    \\
+    \textbf{Pagrindinė užduočių seka}
+    \begin{enumerate}
+    	\item Demonstracinė programa pateikia išsaugojimo interfeisą.
+    	\item Naudotojas pasirenka kaip saugoti \DVCM{}.
+      \item Demonstracinė programa išsaugo \DVCM{}.
+      \item Demonstracinė programa patvirtina, kad \DVCM{} išsaugotas.
+	\end{enumerate}
+    \\
+    \textbf{Alternatyvios užduočių sekos}
+
+    \\
+    \textbf{Išimtinės užduočių sekos}
+      TODO: cancel
+    \\
+    \\ \hline
+    \end{longtable}
+\end{center}
+
+\begin{center}
+    \begin{longtable}{|p{\textwidth}|}
+    \caption{Užduočių diagramos generavimo pagal pateiktą \DVCM{} modelį naudojimo atvejis}
+	\label{tab:program_re_uc_generation}
+	\\ \hline
+    \begin{tabular}{@{}p{3.5cm}p{12cm}}
+    	\\
+    	\textbf{ID} & NA3
+    	\\
+    	\textbf{Pavadinimas} & Užduočių diagramos generavimas pagal pateiktą \DVCM{}
+    	\\
+    \end{tabular}
+    \\
+    \textbf{Aktoriai}
+    \begin{enumerate}
+    	\item Naudotojas.
+	\end{enumerate}
+    \\
+    \textbf{Aprašas}
+
+      Naudotojas pasinaudojęs programa pateikia \DVCM{} ir programa jam sugeneruoja užduočių diagramą.
+
+    \\
+    \textbf{Prieš sąlygos}
+    \begin{enumerate}
+    	\item Naudotojas yra atidaręs programos langą.
+	\end{enumerate}
+    \\
+    \textbf{Priežastys}
+    \begin{enumerate}
+    	\item Naudotojas pareikalavo sugeneruoti užduočių diagramą iš \DVCM{}.
+	\end{enumerate}
+    \\
+    \textbf{Po sąlygos}
+    \begin{enumerate}
+    	\item Demonstracinėje programoje yra užduočių diagramos duomenys.
+      \item Naudotojas mato sugeneruotą užduočių diagramą Demonstracinės programos lange.
+	\end{enumerate}
+    \\
+    \textbf{Pagrindinė užduočių seka}
+    \begin{enumerate}
+      \item Demonstracinė programa pateikia užduočių diagramos generavimo iš \DVCM{} variantus.
+      \item Naudotojas išsirenka generuoti bendrą diagramą iš \DVCM{}.
+    	\item Demonstracinė programa pateikia interfeisą \DVCM{} įvedimui.
+    	\item Naudotojas įveda \DVCM{}.
+      \item Demonstracinė programa sugeneruoja užduočių diagramos modelį.
+      \item Demonstracinė programa pavaizduoja užduočių diagramą savo lange.
+	\end{enumerate}
+    \\
+    \textbf{Alternatyvios užduočių sekos}
+      TODO: display by transaction
+    \\
+    \textbf{Išimtinės užduočių sekos}
+      TODO: cancel
+    \\
+    \\ \hline
+    \end{longtable}
+\end{center}
