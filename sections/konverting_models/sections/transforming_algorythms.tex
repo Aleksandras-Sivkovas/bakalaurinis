@@ -1,6 +1,7 @@
 \subsection{UML diagramų transformavimo algoritmai} \label{section:main_use_cases_from_bpmn}
 \subsection{ Algoritmas BPMN modeliui transformuoti į Užduočių diagramą} \label{section:use_cases_from_bpmn}
-Literatųroje yra parašyta apie \textbf{vartojimo atvejų diagramos} išvedimą iš \BPMN{} modelio \cite{algUseCasesFromBpmn}. Straipsnyje aprašytas algoritmas atlieka (\ref{eq:use_cases_from_bpmn}) transformaciją. Imamas modifikuotas \BPMN{} modelis (\ref{eq:use_cases_from_bpmn:bpmn_elements}) ir tie \textbf{vartojimo atvejų diagramos} komponentai, kurie gali būti iš jo išvesti (\ref{eq:use_cases_from_bpmn:use_case_elements}). 
+Literatųroje yra parašyta apie \textbf{vartojimo atvejų diagramos} išvedimą iš \BPMN{} modelio \cite{algUseCasesFromBpmn}. Straipsnyje aprašytas algoritmas atlieka (\ref{eq:use_cases_from_bpmn}) transformaciją. Imamas modifikuotas \BPMN{} modelis (\ref{eq:use_cases_from_bpmn:bpmn_elements}) ir tie \textbf{vartojimo atvejų diagramos} komponentai, kurie gali būti iš jo išvesti (\ref{eq:use_cases_from_bpmn:use_case_elements}).
+
 \begin{align}
 &BPMNElements = \left\{Start,End,Role,Branch,Task,Transition\right\}; \label{eq:use_cases_from_bpmn:bpmn_elements} \\
 \begin{split}
@@ -10,6 +11,8 @@ Literatųroje yra parašyta apie \textbf{vartojimo atvejų diagramos} išvedimą
 &BPMN(BPMNModelElements) \Rightarrow UseCases(UseCasesElements); \label{eq:use_cases_from_bpmn}
 \end{align}
 
-Algoritmo autoriai pirmiausia siūlo surasti ryšius tarp modelių. Juostos atitinka aktorius. Užduotys tuo tarpu grupuojamos, kol nepasiekia maksimalaus skaičiaus vykdomų be pertraukos, priklausančių tai pačiai juostai ir pagaminančių rezultatą. Tokia grupė pavadinama žingsniu ir yra laikoma atitinkančia vartojimo atvejį.  Tuomet lieka surasti kaip dar galima būtų panaudoti informaciją, patikslinti ir suprastinti gautoms diagramoms.
+Autoriai pateikia suprastintus jų naudojamų modelių metamodelius (priedai \ref{appendix:lit_alg_metamodels_uc} ir \ref{appendix:lit_alg_metamodels_bpmn}). Kadangi daugybė \BPMN{} komponentų neturi jokios įtakos algoritmo rezultatui jie nėra minimi straipsnyje. Modelis taip pat praplečiamas sekos srautui pridedant laiko trukmę, kuri naudojama empirinėse algoritmo taisyklėse.
+
+Algoritmo autoriai pirmiausia siūlo surasti ryšius tarp modelių. Juostos atitinka aktorius. Užduotys tuo tarpu grupuojamos, kol nepasiekia maksimalaus skaičiaus vykdomų be pertraukos, priklausančių tai pačiai juostai ir pagaminančių rezultatą. Tokia grupė pavadinama žingsniu ir yra laikoma atitinkančia vartojimo atvejį. Tokiu būdu galima gauti integruotą metamodelį apimantį savyje anksčiau minėtus metamodelius. Straipsnyje pateiktas suprastintas jo variantas (priedas  \ref{appendix:lit_alg_metamodels_integrated}) Tuomet lieka surasti kaip dar galima būtų panaudoti informaciją, patikslinti ir suprastinti gautoms diagramoms.
 
 Vėliau pristatomas algoritmas. Jis Pirmiausia sudėlioja užduotis į proceso žingsnius. Vėliau juostos tampa aktoriais, o žingsniai jose – vartojimo atvejais. Galiausiai pasikartojančios užduotis išimamos iš žingsnių ir prijungiamos bendravimo kanalu įtraukia arba išplečia pagal situaciją.

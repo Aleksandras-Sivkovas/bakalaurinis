@@ -27,7 +27,7 @@
 %\lstset{ %
 %  numbers=left,                    	% where to put the line-numbers;
 %  numbersep=5pt,                   	% how far the line-numbers are from the code
-%  numberstyle=\tiny\color{mygray}, 	% the style that is used for the line-numbers 
+%  numberstyle=\tiny\color{mygray}, 	% the style that is used for the line-numbers
 %  breaklines=true,                 	% sets automatic line breaking
 %  frame=single,	                   	% adds a frame around the code
 %  morekeywords={of,in},				% if you want to add more keywords to the set
@@ -87,7 +87,7 @@
 
 %%% Table of contents to list down to subsections and no further
 \setcounter{tocdepth}{4}
- 
+
 %%% Number down to subsubsections only
 \setcounter{secnumdepth}{4}
 
@@ -107,7 +107,7 @@
 
 % Nustatymai
 % \setmainfont{Palemonas}   % Pakeisti teksto šriftą į Palemonas (turi būti įdiegtas sistemoje)
-\bibliography{bibliografija} 
+\bibliography{bibliografija}
 
 \begin{document}
 
@@ -120,10 +120,10 @@
 \sectionnonumnocontent{Santrauka}
 Glaustai aprašomas darbo turinys: pristatoma nagrinėta problema ir padarytos
 išvados. Santraukos apimtis ne didesnė nei 0,5 puslapio. Santraukų gale
-nurodomi darbo raktiniai žodžiai. 
+nurodomi darbo raktiniai žodžiai.
 % Nurodomi iki 5 svarbiausių temos raktinių žodžių (terminų).
 % Vienas terminas gali susidėti iš kelių žodžių.
-\raktiniaizodziai{raktinis žodis 1, raktinis žodis 2, raktinis žodis 3, raktinis žodis 4, raktinis žodis 5}   
+\raktiniaizodziai{raktinis žodis 1, raktinis žodis 2, raktinis žodis 3, raktinis žodis 4, raktinis žodis 5}
 
 \sectionnonumnocontent{Summary}
 Santrauka anglų kalba. Santraukos apimtis ne didesnė nei 0,5 puslapio.
@@ -138,7 +138,7 @@ Santrauka anglų kalba. Santraukos apimtis ne didesnė nei 0,5 puslapio.
 
 Reikalavimų inžinerija yra sudėtinga programų kūrimo dalis. Proceso sudėtingumas dažnai tampa klaidų priežastimi. Čia atsiradusios klaidos sunkiai aptinkamos ir sukelia brangiai kainuojančias pasekmes, nes sekančiuose etapuose bus kuriama neteisingai apibrėžta programa. Norint išvengti klaidų galima kai kurias proceso veiklas automatizuoti. Nors yra daug modeliavimo įrankių, juose trūksta automatinio vieno modelio generavimo iš kito.
 
-Projektuojant sistemą gali atsitikti toks atvejis (\ref{img:bad_model_use_cases} pav.). Čia pavaizduota, kad analitikas aptiko kokias funkcijas reikia įgyvendinti. Analizuodamas \ref{img:bad_model} pav. pavaizduotą veiklą jis aptiko vartojimo atvejus pažymėtus 1, 2, 3, 5. Taigi nuspręsta kurti sistemą pavaizduotą  \ref{img:bad_model_use_cases} pav. 
+Projektuojant sistemą gali atsitikti toks atvejis (\ref{img:bad_model_use_cases} pav.). Čia pavaizduota, kad analitikas aptiko kokias funkcijas reikia įgyvendinti. Analizuodamas \ref{img:bad_model} pav. pavaizduotą veiklą jis aptiko vartojimo atvejus pažymėtus 1, 2, 3, 5. Taigi nuspręsta kurti sistemą pavaizduotą  \ref{img:bad_model_use_cases} pav.
 
 \begin{figure}[H]
 	\centering
@@ -151,7 +151,7 @@ Projektuojant sistemą gali atsitikti toks atvejis (\ref{img:bad_model_use_cases
 	\includegraphics[width=15cm]{img/bad_modeling/bad_model_use_cases}
 	\caption{Vartojimo atvejų diagramos sukurtos pagal \ref{img:bad_model} pav. veiklą pavyzdys}
 	\label{img:bad_model_use_cases}
-\end{figure} 
+\end{figure}
 
 Bet vėliau paaiškėjo, kad norint įgyvendinti veiklą pažmėtą 5 kartais reikia duomenų iš 4 veiklos pažymėtos punktyrine linija (\ref{img:corrected_model} pav.). Taigi vartojimo atvejų diagramoje trūko 4 vartojimo atvejo (\ref{img:corrected_model_use_cases} pav.). Analitikas to nepastebėjo ir įvyko projektavimo klaida apie kurią niekas nesužinojo.
 
@@ -206,12 +206,32 @@ Siekiami rezultatai yra:
 \section{Vertės grandinės modelis programos lange} \label{appendix:dvcm_window}
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.6]{img/dvcm_window}
+    \includegraphics[height=20cm]{img/dvcm_window}
 \end{figure}
 \section{Transformuotas užduočių diagrama programos lange} \label{appendix:use_cases_window}
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.6]{img/use_cases_window}
+    \includegraphics[height=20cm]{img/use_cases_window}
 \end{figure}
+\section{Užduočių diagramos metamodelis} \label{appendix:lit_alg_metamodels_uc}
+Čia pateikiamas literatūroje rasto algoritmo straipsnio \cite{algUseCasesFromBpmn} pateiktas Užduočių diagramos (Use case) metamodelis.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/appendix/literature_algorythm/use_cases_metamodel}
+    \caption{Užduočių diagramos metamodelis}
+\end{figure}
+\section{BPMN metamodelis} \label{appendix:lit_alg_metamodels_bpmn}
+Čia pateikiamas literatūroje rasto algoritmo straipsnio \cite{algUseCasesFromBpmn} pateiktas \BPMN{} metamodelis.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/appendix/literature_algorythm/bpmn_metamodel}
+\end{figure}
+\section{Inttegruotas metamodelis} \label{appendix:lit_alg_metamodels_integrated}
+Čia pateikiamas literatūroje rasto algoritmo straipsnio \cite{algUseCasesFromBpmn} pateiktas integruotas \BPMN{} ir užduočių diagramos (Use case) metamodelis.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/appendix/literature_algorythm/integrated_metamodel}
+\end{figure}
+
 
 \end{document}
