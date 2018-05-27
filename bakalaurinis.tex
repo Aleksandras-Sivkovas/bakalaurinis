@@ -22,6 +22,7 @@
 \usepackage{enumitem}
 
 \usepackage{hyperref} %[pdfpagelabels,bookmarks,hyperindex,hyperfigures]
+\usepackage{xcolor}
 
 %\definecolor{mygray}{rgb}{0.5,0.5,0.5}
 %\lstset{ %
@@ -56,6 +57,8 @@
 \newcommand{\UML}{\bhyperref{def:uml}{UML}}
 \newcommand{\SysML}{\bhyperref{def:sysml}{SysML}}
 \newcommand{\JSON}{\bhyperref{def:json}{JSON}}
+\newcommand{\inCode}[1]{\fcolorbox{black}{white}{\lstinline{#1}}}
+\newcommand{\uiWord}[1]{„#1“}
 
 
 %\definecolor{dkgreen}{rgb}{0,0.6,0}
@@ -188,6 +191,25 @@ Siekiami rezultatai yra:
 
 \sectionnonum{Rezultatai ir išvados}
 
+\begin{enumerate}
+  \item Iš literatūros analizės apie reikalavimų inžineriją nustatytas reikalavimų inžinerijos aktualumas. Taip pat nustatytas įrankių reikalavimų inžinerijai aktualumas. Įrankis leistų:
+  \begin{enumerate}
+    \item Sumažinti žmogiškąjį klaidos faktorių. Automatizavus procesą žmogus gautų teoriškai teisingus reikalavimus.
+    \item Paspartinti reikalavimų inžinerijos procesą.
+    \item Padaryti reikalavimus prieinamus visiem komandos nariam. Visi žinotų koks yra projekto statusas.
+  \end{enumerate}
+  \item Pagal modeliavimo kalbų standartų ir transformavimo algoritmų analizę nustatyta, kad trūksta \BPMN{} transformavimo į užduočių diagramą algoritmo. Rastas algoritmas, kuris atlieka transformaciją remdamasis empirinėmis taisyklėmis.
+  \item Kadangi daugelis \BPMN{} komponentų neturi įtakos užduočių diagramos generavimo rezultatui išanalizavus \BPMN{} standartą sudarytas \BPMN{} pagrindinių komponentų metamodelis. Jis apibūdina algoritmo įvesties duomenis.
+  \item Išanalizavus \UML{} ir \SysML{} standartus sudarytas užduočių diagramos metamodelis. Jis apibūdina algoritmo rezultatą.
+  \item Pasiūlytas \BPMN{} standarto praplėtimas. Parodyta kokios anksčiau aprašyto algoritmo problemos išsisprendžia generuojant užduočių diagramą pagal \BPMN{} sukurtą pagal \DVCM{} teoriją.
+  \item Išanalizavus modeliavimo kalbų standartus ir egzistuojančius algoritmus pasiūlytas \BPMN{} transformavimo į užduočių diagramą algoritmas, kuris sukonstruoja užduočių diagramos modelį. Sukurtas algoritmas galėtų būti pritaikytas reikalavimų inžinerijos įrankyje.
+  \item Sukurta demonstracinė programa leidžianti:
+  \begin{enumerate}
+    \item Kurti \BPMN{} pagal \DVCM{} teoriją.
+    \item Iš sukurto modelio generuoti užduočių diagramą.
+  \end{enumerate}
+\end{enumerate}
+
 %Šiame skyriuje pateikiamos išvados (reziume) anglų kalba.
 %\sectionnonum{Conclusions}
 \printbibliography[heading=bibintoc] % Literatūros šaltiniai aprašomi
@@ -212,34 +234,54 @@ Siekiami rezultatai yra:
     \centering
     \includegraphics[height=20cm]{img/dvcm_window}
 \end{figure}
+
 \section{Transformuotas užduočių diagrama programos lange} \label{appendix:use_cases_window}
 \begin{figure}[H]
     \centering
     \includegraphics[height=20cm]{img/use_cases_window}
 \end{figure}
+
 \section{Užduočių diagramos metamodelis} \label{appendix:lit_alg_metamodels_uc}
+
 Čia pateikiamas literatūroje rasto algoritmo straipsnio \cite{algUseCasesFromBpmn} pateiktas Užduočių diagramos (Use case) metamodelis.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{img/appendix/literature_algorythm/use_cases_metamodel}
     \caption{Užduočių diagramos metamodelis}
 \end{figure}
+
 \section{BPMN metamodelis} \label{appendix:lit_alg_metamodels_bpmn}
+
 Čia pateikiamas literatūroje rasto algoritmo straipsnio \cite{algUseCasesFromBpmn} pateiktas \BPMN{} metamodelis.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{img/appendix/literature_algorythm/bpmn_metamodel}
 \end{figure}
+
 \section{Inttegruotas metamodelis} \label{appendix:lit_alg_metamodels_integrated}
 Čia pateikiamas literatūroje rasto algoritmo straipsnio \cite{algUseCasesFromBpmn} pateiktas integruotas \BPMN{} ir užduočių diagramos (Use case) metamodelis.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{img/appendix/literature_algorythm/integrated_metamodel}
 \end{figure}
+
 \section{Langas matomas atidarius programą} \label{appendix:run_examples_welcome}
 \begin{figure}[H]
     \centering
     \includegraphics[height=20cm]{img/appendix/run_examples/welcome}
 \end{figure}
 
+\section{Sukūrimo sąsaja} \label{appendix:run_examples_new}
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=20cm]{img/appendix/run_examples/new}
+\end{figure}
+
+\section{DVGM Kūrimo sąsaja} \label{appendix:run_examples_new_dvcm}
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=20cm]{img/appendix/run_examples/new_dvcm}
+\end{figure}
 \end{document}
