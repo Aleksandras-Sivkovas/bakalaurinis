@@ -122,16 +122,16 @@
 \maketitle
 
 \sectionnonumnocontent{Santrauka}
-Glaustai aprašomas darbo turinys: pristatoma nagrinėta problema ir padarytos
-išvados. Santraukos apimtis ne didesnė nei 0,5 puslapio. Santraukų gale
-nurodomi darbo raktiniai žodžiai.
+
+Darbe rašoma apie sistemos funkcinių reikalavimų gavimą užduočių diagramos pavidalu iš dalykinės srities modelio. Parodomas reikalavimų inžinerijos bei įrankio šiam procesui atlikti aktualumas. Įrankis padėtų sumažinti klaidų kiekį, paspartintų procesą, jis leistų dalintis reikalavimais ir sekti jų pasikeitimus. Darbe nagrinėjami BPMN, UML ir SysML standartai bei pasiūlomi jų išplėtimai apibrėžiantys modelius reikalavimų inžinerijos automatizavimui. Taip pat pateikiamas algoritmas užduočių diagramos gavimui iš pasiūlyto BPMN išplėtimo ir aprašoma sukurta programa demonstruojanti jo veikimą.
+
 % Nurodomi iki 5 svarbiausių temos raktinių žodžių (terminų).
 % Vienas terminas gali susidėti iš kelių žodžių.
-\raktiniaizodziai{raktinis žodis 1, raktinis žodis 2, raktinis žodis 3, raktinis žodis 4, raktinis žodis 5}
+\raktiniaizodziai{BPMN, Užduočių diagrama, UML, SySML, DVGM}
 
 \sectionnonumnocontent{Summary}
-Santrauka anglų kalba. Santraukos apimtis ne didesnė nei 0,5 puslapio.
-\keywords{keyword 1, keyword 2, keyword 3, keyword 4, keyword 5}
+The paper describes how to obtain the functional requirements of the system in the form of the use cases from business process. The relevance of requirement engineering and a tool for it is shown. The usage of tool would to reduce the amount of errors, speed up the process, allow sharing of requirements and tracking their changes. The paper analyses the standards of BPMN, UML and SysML, and proposes their extensions that could be used for automation of requirement engineering process. Also the algorythm for deriving use cases from extended BPMN and description of tool to demonstrate algorythm is provided.
+\keywords{BPMN, Use cases, UML, SySML, DVCM}
 
 \tableofcontents
 
@@ -197,12 +197,13 @@ Siekiami rezultatai yra:
     \item Sumažinti žmogiškąjį klaidos faktorių. Automatizavus procesą žmogus gautų teoriškai teisingus reikalavimus.
     \item Paspartinti reikalavimų inžinerijos procesą.
     \item Padaryti reikalavimus prieinamus visiem komandos nariam. Visi žinotų koks yra projekto statusas.
+    \item padėtų sekti reikalavimų pasikeitimus.
   \end{enumerate}
   \item Pagal modeliavimo kalbų standartų ir transformavimo algoritmų analizę nustatyta, kad trūksta \BPMN{} transformavimo į užduočių diagramą algoritmo. Rastas algoritmas, kuris atlieka transformaciją remdamasis empirinėmis taisyklėmis.
   \item Kadangi daugelis \BPMN{} komponentų neturi įtakos užduočių diagramos generavimo rezultatui išanalizavus \BPMN{} standartą sudarytas \BPMN{} pagrindinių komponentų metamodelis. Jis apibūdina algoritmo įvesties duomenis.
   \item Išanalizavus \UML{} ir \SysML{} standartus sudarytas užduočių diagramos metamodelis. Jis apibūdina algoritmo rezultatą.
   \item Pasiūlytas \BPMN{} standarto praplėtimas. Parodyta kokios anksčiau aprašyto algoritmo problemos išsisprendžia generuojant užduočių diagramą pagal \BPMN{} sukurtą pagal \DVCM{} teoriją.
-  \item Išanalizavus modeliavimo kalbų standartus ir egzistuojančius algoritmus pasiūlytas \BPMN{} transformavimo į užduočių diagramą algoritmas, kuris sukonstruoja užduočių diagramos modelį. Sukurtas algoritmas galėtų būti pritaikytas reikalavimų inžinerijos įrankyje.
+  \item Išanalizavus modeliavimo kalbų standartus ir egzistuojančius algoritmus pasiūlytas \BPMN{} transformavimo į užduočių diagramą algoritmas, kuris sukonstruoja užduočių diagramos modelį. Pateikiamas algoritmo pseudokodas bei jį apibūdinanti veiklos diagrama. Sukurtas algoritmas galėtų būti pritaikytas reikalavimų inžinerijos įrankyje.
   \item Sukurta demonstracinė programa leidžianti:
   \begin{enumerate}
     \item Kurti \BPMN{} pagal \DVCM{} teoriją.
