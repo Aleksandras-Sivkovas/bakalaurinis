@@ -29,12 +29,12 @@
     \\
     \textbf{Aprašas}
 
-      Naudotojas pasinaudojęs programa sukuria \DVCM{}.
+      Naudotojas pasinaudojęs demonstracine programa sukuria \DVCM{}.
 
     \\
     \textbf{Prieš sąlygos}
     \begin{enumerate}
-    	\item Naudotojas yra atidaręs programos langą.
+    	\item Naudotojas yra atidaręs demonstracinės programos langą.
 	\end{enumerate}
     \\
     \textbf{Priežastys}
@@ -45,12 +45,12 @@
     \textbf{Po sąlygos}
     \begin{enumerate}
     	\item Naudotojas yra sukūręs \DVCM{}.
-      \item Naudotojas mato savo sukurtą \DVCM{} programos lange.
+      \item Naudotojas mato savo sukurtą \DVCM{} demonstracinės programos lange.
 	\end{enumerate}
     \\
     \textbf{Pagrindinė užduočių seka}
     \begin{enumerate}
-    	\item Sistema pateikia interfeisą \DVCM{} kūrimui.
+    	\item Demonstracinė programa pateikia interfeisą \DVCM{} kūrimui.
     	\item Naudotojas kuria \DVCM{}.
 	\end{enumerate}
     \\
@@ -84,7 +84,7 @@
     \\
     \textbf{Aprašas}
 
-      Naudotojas išsaugo programna sukurtą \DVCM{}.
+      Naudotojas išsaugo demonstracine programa sukurtą \DVCM{}.
 
     \\
     \textbf{Prieš sąlygos}
@@ -100,13 +100,15 @@
     \textbf{Po sąlygos}
     \begin{enumerate}
     	\item Naudotojas yra išsaugojęs \DVCM{}.
-      \item Naudotojas žino kad \DVCM{} išsaugotas.
+      \item Naudotojas žino, kad \DVCM{} išsaugotas.
 	\end{enumerate}
     \\
     \textbf{Pagrindinė užduočių seka}
     \begin{enumerate}
-    	\item Demonstracinė programa pateikia išsaugojimo interfeisą.
+    	\item Demonstracinė programa pateikia išsaugojimo formatus.
     	\item Naudotojas pasirenka kaip saugoti \DVCM{}.
+			\item Demonstracinė programa pareikalauja išsaugojimo informacijos.
+			\item Naudotojas įveda išsaugojimo informaciją.
       \item Demonstracinė programa išsaugo \DVCM{}.
       \item Demonstracinė programa patvirtina, kad \DVCM{} išsaugotas.
 	\end{enumerate}
@@ -115,7 +117,16 @@
 
     \\
     \textbf{Išimtinės užduočių sekos}
-      TODO: cancel
+			\newlist{seka}{enumerate}{3}
+			\setlist[seka]{label*=\arabic*.,leftmargin=2em}
+			\setlist[seka,1]{label=*.\arabic*.,leftmargin=2em}
+			\begin{seka}
+					\item Naudotojas atsisako išsaugoti \DVCM{}.
+					\begin{seka}
+						\item Naudotojas pateikia išsaugoti atsisakymą.
+						\item Demonstracinė programa nebereikalauja duomenų.
+					\end{seka}
+			\end{seka}
     \\
     \\ \hline
     \end{longtable}
@@ -141,7 +152,7 @@
     \\
     \textbf{Aprašas}
 
-      Naudotojas pasinaudojęs programa pateikia \DVCM{} ir programa jam sugeneruoja užduočių diagramą.
+      Naudotojas demonstracinei programai programa pateikia \DVCM{} ir programa sugeneruoja užduočių diagramą.
 
     \\
     \textbf{Prieš sąlygos}
@@ -163,18 +174,32 @@
     \textbf{Pagrindinė užduočių seka}
     \begin{enumerate}
       \item Demonstracinė programa pateikia užduočių diagramos generavimo iš \DVCM{} variantus.
-      \item Naudotojas išsirenka generuoti bendrą diagramą iš \DVCM{}.
+      \item Naudotojas pasirenka generuoti bendrą diagramą iš \DVCM{}. \label{seka:re_generate_choose_way}
     	\item Demonstracinė programa pateikia interfeisą \DVCM{} įvedimui.
     	\item Naudotojas įveda \DVCM{}.
       \item Demonstracinė programa sugeneruoja užduočių diagramos modelį.
-      \item Demonstracinė programa pavaizduoja užduočių diagramą savo lange.
+      \item Demonstracinė programa pavaizduoja užduočių diagramą lange.
 	\end{enumerate}
     \\
     \textbf{Alternatyvios užduočių sekos}
-      TODO: display by transaction
+			\newlist{seka}{enumerate}{3}
+			\setlist[seka]{label*=\arabic*.,leftmargin=2em}
+			\setlist[seka,1]{label=\ref{seka:re_generate_choose_way}.\arabic*.,leftmargin=2em}
+			\begin{seka}
+					\item Naudotojas Naudotojas pasirenka iš \DVCM{} sugeneruotą diagramą rodyti po vieną transakciją.
+			\end{seka}
     \\
     \textbf{Išimtinės užduočių sekos}
-      TODO: cancel
+			\newlist{seka}{enumerate}{3}
+			\setlist[seka]{label*=\arabic*.,leftmargin=2em}
+			\setlist[seka,1]{label=*.\arabic*.,leftmargin=2em}
+			\begin{seka}
+					\item Naudotojas atsisako generavimo.
+					\begin{seka}
+						\item Naudotojas pateikia generavimo atsisakymą.
+						\item Demonstracinė programa nebereikalauja duomenų.
+					\end{seka}
+			\end{seka}
     \\
     \\ \hline
     \end{longtable}
