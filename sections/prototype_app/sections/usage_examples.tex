@@ -2,72 +2,9 @@
 
 \lstset{language=Java,keywordstyle={\bfseries \color{blue} \textbf}}
 
-Atidarius programą matomas trumpas jos aprašymas. Programą galima lokalizuoti įvedus komandą \inCode{editorModel.locale = "lt_LT"} (priedas \ref{appendix:run_examples_welcome}). Komandų sąrašas (į „window“ objektą iškelti programos objektai) pateiktas \ref{tab:program_commands} lentelėje. Paspaudus mygtuką \uiWord{Naujas} matomas diagramos kūrimo langas (priedas \ref{appendix:run_examples_new}). Pasirinkus \uiWord{\DVCM{}} rodomas \DVCM{} kūrimo sąsaja (priedas \ref{appendix:run_examples_new_dvcm}). Joje galimos \DVCM{} redagavimo komandos.
+Atidarius programą matomas trumpas jos aprašymas. Programą galima lokalizuoti į konsolę įvedus komandą \inCode{editorModel.locale = "lt_LT"} (priedas \ref{appendix:run_examples_welcome}). Programa pateikia grafinę diagramų atvaizdavimo sąsają, bet jų kūrimui pateikiamas komandinis interfeisas. Komandomis vadinami „window“ objektui priskirti programos objektai (naudojimo pavyzdys: kodas \ref{lst:commands_to_create_dvcm}). Paspaudus mygtuką \uiWord{Naujas} matomas diagramos kūrimo langas (priedas \ref{appendix:run_examples_new}). Pasirinkus \uiWord{\DVCM{}} rodomas \DVCM{} kūrimo sąsaja (priedas \ref{appendix:run_examples_new_dvcm}). Joje galimos \DVCM{} redagavimo komandos. Suvedus komandas iš \ref{lst:commands_to_create_dvcm} kodo gaunamas \DVCM{} modelis. Šiek tiek pakoreguotas grafine sąsaja jis pavaizduotas priede \ref{appendix:run_examples_created_dvcm}. Sudėtingesnio \DVCM{} (priedas \ref{appendix:dvcm_window}) \JSON{} formato duomenų failas yra pateiktas \href{https://aleksandras-sivkovas.github.io/diagrams-editor-app/dvcm.json}{https://aleksandras-sivkovas.github.io/diagrams-editor-app/dvcm.json}.
 
-\stepcounter{counter:table:reset}
-
-\begin{center}
-    \begin{longtable}{ | l | p{14cm} |}
-    \caption{Demonstracinės programos konsolės komandų sąrašas.}
-	  \label{tab:program_commands}
-
-    \\ \hline
-      \textbf{Nr.}
-      &
-      \rownumber
-    \\ \hline
-      \textbf{Komanda}
-      &
-      editorModel.locale = [lokalės\_kodas]
-    \\ \hline
-      \textbf{Paaiškinimas}
-      &
-      Lokalė pakeičiama į lokalės kodu nurodytą lokalę. Lokalė yra simbolių eilutės tipo ISO/IEC 15897 standarto. Nustatyta lokalė yra anglų, ją dar galima pakeisti į lietuvių.
-    \\ \hline
-      \textbf{Pavyzdžiai}
-      &
-      \inCode{editorModel.locale = "lt_LT"}
-    \\ \hline
-
-    \multicolumn{2}{c}{}
-
-    \\ \hline
-      \textbf{Nr.}
-      &
-      \rownumber
-    \\ \hline
-      \textbf{Komanda}
-      &
-      editorModel.diagram.selected.id
-    \\ \hline
-      \textbf{Paaiškinimas}
-      &
-      Rezultatas yra pažymėto komponento id.
-    \\ \hline
-
-    \multicolumn{2}{c}{}
-
-    \\ \hline
-      \textbf{Nr.}
-      &
-      \rownumber
-    \\ \hline
-      \textbf{Komanda}
-      &
-      editorModel.diagram.getComponent([id])
-    \\ \hline
-      \textbf{Paaiškinimas}
-      &
-      Rezultatas yra komponento objektas.
-    \\ \hline
-      \textbf{Pavyzdžiai}
-      &
-    \inCode{editorModel.diagram.getComponent(1)}
-    \\ \hline
-
-    \multicolumn{2}{c}{}
-
-
-
-    \end{longtable}
-\end{center}
+\renewcommand{\lstlistingname}{Kodas}
+\renewcommand{\lstlistlistingname}{Kodo fragmentai}
+\setcounter{lstlisting}{0}
+\lstinputlisting[style=javascript, caption={Komandos gauti \ref{appendix:run_examples_created_dvcm} priede pavaizduotą \DVCM}, label={lst:commands_to_create_dvcm}]{sections/prototype_app/code/commands_for_dvcm.js}

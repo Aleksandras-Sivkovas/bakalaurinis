@@ -89,6 +89,31 @@
   frame=single	                   	% adds a frame around the code
 }
 
+\lstdefinestyle{javascript}{
+  language=Java,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\normalsize\ttfamily},
+  numberstyle={\tiny},
+  numbers=left,
+  keywordstyle=\pmb,
+  commentstyle=\itshape,
+  stringstyle=\itshape,
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=2,
+  morekeywords={of,in,function},
+  escapeinside={(*}{*)},          % if you want to add LaTeX within your code
+  frame=single	                   	% adds a frame around the code
+}
+
+\lstset{
+  morekeywords={of,in,function}
+}
+
+
 %%% Table of contents to list down to subsections and no further
 \setcounter{tocdepth}{4}
 
@@ -197,7 +222,7 @@ Siekiami rezultatai yra:
     \item Sumažinti žmogiškąjį klaidos faktorių. Automatizavus procesą žmogus gautų teoriškai teisingus reikalavimus.
     \item Paspartinti reikalavimų inžinerijos procesą.
     \item Padaryti reikalavimus prieinamus visiem komandos nariam. Visi žinotų koks yra projekto statusas.
-    \item padėtų sekti reikalavimų pasikeitimus.
+    \item Sekti reikalavimų pasikeitimus.
   \end{enumerate}
   \item Pagal modeliavimo kalbų standartų ir transformavimo algoritmų analizę nustatyta, kad trūksta \BPMN{} transformavimo į užduočių diagramą algoritmo. Rastas algoritmas, kuris atlieka transformaciją remdamasis empirinėmis taisyklėmis.
   \item Kadangi daugelis \BPMN{} komponentų neturi įtakos užduočių diagramos generavimo rezultatui išanalizavus \BPMN{} standartą sudarytas \BPMN{} pagrindinių komponentų metamodelis. Jis apibūdina algoritmo įvesties duomenis.
@@ -231,15 +256,38 @@ Siekiami rezultatai yra:
 \appendix  % Priedai
 
 \section{Vertės grandinės modelis programos lange} \label{appendix:dvcm_window}
+\JSON{} formato duomenų failas yra pateiktas \href{https://aleksandras-sivkovas.github.io/diagrams-editor-app/dvcm.json}{https://aleksandras-sivkovas.github.io/diagrams-editor-app/dvcm.json}.
 \begin{figure}[H]
     \centering
     \includegraphics[height=20cm]{img/dvcm_window}
 \end{figure}
 
-\section{Transformuotas užduočių diagrama programos lange} \label{appendix:use_cases_window}
+\section{\ref{appendix:dvcm_window} priedo užduočių diagramos} \label{appendix:use_cases_window}
+Iš \ref{appendix:dvcm_window} priedo \DVCM{} transformuotos užduočių diagramos.
+
 \begin{figure}[H]
     \centering
-    \includegraphics[height=20cm]{img/use_cases_window}
+    \includegraphics[width=12cm]{img/appendix/run_examples/generated_use_case/mt11}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=12cm]{img/appendix/run_examples/generated_use_case/mt22}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=12cm]{img/appendix/run_examples/generated_use_case/mt32}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=12cm]{img/appendix/run_examples/generated_use_case/mt33}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=12cm]{img/appendix/run_examples/generated_use_case/mt44}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=10cm]{img/appendix/run_examples/generated_use_case/not_in_transaction}
 \end{figure}
 
 \section{Užduočių diagramos metamodelis} \label{appendix:lit_alg_metamodels_uc}
@@ -285,4 +333,16 @@ Siekiami rezultatai yra:
     \centering
     \includegraphics[height=20cm]{img/appendix/run_examples/new_dvcm}
 \end{figure}
+
+\section{Sukurto DVGM pavyzdys} \label{appendix:run_examples_created_dvcm}
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=20cm]{img/appendix/run_examples/created_dvcm}
+\end{figure}
+
+
+\section{Pseudokodo realizacija Javascript kalba} \label{appendix:pseudocode_implementation}
+Algoritmo aprašyto \ref{section:main_use_cases_from_bpmn} skyriuje realizaciją „Javascript“ kalba.
+\lstinputlisting[style=javascript]{Generator.js}
+
 \end{document}
